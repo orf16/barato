@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.UsuarioDireccion" table="usuario_direccion" schema="public" optimistic-lock="version">
+        <comment>almacenar las direcciones del usuario</comment>
+        <id name="idusuariodireccion" type="int">
+            <column name="idusuariodireccion" />
+            <generator class="sequence" >
+                <param name="sequence">sidusuariodireccion</param>
+            </generator>
+        </id>
+        <many-to-one name="departamento" class="modelos.Departamento" fetch="select">
+            <column name="iddepartamento" not-null="true">
+                <comment>identificador del departamento de la direccion</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="municipio" class="modelos.Municipio" fetch="select">
+            <column name="idmunicipio" not-null="true">
+                <comment>identificador del municipio</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="usuario" class="modelos.Usuario" fetch="select">
+            <column name="idusuario" not-null="true">
+                <comment>Identificador del usuario al cual pertenecen las direcciones</comment>
+            </column>
+        </many-to-one>
+        <property name="direccion" type="string">
+            <column name="direccion" not-null="true">
+                <comment>direccion exacta del usuario</comment>
+            </column>
+        </property>
+        <property name="nombredireccion" type="string">
+            <column name="nombredireccion" not-null="true">
+                <comment>nombre de la direccion, casa, apartamento, trabajo</comment>
+            </column>
+        </property>
+        <property name="lat" type="double">
+            <column name="lat" precision="17" scale="17" not-null="true">
+                <comment>latitud de la direccion del usuario</comment>
+            </column>
+        </property>
+        <property name="lng" type="double">
+            <column name="lng" precision="17" scale="17" not-null="true">
+                <comment>Longitud de la ubicacion en el mapa de la direccion</comment>
+            </column>
+        </property>
+        <set name="listas" table="lista" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuariodireccion" />
+            </key>
+            <one-to-many class="modelos.Lista" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Producto" table="producto" schema="public" optimistic-lock="version">
+        <id name="idproducto" type="int">
+            <column name="idproducto" />
+            <generator class="sequence" >
+                <param name="sequence">sidproducto</param>
+            </generator>
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" />
+        </property>
+        <property name="detalle" type="string">
+            <column name="detalle" />
+        </property>
+        <property name="direccionImagen" type="string">
+            <column name="direccion_imagen" />
+        </property>
+        <set name="productoTiendas" table="producto_tienda" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="producto_idproducto" />
+            </key>
+            <one-to-many class="modelos.ProductoTienda" />
+        </set>
+        <set name="listaProductos" table="lista_producto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="producto_idproducto" />
+            </key>
+            <one-to-many class="modelos.ListaProducto" />
+        </set>
+        <set name="productoTiendaCadenas" table="producto_tienda_cadena" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="producto_idproducto" />
+            </key>
+            <one-to-many class="modelos.ProductoTiendaCadena" />
+        </set>
+        <set name="productoxcategorias" table="productoxcategoria" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="producto_idproducto" not-null="true" />
+            </key>
+            <one-to-many class="modelos.Productoxcategoria" />
+        </set>
+    </class>
+</hibernate-mapping>

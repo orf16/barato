@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Departamento" table="departamento" schema="public" optimistic-lock="version">
+        <comment>Departamentos de colombia</comment>
+        <id name="iddepartamento" type="int">
+            <column name="iddepartamento" />
+            <generator class="sequence" >
+                <param name="sequence">siddepartamento</param>
+            </generator>
+        </id>
+        <property name="indicativo" type="int">
+            <column name="indicativo">
+                <comment>Indicativo del departamento</comment>
+            </column>
+        </property>
+        <property name="estado" type="int">
+            <column name="estado">
+                <comment>Estado del departamento</comment>
+            </column>
+        </property>
+        <property name="nombredepartamento" type="string">
+            <column name="nombredepartamento">
+                <comment>Nombre del departamento</comment>
+            </column>
+        </property>
+        <set name="usuarioDireccions" table="usuario_direccion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="iddepartamento" not-null="true">
+                    <comment>identificador del departamento de la direccion</comment>
+                </column>
+            </key>
+            <one-to-many class="modelos.UsuarioDireccion" />
+        </set>
+        <set name="municipios" table="municipio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="iddepartamento">
+                    <comment>Identificador del departamento al cual pertenece el municipio</comment>
+                </column>
+            </key>
+            <one-to-many class="modelos.Municipio" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Login" table="login" schema="public" optimistic-lock="version">
+        <id name="series" type="string">
+            <column name="series" />
+            <generator class="sequence" >
+                <param name="sequence">sseries</param>
+            </generator>
+        </id>
+        <property name="username" type="string">
+            <column name="username" />
+        </property>
+        <property name="token" type="string">
+            <column name="token" />
+        </property>
+        <property name="lastUsed" type="date">
+            <column name="last_used" length="13" />
+        </property>
+    </class>
+</hibernate-mapping>

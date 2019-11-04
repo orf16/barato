@@ -264,11 +264,6 @@
         </dependency>
     </dependencies>
     <build>
-        <resources>
-     <resource>
-       <directory>src/my-resources</directory>
-     </resource>
-   </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -317,5 +312,4 @@
             </plugin>
         </plugins>
     </build>
-    
 </project>

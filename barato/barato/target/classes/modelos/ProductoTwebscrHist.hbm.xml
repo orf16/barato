@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 5, 2019 12:28:51 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.ProductoTwebscrHist" table="producto_twebscr_hist" schema="public" optimistic-lock="version">
+        <id name="idproducto" type="int">
+            <column name="idproducto" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" />
+        </property>
+        <property name="detalle" type="string">
+            <column name="detalle" />
+        </property>
+        <property name="fecha" type="date">
+            <column name="fecha" length="13" not-null="true" />
+        </property>
+        <property name="hora" type="time">
+            <column name="hora" length="15" not-null="true" />
+        </property>
+        <property name="fechahora" type="timestamp">
+            <column name="fechahora" length="29" />
+        </property>
+        <property name="idtarea" type="java.math.BigInteger">
+            <column name="idtarea" />
+        </property>
+        <property name="direccionimagen" type="string">
+            <column name="direccion_imagen" length="500" />
+        </property>
+        <property name="idcategoria" type="java.lang.Integer">
+            <column name="idcategoria" />
+        </property>
+        <property name="codigotienda" type="string">
+            <column name="codigotienda" length="30" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" />
+        </property>
+        <property name="precio" type="java.lang.Double">
+            <column name="precio" precision="17" scale="17" />
+        </property>
+    </class>
+</hibernate-mapping>

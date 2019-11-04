@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Municipio" table="municipio" schema="public" optimistic-lock="version">
+        <comment>Municipios de colombia</comment>
+        <id name="idmunicipio" type="int">
+            <column name="idmunicipio" />
+            <generator class="sequence" >
+                <param name="sequence">sidmunicipio</param>
+            </generator>
+        </id>
+        <many-to-one name="departamento" class="modelos.Departamento" fetch="select">
+            <column name="iddepartamento">
+                <comment>Identificador del departamento al cual pertenece el municipio</comment>
+            </column>
+        </many-to-one>
+        <property name="nombremunicipio" type="string">
+            <column name="nombremunicipio">
+                <comment>Nombre del municipio</comment>
+            </column>
+        </property>
+        <property name="codigomunicipio" type="string">
+            <column name="codigomunicipio">
+                <comment>Codigo a nivel nacional del municipio</comment>
+            </column>
+        </property>
+        <property name="estado" type="java.lang.Short">
+            <column name="estado">
+                <comment>1 = Activo, 2 = Inactivo</comment>
+            </column>
+        </property>
+        <set name="usuarioDireccions" table="usuario_direccion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idmunicipio" not-null="true">
+                    <comment>identificador del municipio</comment>
+                </column>
+            </key>
+            <one-to-many class="modelos.UsuarioDireccion" />
+        </set>
+    </class>
+</hibernate-mapping>

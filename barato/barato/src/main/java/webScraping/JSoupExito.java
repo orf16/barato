@@ -311,6 +311,8 @@ public class JSoupExito {
         List<String> scripts = new ArrayList<>();
 
         try {
+            //inserart tags de categorias
+            //insertar y clasificar 
             //Constantes
             String scriptfijo = "INSERT INTO public.producto_twebscr_hist(nombre, detalle,precio,idtarea,direccion_imagen,codigotienda,idcategoria) VALUES (";
             String idtienda = "1";

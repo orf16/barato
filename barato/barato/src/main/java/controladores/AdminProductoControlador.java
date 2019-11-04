@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import servicios.AdminProductos;
 import interfaces.ProductoInterface;
+import modelos.ProductoTwebscrHist;
 
 /**
  *
@@ -70,7 +71,10 @@ public class AdminProductoControlador {
 
     }
 
-
-
-    
+    @RequestMapping(value = "/getProductosxID", method = RequestMethod.GET)
+    @ResponseBody
+    public String getProductosxID( @RequestParam(name = "id" , required = true) String id ) throws IOException, JSONException{                              
+        List<ProductoTwebscrHist> productoList = prod.traerProductosxID( id );
+        return mapper.writeValueAsString( productoList );
+    }
 }

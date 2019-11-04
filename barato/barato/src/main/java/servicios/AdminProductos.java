@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import modelos.Producto;
 import modelos.Productoxcategoria;
+import modelos.ProductoTwebscrHist;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.json.JSONArray;
@@ -229,4 +230,20 @@ public class AdminProductos implements ProductoInterface {
         return result;
     }
 
+    @Override
+    public List<ProductoTwebscrHist> traerProductosxID(String id) {
+        int hh=0;
+        Session conexion = funciones.getConexion();
+        Query query = conexion.createQuery("from ProductoTwebscrHist where idproducto= :idproductos");
+        //query.setParameter("idProductos", 1);
+        query.setParameter("idproductos", Integer.parseInt(id));
+        
+        
+            
+        List<ProductoTwebscrHist> productoList = query.list();
+        conexion.close();
+        return productoList;
+    }
+    
+    
 }

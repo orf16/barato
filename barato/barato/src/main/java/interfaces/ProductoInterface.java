@@ -9,6 +9,7 @@ import modelos.Producto;
 import modelos.Productoxcategoria;
 
 import java.util.List;
+import modelos.ProductoTwebscrHist;
 
 /**
  *
@@ -24,4 +25,5 @@ public interface ProductoInterface {
     public List <Producto> traerTodosProductosxcategoria(Integer idCategoria);
     public List <Producto> traerProductosxIds(List<Integer> idProductos);
     public Boolean crearproductos(String tiendprods);
+    public List <ProductoTwebscrHist> traerProductosxID(String id);
 }

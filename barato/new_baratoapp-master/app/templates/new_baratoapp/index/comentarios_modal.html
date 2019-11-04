@@ -1,0 +1,27 @@
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:340px!important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentModalLabel">Cuéntanos tu Experiencia</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <center>
+                <textarea id="comenttext" rows="5" cols="30">
+                </textarea>
+                  <b><label for="input-1" class="control-label">Califícanos</label></b>
+                    <div id="ratingb" class="rateyo"></div>
+                    <input  id="valstars" type="hidden" />
+                </center>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <button @click="enviarComentario()" class="btn btn-danger" type="button" > Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>

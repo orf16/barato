@@ -1,0 +1,110 @@
+<div class="modal fade modal-shop-list" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Tiendas más Barato</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <template v-if="!loading">
+                    <template v-if="shopList.length" v-for="(shop,index) in shopList">
+                        <div class="card mb-3" :id="'shop' +index">
+                            <div class="card-header">
+                                <i class="fa fa-table"></i>
+                                <span>
+                  ${shop.nombreTienda}
+                  <span v-if="shop.itemNotFoundList.length" class="badge badge-pill badge-danger">${shop.itemNotFoundList.length}</span>
+                </span>
+                            </div>
+                            <div class="card-body" id="shopTable">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" :id="'dataTable'+index" width="100%"
+                                           cellspacing="0">
+                                        <thead>
+                                        <tr>
+                                            <td>
+                                                <b>Nombre</b>
+                                            </td>
+                                            <td>
+                                                <b>Cantidad</b>
+                                            </td>
+                                            <td>
+                                                <b>Precio</b>
+                                            </td>
+                                            <td>
+                                                <b>Total</b>
+                                            </td>
+                                        </tr>
+                                        </thead>
+                                        <tfoot>
+                                        <tr>
+                                            <td>
+                                                <b>Total:</b>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <b>${shop.valorstr}</b>
+                                            </td>
+                                        </tr>
+                                        </tfoot>
+                                        <tbody>
+                                        <tr v-for="product in shop.listaProductos">
+                                            <td>${product.nombre}</td>
+                                            <td>${itemQuantity(product.idproducto)}</td>
+                                            <td>${product.valorstr}</td>
+                                            <td>${product.valorcantstr}</td>
+                                        </tr>
+                                        <tr style="color: crimson;" v-for="product in shop.itemNotFoundList">
+                                            <td>${product.nombre}</td>
+                                            <td>${product.quantity}</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col col-3">
+                                <template v-if="hasSaving(shop.valor)">
+                                    Ahorro:
+                                    <span class="badge badge-success ">${savingPercentage(shop.valor)}%</span>
+                                </template>
+                            </div>
+                            <div class="col offset-7 col-2">
+                                <button @click='buyShop()' type="button" title="Comprar" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <hr v-if="shopList.length>1 && index<shopList.length-1">
+                    </template>
+                </template>
+                <template v-else>
+                    <div class="row">
+                        <div class="col-6 col-offset-6 breeding-rhombus-spinner">
+                            <div class="rhombus child-1"></div>
+                            <div class="rhombus child-2"></div>
+                            <div class="rhombus child-3"></div>
+                            <div class="rhombus child-4"></div>
+                            <div class="rhombus child-5"></div>
+                            <div class="rhombus child-6"></div>
+                            <div class="rhombus child-7"></div>
+                            <div class="rhombus child-8"></div>
+                            <div class="rhombus big"></div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="nav_menu">
+  <nav>
+    <div class="nav toggle">
+      <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item">
+            <form @submit.prevent="getProductList(-1,1)" class="form-inline my-auto d-inline w-100">
+                <input v-model="searchBar" id="search" class="form-control mr-sm-2" type="search" placeholder="Producto.." aria-label="Search">
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+        </li>
+    </ul>
+  </nav>
+</div>
+

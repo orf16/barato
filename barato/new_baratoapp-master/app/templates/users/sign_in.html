@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="sign-in-container">
+        <!-- contenedor principal -->
+    <div class="container">
+        <div class="row" style="text-align:center;">
+                <div class="col-md-7 align-center" style="text-align:center;text-align:center; margin-left: auto; margin-right: auto;display: block;">
+                    <img class="embed-responsive" style=""  src="/static/images/logo/logarbarato.png"></img>
+                    <!--<h2>Iniciar sesión</h2>-->
+                </div>
+            </div>
+        <br>
+        <form action="" method="post" class="form-horizontal" role="form" accesskey="Enter">{% csrf_token %}
+                {% include 'users/form_field.html' %}
+            <div class="form-group row">
+                <div class="col-sm col-sm-10">
+                  <button type="submit" class="btn btn-primary">Ingresar</button>
+                </div>
+            </div>
+        </form>
+
+        <p><a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>
+        <p><a href="{% url 'sign_up' %}">Crear cuenta</a></p>
+
+        <!-- Fila de botones sociales -->
+        <div class="row" style=" text-align:center;">
+                <!-- Columna de boton de facebook -->
+                <div class="col-md-5 offset-md-1">
+                    <a class="btn btn-social btn-facebook btn-block"  style="color:#ffffff; text-align:center; font-size:0.8rem;" href="{% url 'social:begin' 'facebook' %} ">
+                        <span class="fab fa-facebook-f"></span><strong>Sigue con Facebook</strong> 
+                    </a>            
+                </div>
+    
+                <!-- Columna de boton de google -->
+                <div class="col-md-5">
+                    <a class="btn btn-social btn-google btn-block" style="color:#ffffff; text-align:center; font-size:0.8rem;" href="{% url 'social:begin' 'google-oauth2' %}">
+                        <span class="fab fa-google"></span><strong>Sigue con Google</strong> 
+                    </a>
+                </div>
+                
+            </div>
+
+          <div style="font-size: small;text-align:right !important;">
+            <br>
+              <p>Al ingresar está de acuerdo y acepta nuestros
+            <a target="_blank" href="/static/config/terminos_condiciones.html">Términos y condiciones de uso.</a>
+              </p>
+        </div>
+       
+    </div>
+</div>
+{% endblock %}

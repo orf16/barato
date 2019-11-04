@@ -1,0 +1,17 @@
+var direccionserver = 'https://servicio.baratoapp.co/barato/';
+var pass = 'gTddSgsRD!Csta5gKXZ$Dfh7jNvg?pMeS75%45A9GCje&^X^?3&$?5Z*Fj#YC47fGaNNX4Mp=syV9UqC-CcAM^^$_7rDsFT89^e+';
+var user = 'baratoUser';
+var email = 
+'{{user.email}};
+var key = 'Prlx+q?Wov8K1%o+bnn%p=Pog+d9GpLK?2pc2znx_xk1=dddmT4X+VZh1zk9yY*BxDI#=D1X?!?RNyuc!L#s^#go47Mj!FCFy%&otu44cMYlQP';
+var token = $.base64.encode(user + '@@@' + email + '@@@' + pass + '@@@' + key);
+var config = {
+    headers: {
+        'Content-Type': 'application/json', 'UserEmail': email,
+        'Token': token
+    },
+    auth: {
+        username: user,
+        password: pass
+    }
+};

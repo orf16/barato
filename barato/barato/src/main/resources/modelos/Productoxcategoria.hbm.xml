@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Productoxcategoria" table="productoxcategoria" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="modelos.ProductoxcategoriaId">
+            <key-property name="productoIdproducto" type="int">
+                <column name="producto_idproducto" />
+            </key-property>
+            <key-property name="categoriaIdcategotia" type="int">
+                <column name="categoria_idcategotia" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="categoria" class="modelos.Categoria" update="false" insert="false" fetch="select">
+            <column name="categoria_idcategotia" not-null="true" />
+        </many-to-one>
+        <many-to-one name="producto" class="modelos.Producto" update="false" insert="false" fetch="select">
+            <column name="producto_idproducto" not-null="true" />
+        </many-to-one>
+        <property name="valor" type="java.lang.Double">
+            <column name="valor" precision="17" scale="17" />
+        </property>
+        <property name="valorUnidad" type="java.lang.Double">
+            <column name="valor_unidad" precision="17" scale="17" />
+        </property>
+    </class>
+</hibernate-mapping>

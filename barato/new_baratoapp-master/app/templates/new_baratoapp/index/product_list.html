@@ -1,0 +1,152 @@
+{% load static %}
+<div class="content-wrapper" style="display:none;" id="listaproduc" xmlns:v-on="http://www.w3.org/1999/xhtml"
+     xmlns:v-bind="http://www.w3.org/1999/xhtml">
+    <div class="navbar-expand-lg navbar-dark bg-dark position-top-search" id="mainNavCat">
+
+        <center>
+            <form @submit.prevent="getProductList(-1,1)" class="my-2 my-lg-0 mr-lg-2">
+                <table>
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary" title="Categorías" type="button" v-on:click="verCat()">
+                                Categorías
+                            </button>
+                        </td>
+                        <td>
+                            <input v-model="searchBar" id="search" class="form-control"
+                                   type="search"
+                                   placeholder="Buscar productos...">
+                        </td>
+                        <td>
+                                   <span class="input-group-append">
+                            <button class="btn btn-primary" title="Buscar productos" type="button"
+                                    v-on:click="getProductList(-1,1)">
+                                <i class="fa fa-search"></i>
+                            </button>
+
+                            </span>
+                        </td>
+
+                    </tr>
+                </table>
+            </form>
+            <label style="color:white;" id="catsel"></label>
+        </center>
+    </div>
+    <div class="container-fluid">
+
+        <div class="container main-product-list">
+            <template v-if="!loading">
+
+                <div id="controlDirection" ref="controlDirection" style="display: none">
+                    <div class="input-group " style="padding-left: 10px">
+                        <input ref="searchMap" id="searchMap" type="text"
+                               placeholder="Buscar direciones alrededor de 5 Kilometros..." class="form-control"
+                               style="width: 500px !important; ">
+
+                        <span class="input-group-append">
+                    <button title="Ubircarme en el mapa" @click="getPositionGps()" type="button"
+                            class="btn btn-primary">
+                        <i class="fa fa-map-marker"></i> GPS
+                    </button>
+                        <span class="input-group-append">
+                    <button title="Atrás" type="button" @click="atrasMapa()" class="btn btn-primary">
+                        <i class="fa fa-chevron-left"></i> Atrás
+                    </button>
+                </span>
+                    </div>
+                </div>
+                <br/><br/>
+                <div id="products" class="row grid-view" v-if="!mapa">
+                    <div v-for="product in productTempList" class="col-md-4">
+                        <div class="card clearfix">
+                            {% comment %} <img  src="{% static 'images/harina.jpg' %}"  class="card-img-top img-fluid img-thumbnail" alt="image"> {% endcomment %}
+                            <span style="text-align: center;padding-top:20px;">
+                    <img v-if="product.producto.direccionImagen === null"
+                         v-bind:src="'/static/images/productos/noproducto.png'" class="card-img-top img-fluid "
+                         alt="image">
+                    <img v-else v-bind:src="product.producto.direccionImagen" class="card-img-top img-fluid "
+                         alt="image" style="width:150px;">
+                </span>
+
+
+                            <div class="card-block">
+                                <h5 class="card-title">
+                                    ${product.producto.nombre} </h5>
+                                {% comment %} <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    £21.000</p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <p>
+                                    03/03/2016</p>
+                            </div>
+                        </div> {% endcomment %}
+                                <br>
+                                <button @click="addToList(product)" type="buttom" class="btn btn-primary"
+                                        style="    float: right;">Agregar
+                                </button>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div style="text-align:center;">
+                    <span class="step-links" style="display:none;" id="sinresul">
+                        <br/>
+                        No se encontraron Productos.
+                    </span>
+                    <span class="step-links" style="display:none;" id="paginac">
+                        <br/>
+                        <table align="center">
+                        <tr>
+                        <td>
+                           <div id="ant" style="display:none;">
+                                        <a class="colorbl" href="#" @click="getPaginaUno()">Primera</a>
+                                        <a href="#" @click="getPaginaAnt()">Ant</a>&nbsp;&nbsp;
+
+                        </div>
+                        </td>
+                        <td>
+
+                                    <span class="current">
+                                           <span class="catsel">${numpag}</span> &nbsp;<b>de</b>  <span class="catsel">${numpagtot}</span>
+                                        </span>&nbsp;
+                        </td>
+                        <td>
+                        <div id="sig">
+                                        <a href="#" @click="getPaginaSig()">Sig</a>
+                                        <a class="colorbl" href="#" @click="getPaginaUlt()">Última</a>
+                        </div>
+                        </td>
+                        </tr>
+                        </table>
+
+                    </span>
+                </div>
+                <br>
+            </template>
+
+            <template v-else>
+                <div class="row">
+                    <div class="col-3 col-offset-6 breeding-rhombus-spinner">
+                        <div class="rhombus child-1"></div>
+                        <div class="rhombus child-2"></div>
+                        <div class="rhombus child-3"></div>
+                        <div class="rhombus child-4"></div>
+                        <div class="rhombus child-5"></div>
+                        <div class="rhombus child-6"></div>
+                        <div class="rhombus child-7"></div>
+                        <div class="rhombus child-8"></div>
+                        <div class="rhombus big"></div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>

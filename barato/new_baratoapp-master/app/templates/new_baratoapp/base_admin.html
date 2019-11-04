@@ -1,0 +1,136 @@
+{% load static %}
+{% load l10n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name=" google-signin-client_id"
+          content="856056632060-fvgisuhma7dkjbuqq3bot0vak300qb88.apps.googleusercontent.com">
+    <title>{% block title %} {% endblock title %}</title>
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- jQuery custom content scroller -->
+    <link href="{% static 'vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css' %}" rel="stylesheet"/>
+    <!-- Toastr CSS -->
+    <link href="{% static 'vendor/toastr/toastr.min.css' %}" rel="stylesheet"/>
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/baratoapp_v1.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/bootstrap/css/jquery.rateyo.min.css' %}" rel="stylesheet">
+    <style>
+        #right-panel {
+            font-family: 'Roboto', 'sans-serif';
+            line-height: 20px;
+            padding-left: 10px;
+            height: 67%;
+            float: right;
+            width: 360px;
+            overflow: auto;
+            background: #ffffff !important;
+            /*margin: 10% 10% 10% 10%;*/
+            top: -10px;
+            position: absolute;
+            display: none;
+            margin-top: 16%;
+
+            z-index: 100;
+        }
+
+        #right-panel select, #right-panel input {
+            font-size: 15px;
+        }
+
+        #right-panel select {
+            width: 100%;
+        }
+
+        #right-panel i {
+            font-size: 12px;
+        }
+
+        @media screen and (max-width: 600px) {
+            #right-panel {
+                visibility: hidden;
+                clear: both;
+                float: left;
+                margin: 10px auto 5px 20px;
+                width: 28%;
+                display: none;
+            }
+        }
+
+
+
+    </style>
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/images/logo/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/images/logo/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/images/logo/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/images/logo/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/images/logo/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/static/images/logo/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/static/images/logo/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/static/images/logo/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/images/logo/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/static/images/logo/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/logo/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/static/images/logo/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/images/logo/favicons/favicon-16x16.png">
+    <link href="favicon.ico" rel="shortcut icon" />
+</head>
+
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<div id="main">
+
+    {% block content %} {% endblock content %}
+</div>
+
+<input id="userEmailToken" type="hidden" value="{{ user.email }}"  v-show="false"/>
+<input id="idcatact" type="hidden" value="" v-show="false"/>
+
+<!-- Bootstrap core JavaScript-->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery/jquery.base64.min.js' %}"></script>
+<script src="{% static 'vendor/jquery/jquery.rateyo.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- Core plugin JavaScript-->
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+<!-- jQuery custom content scroller -->
+<script src="{% static 'vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+<!-- Axios JacaScript -->
+<script src="{% static 'vendor/axios/axios.min.js' %}"></script>
+<!-- Toastr JacaScript -->
+<script src="{% static 'vendor/toastr/toastr.min.js' %}"></script>
+
+
+
+
+
+
+<script src="{% static 'js/consts_v2.js' %}"></script>
+<script src="{% static 'js/item_list_adm.js' %}"></script>
+<script src="{% static 'js/product_list_adm.js' %}"></script>
+<script src="{% static 'js/shop_list_adm.js' %}"></script>
+
+
+<!-- Custom scripts for all pages-->
+<script src="{% static 'js/baratoapp.js' %}"></script>
+
+
+
+
+
+
+
+
+<!-- Vue JacaScript -->
+{% comment %} <script src="{% static 'vendor/vue/vue.min.js' %}"></script> {% endcomment %}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+<script src="{% static 'js/main_v4.js' %}"></script>
+
+</body>
+
+</html>
+

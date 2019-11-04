@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 21/07/2018 12:11:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Tienda" table="tienda" schema="public" optimistic-lock="version">
+        <id name="idtienda" type="int">
+            <column name="idtienda" />
+            <generator class="sequence" >
+                <param name="sequence">tienda_idtienda_seq</param>
+            </generator>
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" />
+        </property>
+        <property name="detalle" type="string">
+            <column name="detalle" />
+        </property>
+        <property name="lugar" type="string">
+            <column name="lugar" />
+        </property>
+        <property name="lat" type="java.lang.Double">
+            <column name="lat" precision="17" scale="17" />
+        </property>
+        <property name="lng" type="java.lang.Double">
+            <column name="lng" precision="17" scale="17" />
+        </property>
+        <property name="placeId" type="string">
+            <column name="place_id" length="1000" />
+        </property>
+        <property name="imagen" type="string">
+            <column name="imagen" />
+        </property>
+        <property name="urlWeb" type="string">
+            <column name="url_web" />
+        </property>
+        <set name="productoTiendaCadenas" table="producto_tienda_cadena" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tienda_idtienda" />
+            </key>
+            <one-to-many class="modelos.ProductoTiendaCadena" />
+        </set>
+        <set name="productoTiendas" table="producto_tienda" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tienda_idtienda" />
+            </key>
+            <one-to-many class="modelos.ProductoTienda" />
+        </set>
+    </class>
+</hibernate-mapping>

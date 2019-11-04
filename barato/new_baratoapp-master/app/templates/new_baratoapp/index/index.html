@@ -1,0 +1,60 @@
+{% extends "new_baratoapp/base_index.html" %}
+
+{% load static %}
+
+{% block title %} Barato App {% endblock title %}
+
+{% block content %}
+    <!-- Navbar-->
+    {% include 'new_baratoapp/index/navbar.html' %}
+
+
+
+    {% include 'new_baratoapp/index/categ_list.html' %}
+    {% include 'new_baratoapp/index/product_list.html' %}
+
+
+    <!-- /.container-fluid-->
+
+    <!-- Cart Sidebar-->
+    {% include 'new_baratoapp/index/item_list_sidebar.html' %}
+
+
+
+    <!--<div ref="map" id="map" style="position:absolute !important;height: 90% !important; width: 86.8% !important; display: none" ></div>-->
+    <div ref="map" id="map"
+         style="position:absolute !important;height: 90% !important; width: 100% !important; display: none"></div>
+    <div id="right-panel"></div>
+    <div class="overlay"></div>
+
+
+
+    <footer class="sticky-footer">
+        {% include 'new_baratoapp/index/footer.html' %}
+    </footer>
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+
+    <!-- Shop List Modal-->
+    {% include 'new_baratoapp/index/shop_list_modal.html' %}
+    <!-- Logout Modal-->
+    {% include 'new_baratoapp/index/logout_modal.html' %}
+    <!-- Comentarios Modal-->
+    {% include 'new_baratoapp/index/comentarios_modal.html' %}
+    <!-- User List shared-->
+    {% include 'new_baratoapp/index/user_list_shared_modal.html' %}
+    <!-- Eliminar lista-->
+    {% include 'new_baratoapp/index/eliminar_lista_modal.html' %}
+
+
+
+
+
+
+
+    <!-- /.content-wrapper-->
+{% endblock content %}
+

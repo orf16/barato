@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <style>
+  @media (min-width: 768px) {
+    .card-img-left {
+      margin-left: -15px;
+      border-radius: .25rem 0 0 .25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card-img-left {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .card.clearfix.row {
+      flex-direction: row;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .card.clearfix.row {
+
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .card.clearfix {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .card-block {
+
+    padding: 10px;
+  }
+  .product-img {
+    padding-bottom: 75%;
+    margin-left:0px;
+  }
+  @media (min-width: 768px) {
+  .list-view .product-img {
+    padding-bottom: 25%;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row hidden-sm-down">
+      <div class="col-12 text-right">
+        <a href="#" id="list" class="btn btn-default">
+          <span class="fa fa-th-list">
+          </span> List</a>
+        <a href="#" id="grid" class="btn btn-default">
+          <span class="fa fa-th"></span> Grid</a>
+      </div>
+    </div>
+    <div id="products" class="row grid-view">
+      <div class="col-md-4">
+        <div class="card bg-light clearfix">
+                
+                <div class="card-img-top img-fluid product-img" style="background: url('http://jsequeiros.com/sites/default/files/imagen-cachorro-comprimir.jpg') no-repeat center center #fff; background-size: 90%;"></div>
+
+          <div class="card-block">
+            <div class="row">
+            <div class="col-10">
+            <h4 class="card-title">
+                                Product title</h4>
+            <div class="row">
+              <div class="col-6">
+                <p>
+                  £21.000</p>
+              </div>
+              <div class="col-6 text-right">
+                <p>
+                  03/03/2016</p>
+              </div>
+            </div>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary">Agregar</button>
+            </div>
+          </div>
+            
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+            <div class="card clearfix">
+                    <div class="card-img-top img-fluid product-img" style="background:  no-repeat center center #fff; background-size: 90%;"></div>
+                    <div class="card-block">
+                <h4 class="card-title">
+                                    Product title</h4>
+                <div class="row">
+                  <div class="col-6">
+                    <p>
+                      £21.000</p>
+                  </div>
+                  <div class="col-6 text-right">
+                    <p>
+                      03/03/2016</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+                <div class="card clearfix">
+                        <div class="card-img-top img-fluid product-img" style="background: url('https://www.definicionabc.com/wp-content/uploads/Im%C3%A1gen-Vectorial.jpg') no-repeat center center #fff; background-size: 90%;"></div>
+
+                  <div class="card-block">
+                    <h4 class="card-title">
+                                        Product title</h4>
+                    <div class="row">
+                      <div class="col-6">
+                        <p>
+                          £21.000</p>
+                      </div>
+                      <div class="col-6 text-right">
+                        <p>
+                          03/03/2016</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                    <div class="card clearfix">
+                            <div class="card-img-top img-fluid product-img" style="background: url('http://ai.saiblogs.inf.um.es/wp-content/uploads/sites/8/2017/05/MAIZ.jpg') no-repeat center center #fff; background-size: 90%;"></div>
+
+                            
+                      <div class="card-block">
+                        <h4 class="card-title">
+                                            Product title</h4>
+                        <div class="row">
+                          <div class="col-6">
+                            <p>
+                              £21.000</p>
+                          </div>
+                          <div class="col-6 text-right">
+                            <p>
+                              03/03/2016</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                        <div class="card clearfix">
+                
+                          <img class="card-img-top img-fluid" src="http://placehold.it/370x208?text=..." alt="" />
+                          <div class="card-block">
+                            <h4 class="card-title">
+                                                Product title</h4>
+                            <div class="row">
+                              <div class="col-6">
+                                <p>
+                                  £21.000</p>
+                              </div>
+                              <div class="col-6 text-right">
+                                <p>
+                                  03/03/2016</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+      <div class="col-md-4">
+        <div class="card clearfix">
+          <img class="card-img-top img-fluid" src="http://placehold.it/370x208?text=..." alt="" />
+          <div class="card-block">
+            <h4 class="card-title">
+                              Product title</h4>
+            <div class="row">
+              <div class="col-6">
+                <p>
+                  £21.000</p>
+              </div>
+              <div class="col-6 text-right">
+                <p>
+                  03/03/2016</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card clearfix">
+          <img class="card-img-top img-fluid" src="http://placehold.it/370x208?text=..." alt="" />
+          <div class="card-block">
+            <h4 class="group inner list-group-item-heading">
+                              Product title</h4>
+            <div class="row">
+              <div class="col-6">
+                <p>
+                  £21.000</p>
+              </div>
+              <div class="col-6 text-right">
+                <p>
+                  03/03/2016</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script>
+  $(document).ready(function() {
+    $('#list').click(function(event) {
+      event.preventDefault();
+      $('#products').removeClass('grid-view').addClass('list-view');
+      $('#products .card').addClass('row').parent().removeClass().addClass('col-12');
+      $('#products .card-img-top').addClass('card-img-left col-md-4').removeClass('card-img-top');
+      $('#products .card-block').addClass('col-md-8');
+    });
+    $('#grid').click(function(event) {
+      event.preventDefault();
+      $('#products').removeClass('list-view').addClass('grid-view');
+      $('#products .card').removeClass('row').parent().removeClass('col-12').addClass('col-md-4');
+      $('#products .card-img-left').addClass('card-img-top').removeClass('card-img-left col-md-4');
+      $('#products .card-block').removeClass('col-md-8');
+    });
+  });
+
+  </script>
+</body>
+
+</html>

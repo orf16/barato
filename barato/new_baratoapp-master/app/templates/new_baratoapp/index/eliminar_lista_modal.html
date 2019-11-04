@@ -1,0 +1,17 @@
+ <div class="modal fade modal-eliminar-list" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="">¿Seguro que desea la lista actual?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Si elimina la lista se elimnarán sus productos asociados y con los usuarios compartidos si existen.</div>
+        <div class="modal-footer">
+          <button @click="deleteList()" class="btn btn-danger" type="button" data-dismiss="modal">Eliminar</button>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>

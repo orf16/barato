@@ -1,0 +1,88 @@
+<div class="modal fade modal-user-list-shared" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h2 class="modal-title">Usuarios registrados</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <template v-if="!loading">
+
+          <template v-if="!userList.length">
+            <p>
+              <i>No hay usuarios registrados!</i>
+            </p>
+          </template>
+
+          <template >
+            <div class="card mb-3" >
+              <div class="card-header">
+                <i class="fa fa-table"></i>
+                <span>
+                  Seleccione usuarios a compartir listas
+                </span>
+
+              </div>
+              <div class="card-body" id="userTable">
+                <div class="table-responsive">
+                  <table class="table table-bordered"  width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <td>
+                          <b>Nombres</b>
+                        </td>
+                        <td>
+                          <b>Correo</b>
+                        </td>
+                        <td>
+                          <b>Seleccionar</b>
+                        </td>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="user in userList">
+                        <td>${user.first_name +' '+ user.last_name} </td>
+                        <td> ${user.email} </td>
+                        <td> <center>
+                            <input v-bind:name="user.email" v-bind:id="user.email" v-bind:value="user.email" v-model="checkedEmailUser" type="checkbox" class="checkbox form-check-input fa-hand-pointer check" />
+                        </center></td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </template>
+        </template>
+
+        <template v-else>
+          <div class="row">
+            <div class="col-6 col-offset-6 breeding-rhombus-spinner">
+              <div class="rhombus child-1"></div>
+              <div class="rhombus child-2"></div>
+              <div class="rhombus child-3"></div>
+              <div class="rhombus child-4"></div>
+              <div class="rhombus child-5"></div>
+              <div class="rhombus child-6"></div>
+              <div class="rhombus child-7"></div>
+              <div class="rhombus child-8"></div>
+              <div class="rhombus big"></div>
+            </div>
+          </div>
+
+        </template>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Volver</button>
+          <button type="button" class="btn btn-primary"  @click="sharedList()" >Compartir</button>
+      </div>
+    </div>
+  </div>
+</div>

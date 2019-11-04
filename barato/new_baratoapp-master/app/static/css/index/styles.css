@@ -1,0 +1,322 @@
+
+html, body {
+    height: 100%;
+}
+.contenedor{
+    height: 100%;
+
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 70% 29%;
+    grid-template-rows: 100%;
+    grid-column-gap: 1rem;
+    padding: 1%;
+    background: #dfdddd;
+    overflow: auto;  
+
+}
+
+.food-grid {
+    height: 100%;
+    grid-column: 1;
+    grid-row: 1;
+    display: list;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(auto-fill, 15rem);
+    grid-row-gap: 1rem;
+    grid-column-gap: 1rem;
+    justify-content: center;
+    overflow: auto;  
+
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    padding: 1rem;
+    background: #ffffff;
+}
+
+.grid-items {
+    border-radius: 5px;
+    background: #ffffff;
+
+    width: 100%;    
+}
+
+.grid-items img{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.sidebar {
+    grid-column: 2;
+    grid-row: 1;
+    overflow: auto;
+
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.15);
+    padding: 2%;
+    border-radius: 5px;
+    background: #ffffff;
+}
+
+
+.navbar {
+    height: 10%;  
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    background-color: #7e7e7e;
+    color: #ffffff;
+
+}
+
+.btn-div {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(2, 2.5rem);
+    grid-row-gap: 15%; 
+}
+
+.img-div {
+    /* margin: auto; */
+    padding-bottom: 75%;
+    background-size: 40%;
+    transition: all .2s ease-in-out; 
+    padding: 15px;
+}
+
+.span-div {
+    margin: auto;
+}
+
+/* Item List */
+.item-img{
+
+ height: 50px;
+    width: 50px;
+  background: no-repeat center center #ddd;
+  background-size: 45%;
+
+        }     
+        .item-img:hover .grow {
+            transform: scale(1.1); 
+        }  
+.list-item-qty {
+    width: 55px;
+    border-radius: 3px;
+    font-size: 12px;
+    padding: 4px 0 3px 6px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    -webkit-transition: border-color 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
+    transition: border-color 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s, -webkit-box-shadow 0.15s ease-in-out 0s;
+}
+/* End Item List */
+
+/* pagination */
+.page-link.focus, .page-link:focus {
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+}
+/* end pagination */
+
+
+/* grid exchanging */
+.is-flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+.is-flex > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+div.thumbnail {
+    height: 100%;
+}
+.favourite-icon {
+    font-size: 25px;
+}
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.grow { 
+    transition: all .2s ease-in-out; 
+}
+.thumbnail:hover .grow { 
+    transform: scale(1.1); 
+}
+
+.item.list-group-item {
+    border: none;
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.thumbnail-image {
+    padding: 15px;
+}
+.list-group-item .thumbnail-image {
+    margin-right: 10px;
+    max-height: 150px;
+}
+
+.item.list-group-item .thumbnail {
+    margin-bottom: 0px;
+   
+}
+
+.item.list-group-item img {
+    float: left;
+}
+
+.item.list-group-item:after {
+    clear: both;
+}
+    /* end grid exchanging */
+
+    .breeding-rhombus-spinner {
+        height: 65px;
+        width: 65px;
+        position: relative;
+        transform: rotate(45deg);
+      }
+  
+      .breeding-rhombus-spinner, .breeding-rhombus-spinner * {
+        box-sizing: border-box;
+      }
+  
+      .breeding-rhombus-spinner .rhombus {
+        height: calc(65px / 7.5);
+        width: calc(65px / 7.5);
+        animation-duration: 2000ms;
+        top: calc(65px / 2.3077);
+        left: calc(65px / 2.3077);
+        background-color: #119199;
+        position: absolute;
+        animation-iteration-count: infinite;
+      }
+  
+      .breeding-rhombus-spinner .rhombus:nth-child(2n+0) {
+         margin-right: 0;
+       }
+  
+      .breeding-rhombus-spinner .rhombus.child-1 {
+        animation-name: breeding-rhombus-spinner-animation-child-1;
+        animation-delay: calc(100ms * 1);
+      }
+  
+      .breeding-rhombus-spinner .rhombus.child-2 {
+        animation-name: breeding-rhombus-spinner-animation-child-2;
+        animation-delay: calc(100ms * 2);
+      }
+  
+      .breeding-rhombus-spinner .rhombus.child-3 {
+        animation-name: breeding-rhombus-spinner-animation-child-3;
+        animation-delay: calc(100ms * 3);
+      }
+  
+      .breeding-rhombus-spinner .rhombus.child-4 {
+        animation-name: breeding-rhombus-spinner-animation-child-4;
+        animation-delay: calc(100ms * 4);
+      }
+  
+      .breeding-rhombus-spinner .rhombus.child-5 {
+        animation-name: breeding-rhombus-spinner-animation-child-5;
+        animation-delay: calc(100ms * 5);
+      }
+  
+      .breeding-rhombus-spinner .rhombus.child-6 {
+        animation-name: breeding-rhombus-spinner-animation-child-6;
+        animation-delay: calc(100ms * 6);
+      }
+  
+      .breeding-rhombus-spinner .rhombus.child-7 {
+        animation-name: breeding-rhombus-spinner-animation-child-7;
+        animation-delay: calc(100ms * 7);
+      }
+  
+      .breeding-rhombus-spinner .rhombus.child-8 {
+        animation-name: breeding-rhombus-spinner-animation-child-8;
+        animation-delay: calc(100ms * 8);
+      }
+  
+      .breeding-rhombus-spinner .rhombus.big {
+        height: calc(65px / 3);
+        width: calc(65px / 3);
+        animation-duration: 2000ms;
+        top: calc(65px / 3);
+        left: calc(65px / 3);
+        background-color: #119199;
+        animation: breeding-rhombus-spinner-animation-child-big 2s infinite;
+        animation-delay: 0.5s;
+      }
+  
+  
+      @keyframes breeding-rhombus-spinner-animation-child-1 {
+        50% {
+          transform: translate(-325%, -325%);
+        }
+      }
+  
+      @keyframes breeding-rhombus-spinner-animation-child-2 {
+        50% {
+          transform: translate(0, -325%);
+        }
+      }
+  
+      @keyframes breeding-rhombus-spinner-animation-child-3 {
+        50% {
+          transform: translate(325%, -325%);
+        }
+      }
+  
+      @keyframes breeding-rhombus-spinner-animation-child-4 {
+        50% {
+          transform: translate(325%, 0);
+        }
+      }
+  
+      @keyframes breeding-rhombus-spinner-animation-child-5 {
+        50% {
+          transform: translate(325%, 325%);
+        }
+      }
+  
+      @keyframes breeding-rhombus-spinner-animation-child-6 {
+        50% {
+          transform: translate(0, 325%);
+        }
+      }
+  
+      @keyframes breeding-rhombus-spinner-animation-child-7 {
+        50% {
+          transform: translate(-325%, 325%);
+        }
+      }
+  
+      @keyframes breeding-rhombus-spinner-animation-child-8 {
+        50% {
+          transform: translate(-325%, 0);
+        }
+      }
+  
+      @keyframes breeding-rhombus-spinner-animation-child-big {
+        50% {
+          transform: scale(0.5);
+        }
+      }

@@ -1,0 +1,83 @@
+<div class="modal fade" id="similTiendaModal" tabindex="-1" role="dialog" aria-labelledby="similTiendaLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:340px!important">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentModalLabel">Productos Similares: </h5>
+                <h5 class="modal-title" id="nombTiendSimil" style="color: rgb(220, 53, 69) !important;"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+
+                    <div id="productssim" align="center" class="grid-view" v-if="!mapa">
+                        <div v-for="product in productSList">
+                            <div class="card clearfix">
+                                {% comment %} <img  src="{% static 'images/harina.jpg' %}"  class="card-img-top img-fluid img-thumbnail" alt="image"> {% endcomment %}
+                                <span style="text-align: center;padding-top:20px;">
+                    <img v-if="product.direccionimagen === null"
+                         v-bind:src="'/static/images/productos/noproducto.png'" class="card-img-top img-fluid "
+                         alt="image">
+                    <img v-else v-bind:src="product.direccionimagen" class="card-img-top img-fluid "
+                         alt="image" style="width:150px;">
+                </span>
+
+
+                                <div class="card-block">
+                                    <h5 class="card-title">
+                                        ${product.nombre} </h5>
+                                    <h5 class="card-title">
+                                        ${product.detalle} </h5>
+                                    <h6 class="card-title catsel">
+                                        Precio: </h6>
+                                    <h6 class="card-title">${product.preciostr} </h6>
+
+                                    <h6 class="card-title catsel">
+                                        Codigo Tienda:
+                                    </h6>
+                                    <h6 class="card-title"> ${product.codigotienda} </h6>
+                                    <br>
+                                    <button @click="Seleccionar(product)" type="buttom" class="btn btn-primary"
+                                            style="    float: right;">Seleccionar
+                                    </button>
+
+
+                                    {% comment %} <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    £21.000</p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <p>
+                                    03/03/2016</p>
+                            </div>
+                        </div> {% endcomment %}
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div style="text-align:center;">
+                    <span class="step-links" style="display:none;" id="sinresulsel">
+                        <br/>
+                        No se encontraron Productos Similares.
+                    </span>
+
+                    </div>
+                    <br>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

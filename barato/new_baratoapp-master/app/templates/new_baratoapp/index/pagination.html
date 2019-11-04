@@ -1,0 +1,42 @@
+<!-- <template v-if="productList">
+  <nav>
+    <ul class="pagination justify-content-center">
+      <li class="page-item" :class="[pagination.current_page == 1 ? 'disabled' : '']">
+        <a class="page-link" href="#" @click.prevent="changePage(pagination.current_page -1)">
+          <span>Anterior</span>
+        </a>
+      </li>
+      <li v-if="showFirstPage" class="page-item">
+        <a class="page-link" href="#" @click.prevent="changePage(1)">1</a>
+      </li>
+
+      <li v-if="showFirstPage && showPostFirstPage" class="page-item disabled">
+        <a class="page-link" href="#">
+          <span aria-hidden="true">…</span>
+        </a>
+      </li>
+
+      <li class="page-item" v-for="page in pagesNumber" :class="[ page == isActived ? 'active' : '']">
+        <a class="page-link" href="#" @click.prevent="changePage(page)">
+          ${page }
+        </a>
+      </li>
+
+      <li v-if="showLastPage && showPreLastPage" class="page-item disabled">
+        <a class="page-link" href="#">
+          <span aria-hidden="true">…</span>
+        </a>
+      </li>
+
+      <li v-if="showLastPage" class="page-item">
+        <a class="page-link" href="#" @click.prevent="changePage(pagination.last_page)">${pagination.last_page}</a>
+      </li>
+
+      <li class="page-item" :class="[pagination.current_page == pagination.last_page ? 'disabled' : '']">
+        <a class="page-link" href="#" @click.prevent="changePage(pagination.current_page +1)">
+          <span>Siguiente</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</template> -->

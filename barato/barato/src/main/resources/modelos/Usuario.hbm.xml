@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Usuario" table="usuario" schema="public" optimistic-lock="version">
+        <comment>Usuarios de la plataforma</comment>
+        <id name="idusuario" type="int">
+            <column name="idusuario" />
+            <generator class="sequence" >
+                <param name="sequence">sidusuario</param>
+            </generator>
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" not-null="true">
+                <comment>Nombres del usuario</comment>
+            </column>
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" not-null="true">
+                <comment>Apellidos del usuario</comment>
+            </column>
+        </property>
+        <property name="email" type="string">
+            <column name="email" not-null="true">
+                <comment>Correo electronico del usuario</comment>
+            </column>
+        </property>
+        <property name="clave" type="string">
+            <column name="clave">
+                <comment>Clave de acceso a la plataforma</comment>
+            </column>
+        </property>
+        <property name="idtipodocumento" type="java.lang.Integer">
+            <column name="idtipodocumento">
+                <comment>1=Cedula de Ciudadania, 2=Cedula de Extranjeria, 3=Registro civil de nacimiento, 4=Tarjeta de identidad, 5=NIT, 6=Otro</comment>
+            </column>
+        </property>
+        <property name="documento" type="string">
+            <column name="documento">
+                <comment>Numero del documento</comment>
+            </column>
+        </property>
+        <property name="sexo" type="java.lang.Short">
+            <column name="sexo">
+                <comment>1 = Masculino, 2 = femenino, 3 = Otro</comment>
+            </column>
+        </property>
+        <property name="estadocivil" type="java.lang.Short">
+            <column name="estadocivil">
+                <comment>1 = soltero, 2 = casado, 3 = divorciado, 4 = otro</comment>
+            </column>
+        </property>
+        <property name="fechanacimiento" type="date">
+            <column name="fechanacimiento" length="13">
+                <comment>fecha de nacimiento</comment>
+            </column>
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" not-null="true" />
+        </property>
+        <property name="tipousuario" type="short">
+            <column name="tipousuario" not-null="true">
+                <comment>1=admin,2=cliente</comment>
+            </column>
+        </property>
+        <set name="listas" table="lista" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuario" />
+            </key>
+            <one-to-many class="modelos.Lista" />
+        </set>
+        <set name="usuarioDireccions" table="usuario_direccion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idusuario" not-null="true">
+                    <comment>Identificador del usuario al cual pertenecen las direcciones</comment>
+                </column>
+            </key>
+            <one-to-many class="modelos.UsuarioDireccion" />
+        </set>
+    </class>
+</hibernate-mapping>

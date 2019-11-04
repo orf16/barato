@@ -1,0 +1,54 @@
+<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+
+
+  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Usuario">
+    <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseUser" data-parent="#exampleAccordion">
+      <i class="fa fa-fw fa-user"></i>
+ <span class="nav-link-text">{{ user.username }}</span>
+      <span class="nav-link-text">{{ user.first_name }} {{ user.last_name }}</span>
+        <input  ref="userEmailGlobal" type="hidden" value="{{ user.email }}"  v-show="false"/>
+    </a>
+    <ul class="sidenav-second-level collapse" id="collapseUser">
+      <li>
+        <a href="#" data-toggle="modal" data-target="#logoutModal">
+          <i class="fa fa-fw fa-sign-out"></i>
+          <span class="nav-link-text">Salir</span>
+        </a>
+      </li>
+    </ul>
+  </li>
+    <li  v-show="validaCurrentList" class="nav-item" data-toggle="tooltip" data-placement="right" title="Lista actual">
+      <a class="nav-link"  id="currentList" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-fw fa-file"></i>
+        <span class="nav-link-text">${currentList.nombre}</span>
+        <span class="badge badge-pill badge-warning" v-text="currentList.productos.length"></span>
+      </a>
+    </li>
+
+  <!--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="setting">
+    <a class="nav-link" href="#">
+      <i class="fa fa-fw fa-cog"></i>
+      <span class="nav-link-text">Opciones</span>
+    </a>
+  </li>-->
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Términos y condiciones">
+    <a class="nav-link" href="/static/config/terminos_condiciones.html" target="_blank">
+      <i class="fa fa-fw fa-book"></i>
+        <span class="nav-link-text">Términos y condiciones </span>
+    </a>
+  </li>
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Espacio publicitario">
+        <!--<div style="background-color: #fffff7; width:90% ; height: 90%; padding: 10px 10px 10px 10px; margin: 5px 5px 5px 5px">Espacio publicitario</div>-->
+            <img  ref="publicidad" @click="publicidad()" style=" cursor: pointer;  padding: 10px 10px 10px 10px" class="embed-responsive" title="Espacio publicitario" src="/static/images/publicidad/ejemplo_1.gif" >
+
+    </li>
+</ul>
+
+
+<ul class="navbar-nav sidenav-toggler">
+  <li class="nav-item">
+    <a class="nav-link text-center" id="sidenavToggler">
+      <i class="fa fa-fw fa-angle-left"></i>
+    </a>
+  </li>
+</ul>

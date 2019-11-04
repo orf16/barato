@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Lista" table="lista" schema="public" optimistic-lock="version">
+        <id name="idlista" type="int">
+            <column name="idlista" />
+            <generator class="sequence" >
+                <param name="sequence">sidlista</param>
+            </generator>
+        </id>
+        <many-to-one name="usuario" class="modelos.Usuario" fetch="select">
+            <column name="idusuario" />
+        </many-to-one>
+        <many-to-one name="usuarioDireccion" class="modelos.UsuarioDireccion" fetch="select">
+            <column name="idusuariodireccion" />
+        </many-to-one>
+        <property name="fechacreada" type="timestamp">
+            <column name="fechacreada" length="29" />
+        </property>
+        <property name="estado" type="java.lang.Short">
+            <column name="estado">
+                <comment>1=Pendiente,2=Comprada,3=Recomprada</comment>
+            </column>
+        </property>
+        <property name="nombrelista" type="string">
+            <column name="nombrelista" length="20" />
+        </property>
+        <set name="listaProductos" table="lista_producto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idlista" />
+            </key>
+            <one-to-many class="modelos.ListaProducto" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,162 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top height56" id="mainNav">
+  <!--<a class="navbar-brand" href="#">Baratoapp</a>-->
+    <!--<div class="col-md-7 align-center">-->
+        <img  class="navbar-brand" class="embed-responsive" style="width: 180px; height: 40px"  src="/static/images/logo/logarbarato.png"></img>
+    <!--</div>-->
+
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse bg-dark" id="navbarResponsive">
+
+    <!-- Nav Sidebar -->
+
+    {% include 'new_baratoapp/index/nav_sidebar.html' %}
+
+    <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item ">
+        <a @click="atrasMapa();verCat();" class="nav-link  mr-lg-2" href="#" title="Inicio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-home"></i>
+          <span class="">Inicio</span>
+        </a>
+      </li>
+
+      <li class="nav-item ">
+        <a @click="createList()" class="nav-link  mr-lg-2" id="createList" href="#" title="Nueva lista" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-plus"></i>
+          <span class="">Nueva lista</span>
+        </a>
+      </li>
+
+      <li class="nav-item ">
+        <a class="nav-link  mr-lg-2" id="cart" href="#" title="Lista actual" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-shopping-cart"></i>
+          <span class="">Carrito
+            <span class="badge badge-pill badge-primary" v-text="currentList.productos.length"></span>
+          </span>
+          <!-- <span class="indicator text-primary d-none d-lg-block">
+                      <span class="badge badge-pill badge-primary">12</span>
+                    </span> -->
+        </a>
+
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle mr-lg-2" title="Mis listas" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-fw fa-list"></i>
+          <span class="">Mis Listas
+            <template v-if="!loading">
+              <span class="badge badge-pill badge-success">${userItemList.length}</span>
+            </template>
+          </span>
+          <!-- <span class="indicator text-primary d-none d-lg-block">
+                  <span class="badge badge-pill badge-primary">12</span>
+                </span> -->
+        </a>
+        <div class="dropdown-menu" aria-labelledby="ListasDropdown" role="menu">
+          <h6 class="dropdown-header">Listas disponibles:</h6>
+          <template v-for="myList in userItemList">
+
+            <div class="dropdown-divider"></div>
+            <a @click="changeCurrentList(myList)" class="dropdown-item " href="#">
+              <span class="text">
+                <i class="fa fa-fw fa-file" style="color:dimgrey"></i> ${myList.nombre}
+              </span>
+              <span class="badge badge-pill badge-warning">${Object.keys(myList.productos).length}</span>
+
+            </a>
+          </template>
+
+          {% comment %}
+          <a class="dropdown-item small" href="#">Ver todas las listas</a> {% endcomment %}
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle mr-lg-2" title="Listas compartidas" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-fw fa-share-alt"></i>
+          <span class="">Compartidas
+            <template v-if="!loading">
+              <span class="badge badge-pill badge-danger">${userItemListShared.length}</span>
+            </template>
+          </span>
+
+          <!--<span class="indicator text-warning d-none d-lg-block">
+                  <span class="badge badge-pill badge-danger">6</span>
+                </span>-->
+        </a>
+        <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+          <h6 class="dropdown-header">Listas compartidas:</h6>
+
+            <template v-for="myListShared in userItemListShared">
+
+            <div class="dropdown-divider"></div>
+            <a @click="changeCurrentList(myListShared)" class="dropdown-item " href="#">
+              <span class="text">
+                <i class="fa fa-fw fa-file" style="color:dimgrey"></i> ${myListShared.nombre}
+              </span>
+              <span class="badge badge-pill badge-warning">${Object.keys(myListShared.productos).length}</span>
+
+            </a>
+          </template>
+        </div>
+          {% comment %}
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item small" href="#">Ver todas las listas</a>
+        </div> {% endcomment %}
+      </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle mr-lg-2" title="Tiendas" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-fw fa-map"></i>
+          <span class="">Tiendas
+             <span class="badge badge-pill badge-success">${shopListMap.length}</span>
+          </span>
+          <!--<span class="indicator text-warning d-none d-lg-block">
+                  <span class="badge badge-pill badge-danger">6</span>
+                </span>-->
+        </a>
+        <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">Acciones :</h6>
+            <template  v-if="!loading">
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item " href="#" @click="changeCurrentShop(shopListMap)">
+              <span class="text">
+                <i class="fa fa-fw fa-tasks" style="color:dimgrey"></i> Visualizar todas las tiendas
+              </span>
+              <span class="badge badge-pill badge-success">${shopListMap.length}</span>
+            </a>
+                <div class="dropdown-divider"></div>
+            <a class="dropdown-item " href="#" @click="viewSearchPositions()">
+              <span class="text">
+                <i class="fa fa-fw fa-circle" style="color:dimgrey"></i> Buscar tiendas cerca de mí
+              </span>
+            </a>
+            </template>
+            <div class="dropdown-divider"></div>
+          <h6 class="dropdown-header">Tiendas registradas:</h6>
+          <template v-for="shopItemList in shopListMap" v-if="!loading">
+              <div class="dropdown-divider"></div>
+            <a @click="changeCurrentShop([shopItemList])" class="dropdown-item " href="#">
+                <!--<img width="100" height="40" src="images/@shopItemList.nombre"  ${shopItemList.nombre}>-->
+              <span class="text">
+                <img v-bind:src="shopItemList.imagen" width="40" height="40"> ${shopItemList.nombre}
+              </span>
+              <!--<span class="badge badge-pill badge-warning">${Object.keys(shopList.productos).length}</span>-->
+            </a>
+          </template>
+
+
+        </div>
+          {% comment %}
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item small" href="#">Ver todas las listas</a>
+        </div> {% endcomment %}
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
+          <i class="fa fa-fw fa-sign-out"></i>Salir</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+

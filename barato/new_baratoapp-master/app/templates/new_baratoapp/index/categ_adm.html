@@ -1,0 +1,44 @@
+{% load static %}
+<div class="content-wrapper" style="display:none" id="listacateg">
+    <div class="container-fluid">
+        <div class="container main-product-list">
+            <template v-if="!loading">
+                <div id="products" class="row grid-view" v-if="!mapa">
+                    <div v-for="cat in catList" class="col-md-4">
+                        <div class="card clearfix">
+                            {% comment %} <img  src="{% static 'images/harina.jpg' %}"  class="card-img-top img-fluid img-thumbnail" alt="image"> {% endcomment %}
+                            <span style="text-align: center">
+
+
+                               <a @click="cambiarCat(cat.idcategoria)" >
+                                <img v-if="cat.direccionimagen === null"
+                                     v-bind:src="'/static/images/productos/noproducto.png'"
+                                     class="card-img-top img-fluid " alt="image">
+                                <img v-else v-bind:src="cat.direccionimagen" class="card-img-top img-fluid " alt="image"
+                                     style="width:100%;">
+                                </a>
+                                    <b>        ${cat.nombre}</b>
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <template v-else>
+                <div class="row">
+                    <div class="col-3 col-offset-6 breeding-rhombus-spinner">
+                        <div class="rhombus child-1"></div>
+                        <div class="rhombus child-2"></div>
+                        <div class="rhombus child-3"></div>
+                        <div class="rhombus child-4"></div>
+                        <div class="rhombus child-5"></div>
+                        <div class="rhombus child-6"></div>
+                        <div class="rhombus child-7"></div>
+                        <div class="rhombus child-8"></div>
+                        <div class="rhombus big"></div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</div>

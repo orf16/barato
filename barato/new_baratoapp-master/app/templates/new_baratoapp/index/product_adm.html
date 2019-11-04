@@ -1,0 +1,170 @@
+{% load static %}
+<div class="content-wrapper" style="display:none;" id="listaproduc" xmlns:v-on="http://www.w3.org/1999/xhtml"
+     xmlns:v-bind="http://www.w3.org/1999/xhtml">
+    <div class="navbar-expand-lg navbar-dark bg-dark position-top-search" id="mainNavCat">
+
+        <center>
+            <form @submit.prevent="getProductList(-1,1)" class="my-2 my-lg-0 mr-lg-2">
+                <table>
+                    <tr>
+                        <td>
+                            <button class="btn btn-primary" title="Categorías" type="button" v-on:click="verCat()">
+                                Categorías
+                            </button>
+                        </td>
+                        <td>
+                            <input v-model="searchBar" id="search" class="form-control"
+                                   type="search"
+                                   placeholder="Buscar productos...">
+                        </td>
+                        <td>
+                                   <span class="input-group-append">
+                            <button class="btn btn-primary" title="Buscar productos" type="button"
+                                    v-on:click="getProductList(-1,1)">
+                                <i class="fa fa-search"></i>
+                            </button>
+
+                            </span>
+                        </td>
+
+                    </tr>
+                </table>
+            </form>
+            <label style="color:white;" id="catsel"></label>
+        </center>
+    </div>
+    <div class="container-fluid">
+
+        <div class="container main-product-list">
+            <template v-if="!loading">
+
+                <br/><br/>
+                <div id="products" align="center" class="grid-view" v-if="!mapa">
+                    <div v-for="product in productTempList">
+                        <div class="card clearfix">
+                            {% comment %} <img  src="{% static 'images/harina.jpg' %}"  class="card-img-top img-fluid img-thumbnail" alt="image"> {% endcomment %}
+                            <span style="text-align: center;padding-top:20px;">
+                    <img v-if="product.direccionimagen === null"
+                         v-bind:src="'/static/images/productos/noproducto.png'" class="card-img-top img-fluid "
+                         alt="image">
+                    <img v-else v-bind:src="product.direccionimagen" class="card-img-top img-fluid "
+                         alt="image" style="width:150px;">
+                </span>
+
+
+                            <div class="card-block">
+                                <h5 id="nombreprodsel" class="card-title">
+                                    ${product.nombre} </h5>
+                                <h5 id="descprodsel" class="card-title">
+                                    ${product.detalle} </h5>
+                                <h6 class="card-title catsel" >
+                                Precio:  </h6>  <h6 class="card-title" >${product.preciostr} </h6>
+
+
+                                <h5 id="precioprodsel"   v-show="false" > ${product.precio}
+                                </h5>
+                                <h6 class="card-title catsel">
+                                    Codigo Tienda:</h6>
+                                <h6 id="codtiendsel" class="card-title">${product.codigotienda} </h6>
+
+
+                                {% comment %} <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    £21.000</p>
+                            </div>
+                            <div class="col-6 text-right">
+                                <p>
+                                    03/03/2016</p>
+                            </div>
+                        </div> {% endcomment %}
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div style="text-align:center;">
+                    <span class="step-links" style="display:none;" id="sinresul">
+                        <br/>
+                        No se encontraron Productos.
+                    </span>
+                    <span class="step-links" style="display:none;" id="paginac">
+                        <br/>
+                        <table align="center">
+                        <tr>
+                        <td>
+                           <div id="ant" style="display:none;">
+                                        <a class="colorbl" href="#" @click="getPaginaUno()">Primero</a>
+                                        <a href="#" @click="getPaginaAnt()">Ant</a>&nbsp;&nbsp;
+
+                        </div>
+                        </td>
+                        <td>
+
+                                    <span class="current">
+                                           <span class="catsel">${numpag}</span> &nbsp;<b>de</b>  <span class="catsel">${numpagtot}</span>
+                                        </span>&nbsp;
+                        </td>
+                        <td>
+                        <div id="sig">
+                                        <a href="#" @click="getPaginaSig()">Sig</a>
+                                        <a class="colorbl" href="#" @click="getPaginaUlt()">Último</a>
+                        </div>
+                        </td>
+                        </tr>
+                        </table>
+
+                    </span>
+                </div>
+                <br>
+            </template>
+
+            <template v-else>
+                <div class="row">
+                    <div class="col-3 col-offset-6 breeding-rhombus-spinner">
+                        <div class="rhombus child-1"></div>
+                        <div class="rhombus child-2"></div>
+                        <div class="rhombus child-3"></div>
+                        <div class="rhombus child-4"></div>
+                        <div class="rhombus child-5"></div>
+                        <div class="rhombus child-6"></div>
+                        <div class="rhombus child-7"></div>
+                        <div class="rhombus child-8"></div>
+                        <div class="rhombus big"></div>
+                    </div>
+                </div>
+            </template>
+
+
+
+            <template v-for="shopItemList in shopListMapsin" v-if="!loading">
+                <div class="dropdown-divider"></div>
+                <a @click="seleccioProducSim([shopItemList])"  class="dropdown-item " href="#">
+                    <!--<img width="100" height="40" src="images/@shopItemList.nombre"  ${shopItemList.nombre}>-->
+                    <span class="text">
+                     <img v-bind:src="shopItemList.imagen" width="40" height="40"> ${shopItemList.nombre} &nbsp - &nbsp  ${shopItemList.producto}
+                     </span>
+
+
+
+
+
+                    <!--<span class="badge badge-pill badge-warning">${Object.keys(shopList.productos).length}</span>-->
+                </a>
+            </template>
+
+
+
+
+        </div>
+        <div align="center">
+            <button class="btn btn-primary" title="Crear" type="button" v-on:click="crearProd()">
+                Crear
+            </button>
+        </div>
+    </div>
+</div>

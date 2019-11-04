@@ -1,0 +1,13 @@
+{% load static %}
+<div class="content-wrapper" style="display:block" id="listatienda">
+    <template v-for="shopItemList in shopListMap" v-if="!loading">
+        <div class="dropdown-divider"></div>
+        <a @click="cambiarTiendAd([shopItemList])" class="dropdown-item " href="#">
+            <!--<img width="100" height="40" src="images/@shopItemList.nombre"  ${shopItemList.nombre}>-->
+            <span class="text">
+                <img v-bind:src="shopItemList.imagen" width="40" height="40"> ${shopItemList.nombre}
+              </span>
+            <!--<span class="badge badge-pill badge-warning">${Object.keys(shopList.productos).length}</span>-->
+        </a>
+    </template>
+</div>

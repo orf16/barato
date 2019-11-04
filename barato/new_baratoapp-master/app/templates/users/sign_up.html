@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+
+<div class="sign-in-container">
+    <!-- contenedor principal -->
+    <div class="container">
+        <!-- user authentication validation -->
+        <!-- fila de titulo -->
+        <div class="row" style="text-align:center;">
+            <div class="col-md">
+                {% if register %}
+                    <h1>Crear nueva cuenta </h1>
+                {% else %}
+                    <h1>Solo un paso más!</h1>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Formulario -->
+        <form action="" method="post" class="form-horizontal" role="form" accesskey="Enter">{% csrf_token %}
+            
+            {% include 'users/form_field.html' %}
+
+            <div class="form-group row">
+                <div class="col-sm col-sm-10">
+                    <button type="submit" class="btn btn-primary">Registrar</button> &nbsp;
+                </div>
+            </div>   
+
+        </form>
+    </div>
+</div>
+{% endblock content %}

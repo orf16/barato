@@ -2,6 +2,7 @@ const shop_list = {
     data: function () {
         return {
             // Lista de tiendas mas barato
+            allitems:[],
             shopList: [],
             shopListMap: [],
             //map: Object,
@@ -43,6 +44,7 @@ const shop_list = {
         // Método que determina los productos no encontrados.
         itemsNotFound: function () {
             var itemNotFoundList;
+            
             this.shopList.forEach(shop => {
                 itemNotFoundList = [];
                 this.currentList.productos.forEach(item => {
@@ -55,6 +57,18 @@ const shop_list = {
                 });
                 this.$set(this.shopList[this.shopList.indexOf(shop)], "itemNotFoundList", itemNotFoundList);
             });
+        },
+        //Método que determina si un item de la lista de productos se encuentra en la lista de la tienda
+        itemsFound: function (shop, itemId) {
+            const result = shop.listaProductos.find(
+                productShop => productShop.idproducto === itemId
+            );
+            if (result) {
+                return result;
+            }
+            else{
+                return 0;
+            }
         },
         // Método que retorna la cantidad de un producto en la lista actual
         itemQuantity: function (itemId) {
@@ -79,6 +93,7 @@ const shop_list = {
         // Método que consulta la lista de tiendas mas barato a través del API
         getShopList: function () {
             var itemId = [];
+            this.allitems=this.currentList.productos;
             this.currentList.productos.forEach(item => {
                 itemId.push(item.id);
             });
@@ -93,8 +108,8 @@ const shop_list = {
                         this.shopList = result;
                         this.shopList.forEach(shop => {
                             var valor = 0;
+                            shop.todosProductos=this.currentList.productos;
                             shop.listaProductos.forEach(product => {
-
                                 valor += product.valor * this.itemQuantity(product.idproducto);
                                 product.valorstr = product.valor.toLocaleString('en-US');
                                 product.valorcant = product.valor * this.itemQuantity(product.idproducto);

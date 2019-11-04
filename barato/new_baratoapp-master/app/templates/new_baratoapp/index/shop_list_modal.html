@@ -1,5 +1,11 @@
-<div class="modal fade modal-shop-list" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-     aria-hidden="true">
+<script>
+    var $th = $('.tableFixHead').find('thead th')
+    $('.tableFixHead').on('scroll', function () {
+        $th.css('transform', 'translateY(' + this.scrollTop + 'px)');
+    });
+</script>
+<div id="modal-shop" class="modal fade modal-shop-list" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,81 +16,244 @@
             </div>
             <div class="modal-body">
                 <template v-if="!loading">
-                    <template v-if="shopList.length" v-for="(shop,index) in shopList">
-                        <div class="card mb-3" :id="'shop' +index">
-                            <div class="card-header">
-                                <i class="fa fa-table"></i>
-                                <span>
-                  ${shop.nombreTienda}
-                  <span v-if="shop.itemNotFoundList.length" class="badge badge-pill badge-danger">${shop.itemNotFoundList.length}</span>
-                </span>
-                            </div>
-                            <div class="card-body" id="shopTable">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" :id="'dataTable'+index" width="100%"
-                                           cellspacing="0">
-                                        <thead>
-                                        <tr>
-                                            <td>
-                                                <b>Nombre</b>
-                                            </td>
-                                            <td>
-                                                <b>Cantidad</b>
-                                            </td>
-                                            <td>
-                                                <b>Precio</b>
-                                            </td>
-                                            <td>
-                                                <b>Total</b>
-                                            </td>
-                                        </tr>
-                                        </thead>
-                                        <tfoot>
-                                        <tr>
-                                            <td>
-                                                <b>Total:</b>
-                                            </td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <b>${shop.valorstr}</b>
-                                            </td>
-                                        </tr>
-                                        </tfoot>
-                                        <tbody>
-                                        <tr v-for="product in shop.listaProductos">
-                                            <td>${product.nombre}</td>
-                                            <td>${itemQuantity(product.idproducto)}</td>
-                                            <td>${product.valorstr}</td>
-                                            <td>${product.valorcantstr}</td>
-                                        </tr>
-                                        <tr style="color: crimson;" v-for="product in shop.itemNotFoundList">
-                                            <td>${product.nombre}</td>
-                                            <td>${product.quantity}</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                        </tr>
-                                        <tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col col-3">
-                                <template v-if="hasSaving(shop.valor)">
-                                    Ahorro:
-                                    <span class="badge badge-success ">${savingPercentage(shop.valor)}%</span>
+                    <center class="table-responsive justify-content-center">
+                        <table class="table table-bordered table-total" :id="'dataTable'+index" width="100%"
+                            cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <b>Tienda</b>
+                                    </th>
+                                    <th>
+                                        <b>Valor Total</b>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template v-if="shopList.length" v-for="(shop,index) in shopList">
+                                    <tr>
+                                        <td>${shop.nombreTienda}</td>
+                                        <td>${shop.valorstr}</td>
+                                    </tr>
                                 </template>
-                            </div>
-                            <div class="col offset-7 col-2">
-                                <button @click='buyShop()' type="button" title="Comprar" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <hr v-if="shopList.length>1 && index<shopList.length-1">
-                    </template>
+                                <template v-else>
+                                    <tr>
+                                        <td colspan="2">No hay registro de tiendas</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </center>
+
+
+
+                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                        <template v-if="shopList.length" v-for="(shop,index) in shopList">
+                            <template v-if="index==0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" :id="'pills-' +index+ '-tab'" data-toggle="pill"
+                                        :href="'#pills-'+ index" role="tab" :aria-controls="'pills-' +index"
+                                        aria-selected="true">
+                                        ${shop.nombreTienda}
+                                        <span v-if="shop.itemNotFoundList.length" class="badge badge-pill badge-danger"
+                                            title="Productos no incluidos en la lista"> -
+                                            ${shop.itemNotFoundList.length} <i class="fa fa-shopping-basket"
+                                                aria-hidden="true"></i></span>
+                                        <template v-if="hasSaving(shop.valor)">
+                                            <span class="badge badge-success" title="Porcentaje ahorrado"><i
+                                                    class="fas fa-dollar-sign"></i> <i class="fa fa-usd"
+                                                    aria-hidden="true"></i> ${savingPercentage(shop.valor)}%</span>
+                                        </template>
+                                        <template v-else>
+                                            <span class="badge badge-success" title="Porcentaje ahorrado"><i
+                                                    class="fas fa-dollar-sign"></i> <i class="fa fa-usd"
+                                                    aria-hidden="true"></i> 0%</span>
+                                        </template>
+                                    </a>
+                                </li>
+                            </template>
+                            <template v-else>
+                                <li class="nav-item">
+                                    <a class="nav-link" :id="'pills-' +index+ '-tab'" data-toggle="pill"
+                                        :href="'#pills-'+ index" role="tab" :aria-controls="'pills-' +index"
+                                        aria-selected="false">
+                                        ${shop.nombreTienda}
+                                        <span v-if="shop.itemNotFoundList.length" class="badge badge-pill badge-danger"
+                                            title="Productos no incluidos en la lista"> -
+                                            ${shop.itemNotFoundList.length} <i class="fa fa-shopping-basket"
+                                                aria-hidden="true"></i></span>
+                                        <template v-if="hasSaving(shop.valor)">
+                                            <span class="badge badge-success" title="Porcentaje ahorrado">
+                                                ${savingPercentage(shop.valor)}%</span>
+                                        </template>
+                                        <template v-else>
+                                            <span class="badge badge-success" title="Porcentaje ahorrado"><i
+                                                    class="fas fa-dollar-sign"></i> <i class="fa fa-usd"
+                                                    aria-hidden="true"></i> 0%</span>
+                                        </template>
+                                    </a>
+                                </li>
+                            </template>
+                        </template>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                        <template v-if="shopList.length" v-for="(shop,index) in shopList">
+                            <template v-if="index==0">
+                                <div class="tab-pane fade show active" :id="'pills-' +index" role="tabpanel"
+                                    :aria-labelledby="'pills-' +index+ '-tab'">
+                                    <div class="row mt-2 mb-2">
+                                        <div class="col col-3">
+                                            <template v-if="hasSaving(shop.valor)">
+                                                Ahorro:
+                                                <span class="badge">${savingPercentage(shop.valor)}%</span>
+                                            </template>
+                                            <template v-else>
+                                                Ahorro:
+                                                <span class="badge">0%</span>
+                                            </template>
+                                        </div>
+                                        <div class="col col-6">
+                                            Productos no presentes en la lista:
+                                            <span v-if="shop.itemNotFoundList.length" class="badge"
+                                                title="Productos no incluidos en la lista"> -
+                                                ${shop.itemNotFoundList.length}<i class="fa fa-shopping-basket"
+                                                    aria-hidden="true"></i></span>
+                                        </div>
+                                        <div class="col col-3">
+                                            <button @click='buyShop()' type="button" title="Comprar"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                <span>Comprar en ${shop.nombreTienda}</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive tableFixHead ">
+                                        <table class="table table-bordered shop-list-table" :id="'dataTable'+index"
+                                            width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <b>Nombre</b>
+                                                    </th>
+                                                    <th>
+                                                        <b>Cantidad</b>
+                                                    </th>
+                                                    <template v-if="shopList.length" v-for="(shop,index) in shopList">
+                                                        <th>
+                                                            <b>Precio Total ${shop.nombreTienda}</b>
+                                                        </th>
+                                                    </template>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="body-tables" class="tbody-shop-list">
+                                                <tr v-for="(productos, index1) in shop.todosProductos">
+                                                    <td>${productos.nombre}</td>
+                                                    <td>${productos.quantity}</td>
+                                                    <template v-for='(shop_1,index) in shopList'>
+                                                        <template v-if="shop.idTienda==shop_1.idTienda">
+                                                            <template v-if="itemsFound(shop_1, productos.id)">
+                                                                <td style="background-color: #007bff;color:white;" :title="'Valor Unitario ' + itemsFound(shop_1, productos.id).valor">
+                                                                    ${itemsFound(shop_1, productos.id).valorcantstr}</td>
+                                                            </template>
+                                                            <template v-else>
+                                                                <td style="background-color: #007bff;color:white;">
+                                                                </td>
+                                                            </template>
+                                                        </template>
+                                                        <template v-else>
+                                                            <template v-if="itemsFound(shop_1, productos.id)">
+                                                                <td :title="'Valor Unitario ' + itemsFound(shop_1, productos.id).valor">${itemsFound(shop_1, productos.id).valorcantstr}</td>
+                                                            </template>
+                                                            <template v-else>
+                                                                <td> </td>
+                                                            </template>
+                                                        </template>
+                                                    </template>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </template>
+                            <template v-else>
+                                <div class="tab-pane fade" :id="'pills-' +index" role="tabpanel"
+                                    :aria-labelledby="'pills-' +index+ '-tab'">
+                                    <div class="row mt-2 mb-2">
+                                        <div class="col col-3">
+                                            <template v-if="hasSaving(shop.valor)">
+                                                Ahorro:
+                                                <span class="badge">${savingPercentage(shop.valor)}%</span>
+                                            </template>
+                                            <template v-else>
+                                                Ahorro:
+                                                <span class="badge">0%</span>
+                                            </template>
+                                        </div>
+                                        <div class="col col-6">
+                                            Productos no presentes en la lista:
+                                            <span v-if="shop.itemNotFoundList.length" class="badge"
+                                                title="Productos no incluidos en la lista"> -
+                                                ${shop.itemNotFoundList.length} <i class="fa fa-shopping-basket"
+                                                    aria-hidden="true"></i></span>
+                                        </div>
+                                        <div class="col col-3">
+                                            <button @click='buyShop()' type="button" title="Comprar"
+                                                class="btn btn-primary btn-sm">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                <span>Comprar en ${shop.nombreTienda}</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="table-responsive tableFixHead ">
+                                        <table class="table table-bordered shop-list-table" :id="'dataTable'+index"
+                                            width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        <b>Nombre</b>
+                                                    </th>
+                                                    <th>
+                                                        <b>Cantidad</b>
+                                                    </th>
+                                                    <template v-if="shopList.length" v-for="(shop,index) in shopList">
+                                                        <th>
+                                                            <b>Precio Total ${shop.nombreTienda}</b>
+                                                        </th>
+                                                    </template>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="body-tables" class="tbody-shop-list">
+                                                <tr v-for="(productos, index1) in shop.todosProductos">
+                                                    <td>${productos.nombre}</td>
+                                                    <td>${productos.quantity}</td>
+                                                    <template v-for='(shop_1,index) in shopList'>
+                                                        <template v-if="shop.idTienda==shop_1.idTienda">
+                                                            <template v-if="itemsFound(shop_1, productos.id)">
+                                                                <td style="background-color: #007bff;color:white;" :title="'Valor Unitario ' + itemsFound(shop_1, productos.id).valor">
+                                                                    ${itemsFound(shop_1, productos.id).valorcantstr}</td>
+                                                            </template>
+                                                            <template v-else>
+                                                                <td style="background-color: #007bff;color:white;">
+                                                                </td>
+                                                            </template>
+                                                        </template>
+                                                        <template v-else>
+                                                            <template v-if="itemsFound(shop_1, productos.id)" >
+                                                                <td :title="'Valor Unitario ' + itemsFound(shop_1, productos.id).valor">${itemsFound(shop_1, productos.id).valorcantstr}</td>
+                                                            </template>
+                                                            <template v-else>
+                                                                <td> </td>
+                                                            </template>
+                                                        </template>
+                                                    </template>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+                    </div>
                 </template>
                 <template v-else>
                     <div class="row">

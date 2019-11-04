@@ -156,6 +156,14 @@ const item_list = {
             setCookie('prodBaratoApp', lista_str,365);
 
         },
+
+
+
+
+
+
+
+
         // Método que guarda la lista actual en la base de datos a través del API.
         saveList: function () {
             if (this.validaCurrentList) {
@@ -199,6 +207,16 @@ const item_list = {
             }
         },
 
+
+
+
+
+
+
+
+
+
+        
         // Método que envia comentarios.
         enviarComentario: function () {
                 var url = direccionserver+'setComentario';

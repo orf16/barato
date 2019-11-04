@@ -7,7 +7,7 @@
                     <div v-for="cat in catList" class="col-md-4">
                         <div class="card clearfix">
                             {% comment %} <img  src="{% static 'images/harina.jpg' %}"  class="card-img-top img-fluid img-thumbnail" alt="image"> {% endcomment %}
-                            <span style="text-align: center">
+                            <span style="text-align: center; cursor: pointer;">
 
 
                                <a @click="cambiarCat(cat.idcategoria)" >

@@ -15,6 +15,7 @@ const shop_list = {
             // Lista de tiendas mas barato
             shopList: [],
             shopListMap: [],
+            shopWS: [],
             shopListMapsin: [],
             //map: Object,
             markersMap: [],
@@ -32,6 +33,7 @@ const shop_list = {
     },
     created: function () {
         this.getShopListMap();
+        this.getWS();
     },
     mounted() {
         this.car_sidebar = $
@@ -228,6 +230,27 @@ const shop_list = {
                     var result = response.data;
                     if (result) {
                         this.shopListMap = result;
+                    }
+                    loading = false;
+                })
+                .catch(error => {
+                    alert("Ha ocurrido un error al momento de cargar la lista de tiendas más barato.");
+                    loading = false;
+                    console.log(error);
+                });
+        },
+        getWS: function () {
+
+            var itemId = [];
+            this.currentList.productos.forEach(item => {     itemId.push(item.id);      });
+            var url = direccionserver+'getProductosxID?id=50';
+            loading = true;
+            axios
+                .get(url, config)
+                .then(response => {
+                    var result = response.data;
+                    if (result) {
+                        this.shopWS = result;
                     }
                     loading = false;
                 })

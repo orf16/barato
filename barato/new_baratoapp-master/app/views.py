@@ -201,24 +201,32 @@ def saveUserService(userParam):
             }
         ]
     }
-    #   r = requests.post("https://servicio.baratoapp.co/barato/guardarUsuario", json.JSONEncoder().encode(dataUser),
+    r = requests.post("http://localhost:8081/barato/guardarUsuario", json.JSONEncoder().encode(dataUser),
+                         headers={"Content-Type": "application/json",
+                             "Token":  base64.b64encode(bytes(
+                                 'baratoUser' + '@@@' +str(userParam['email']) + '@@@' + 'gTddSgsRD!Csta5gKXZ$Dfh7jNvg?pMeS75%45A9GCje&^X^?3&$?5Z*Fj#YC47fGaNNX4Mp=syV9UqC-CcAM^^$_7rDsFT89^e+' + '@@@' + 'Prlx+q?Wov8K1%o+bnn%p=Pog+d9GpLK?2pc2znx_xk1=dddmT4X+VZh1zk9yY*BxDI#=D1X?!?RNyuc!L#s^#go47Mj!FCFy%&otu44cMYlQP',
+                                 'utf-8')),
+                             "UserEmail": str(userParam['email'])}, auth = ("baratoUser", "gTddSgsRD!Csta5gKXZ$Dfh7jNvg?pMeS75%45A9GCje&^X^?3&$?5Z*Fj#YC47fGaNNX4Mp=syV9UqC-CcAM^^$_7rDsFT89^e+"))
+
+        #   r = requests.post("https://servicio.baratoapp.co/barato/guardarUsuario", json.JSONEncoder().encode(dataUser),
     #                      headers={"Content-Type": "application/json",
     #                          "Token":  base64.b64encode(bytes(
     #                              'baratoUser' + '@@@' +str(userParam['email']) + '@@@' + 'gTddSgsRD!Csta5gKXZ$Dfh7jNvg?pMeS75%45A9GCje&^X^?3&$?5Z*Fj#YC47fGaNNX4Mp=syV9UqC-CcAM^^$_7rDsFT89^e+' + '@@@' + 'Prlx+q?Wov8K1%o+bnn%p=Pog+d9GpLK?2pc2znx_xk1=dddmT4X+VZh1zk9yY*BxDI#=D1X?!?RNyuc!L#s^#go47Mj!FCFy%&otu44cMYlQP',
     #                              'utf-8')),
     #                          "UserEmail": str(userParam['email'])}, auth = ("baratoUser", "gTddSgsRD!Csta5gKXZ$Dfh7jNvg?pMeS75%45A9GCje&^X^?3&$?5Z*Fj#YC47fGaNNX4Mp=syV9UqC-CcAM^^$_7rDsFT89^e+"))
 
-    r = requests.post("http://baratoapp.co:8080/barato/guardarUsuario", json.JSONEncoder().encode(dataUser),
-                      headers={"Content-Type": "application/json",
-                               "Token": base64.b64encode(bytes(
-                                   'baratoUser' + '@@@' + str(userParam[
-                                                                  'email']) + '@@@' + 'gTddSgsRD!Csta5gKXZ$Dfh7jNvg?pMeS75%45A9GCje&^X^?3&$?5Z*Fj#YC47fGaNNX4Mp=syV9UqC-CcAM^^$_7rDsFT89^e+' + '@@@' + 'Prlx+q?Wov8K1%o+bnn%p=Pog+d9GpLK?2pc2znx_xk1=dddmT4X+VZh1zk9yY*BxDI#=D1X?!?RNyuc!L#s^#go47Mj!FCFy%&otu44cMYlQP',
-                                   'utf-8')),
-                               "UserEmail": str(userParam['email'])}, auth=("baratoUser",
-                                                                            "gTddSgsRD!Csta5gKXZ$Dfh7jNvg?pMeS75%45A9GCje&^X^?3&$?5Z*Fj#YC47fGaNNX4Mp=syV9UqC-CcAM^^$_7rDsFT89^e+"))
-    # print(r.text)
+    # r = requests.post("http://baratoapp.co:8080/barato/guardarUsuario", json.JSONEncoder().encode(dataUser),
+    #                   headers={"Content-Type": "application/json",
+    #                            "Token": base64.b64encode(bytes(
+    #                                'baratoUser' + '@@@' + str(userParam[
+    #                                                               'email']) + '@@@' + 'gTddSgsRD!Csta5gKXZ$Dfh7jNvg?pMeS75%45A9GCje&^X^?3&$?5Z*Fj#YC47fGaNNX4Mp=syV9UqC-CcAM^^$_7rDsFT89^e+' + '@@@' + 'Prlx+q?Wov8K1%o+bnn%p=Pog+d9GpLK?2pc2znx_xk1=dddmT4X+VZh1zk9yY*BxDI#=D1X?!?RNyuc!L#s^#go47Mj!FCFy%&otu44cMYlQP',
+    #                                'utf-8')),
+    #                            "UserEmail": str(userParam['email'])}, auth=("baratoUser",
+    #                                                                         "gTddSgsRD!Csta5gKXZ$Dfh7jNvg?pMeS75%45A9GCje&^X^?3&$?5Z*Fj#YC47fGaNNX4Mp=syV9UqC-CcAM^^$_7rDsFT89^e+"))
+
+    print(r.text)
     if r.status_code == 200:
-        print (r.text)
+        print(r.text)
 
 # sign in method
 # def sign_in(request):

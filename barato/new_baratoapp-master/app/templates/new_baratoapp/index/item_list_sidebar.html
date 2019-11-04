@@ -1,37 +1,38 @@
 {% load static %}
 
-<div class="cart_sidebar" id="cart_sidebar" >
-
-  <div class="shopping-cart">
-    <a id="dismiss" ref="dismiss" class="badge">
-      <i class="fa fa-arrow-right"></i>
-    </a>
-    <div class="row shopping-cart-header">
-
-
-      <div class=" shopping-cart-name ">
-<form @submit.prevent="saveList()" >
-        <div class="input-group">
-          <input v-model="currentList.nombre" class="form-control" type="text" placeholder="Nombre de la Lista"  style="font-size: 1.25rem;" >
-          <span class="input-group-append">
-            <button class="btn btn-primary" type="submit" title="Guardar Lista">
-              <i class="fa fa-save"></i>
-            </button>
-          </span>
+<div id="contenedor" class="contenedor">
+    <div class="shopping-cart-header">
+        <div class=" shopping-cart-name row  mt-2">
+            <div class="col-sm-12">
+                <a id="dismiss" ref="dismiss" class="badge badge-primary">
+                    <i class="fa fa-arrow-right"></i>
+                  </a>
+            </div>
+                    <form @submit.prevent="saveList()" class="col-sm-12">
+                    <div class="input-group col-sm-12 ml-1">
+                      <input v-model="currentList.nombre" class="form-control" type="text" placeholder="Nombre de la Lista"  style="font-size: 1.25rem;" >
+                      <span class="input-group-append">
+                        <button class="btn btn-primary" type="submit" title="Guardar Lista">
+                          <i class="fa fa-save"></i>
+                        </button>
+                      </span>
+                    </div>
+                  </form>
+                    <div class="clearfix col-sm-12">
+                      <button @click="getShopList()" type="button"  class="btn btn-success btn-sm" title="Buscar listas más barato" data-toggle="modal" data-target=".modal-shop-list">Barato</button>&nbsp;&nbsp;
+                        <button @click="getUserListShared()" type="button"  class="btn btn-primary btn-sm" title="Compartir lista" data-toggle="modal" data-target=".modal-user-list-shared">Compartir</button> &nbsp;
+                         <button  type="button"  class="btn btn-danger btn-sm" title="Eliminar lista" data-toggle="modal" data-target=".modal-eliminar-list">Eliminar</button>
+                    </div>
+            
         </div>
-      </form>
-      </div>
-
     </div>
-    <!--end shopping-cart-header -->
-    <div class="shopping-cart-items overflow-auto">
-
+<div class="cart_sidebar row" id="cart_sidebar" >
+  <div class="shopping-cart col-sm-12">
+    <div class="shopping-cart-items">
       <div v-for="item in currentList.productos" class="row clearfix">
         <div class="col col-3 item-img">
-
-            <img v-if="item.direccionImagen === null" v-bind:src="'/static/images/productos/noproducto.png'" alt="item1" />
-            <img v-else v-bind:src="item.direccionImagen" alt="image" >
-
+            <img v-if="item.direccionImagen === null" v-bind:src="'/static/images/productos/noproducto.png'" alt="item1" onError="this.onerror=null;this.src='/static/images/productos/noproducto.png';"/>
+            <img v-else v-bind:src="item.direccionImagen" alt="image" onError="this.onerror=null;this.src='/static/images/productos/noproducto.png';"/>
         </div>
         <div class="col col-8 item-info">
           <span class="item-name">${item.nombre}</span>
@@ -41,24 +42,12 @@
           </span>
         </div>
         <a @click="removeFromList(item)" class="col col-1 item-delete" title="Elimitar item de la lista"><i class="fa fa-remove"></i></a>
-
       </div>
-
-
     </div>
-
   </div>
-
-
-<div class="row clearfix">
-  <button @click="getShopList()" type="button"  class="btn btn-success btn-sm" title="Buscar listas más barato" data-toggle="modal" data-target=".modal-shop-list">Barato</button>&nbsp;&nbsp;
-    <button @click="getUserListShared()" type="button"  class="btn btn-primary btn-sm" title="Compartir lista" data-toggle="modal" data-target=".modal-user-list-shared">Compartir</button> &nbsp;
-     <button  type="button"  class="btn btn-danger btn-sm" title="Eliminar lista" data-toggle="modal" data-target=".modal-eliminar-list">Eliminar</button>
-
-
-</div>
   {% comment %}
   <a class="scroll-to-top rounded" href="#dismiss">
     <i class="fa fa-angle-up"></i>
   </a> {% endcomment %}
+</div>
 </div>

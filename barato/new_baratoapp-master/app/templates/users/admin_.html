@@ -1,0 +1,22 @@
+{% extends "new_baratoapp/base_admin.html" %}
+
+{% load static %}
+
+{% block title %} Barato App {% endblock title %}
+
+{% block content %}
+
+{% include 'new_baratoapp/index/scrapping_index.html' %}
+
+
+
+    <footer class="sticky-footer">
+        {% include 'new_baratoapp/index/footer.html' %}
+    </footer>
+    {% include 'new_baratoapp/index/productsimilares_modal.html' %}
+
+    <!-- /.content-wrapper-->
+{% endblock content %}
+
+
+

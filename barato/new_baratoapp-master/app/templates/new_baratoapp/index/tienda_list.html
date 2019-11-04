@@ -10,4 +10,9 @@
             <!--<span class="badge badge-pill badge-warning">${Object.keys(shopList.productos).length}</span>-->
         </a>
     </template>
+    <template v-for="shopList in shopWS" v-if="!loading">
+        <span>
+            ${shopList.nombre}
+        </span>
+    </template>
 </div>

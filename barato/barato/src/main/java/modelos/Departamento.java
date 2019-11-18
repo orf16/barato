@@ -1,8 +1,7 @@
 package modelos;
-// Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1
+// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,13 +11,11 @@ import java.util.Set;
 public class Departamento  implements java.io.Serializable {
 
 
-     private int iddepartamento;     
-     private int indicativo;
-     private int estado;
+     private int iddepartamento;
+     private Short indicativo;
+     private Short estado;
      private String nombredepartamento;
-     @JsonIgnore
      private Set usuarioDireccions = new HashSet(0);
-     @JsonIgnore
      private Set municipios = new HashSet(0);
 
     public Departamento() {
@@ -28,7 +25,7 @@ public class Departamento  implements java.io.Serializable {
     public Departamento(int iddepartamento) {
         this.iddepartamento = iddepartamento;
     }
-    public Departamento(int iddepartamento, int indicativo, int estado, String nombredepartamento, Set usuarioDireccions, Set municipios) {
+    public Departamento(int iddepartamento, Short indicativo, Short estado, String nombredepartamento, Set usuarioDireccions, Set municipios) {
        this.iddepartamento = iddepartamento;
        this.indicativo = indicativo;
        this.estado = estado;
@@ -44,18 +41,18 @@ public class Departamento  implements java.io.Serializable {
     public void setIddepartamento(int iddepartamento) {
         this.iddepartamento = iddepartamento;
     }
-    public int getIndicativo() {
+    public Short getIndicativo() {
         return this.indicativo;
     }
     
-    public void setIndicativo(int indicativo) {
+    public void setIndicativo(Short indicativo) {
         this.indicativo = indicativo;
     }
-    public int getEstado() {
+    public Short getEstado() {
         return this.estado;
     }
     
-    public void setEstado(int estado) {
+    public void setEstado(Short estado) {
         this.estado = estado;
     }
     public String getNombredepartamento() {

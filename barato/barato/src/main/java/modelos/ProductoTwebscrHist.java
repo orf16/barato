@@ -1,8 +1,8 @@
 package modelos;
-// Generated Feb 5, 2019 12:28:51 AM by Hibernate Tools 4.3.1
+// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
 
 
-import java.math.BigInteger;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 
 /**
@@ -12,17 +12,19 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
 
 
      private int idproducto;
+     @JsonIgnore
+     private Tareawebscraper tareawebscraper;
      private String nombre;
      private String detalle;
      private Date fecha;
      private Date hora;
      private Date fechahora;
-     private BigInteger idtarea;
-     private String direccionimagen;
+     private String direccionImagen;
      private Integer idcategoria;
      private String codigotienda;
      private String descripcion;
      private Double precio;
+     private String url;
 
     public ProductoTwebscrHist() {
     }
@@ -33,19 +35,20 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
         this.fecha = fecha;
         this.hora = hora;
     }
-    public ProductoTwebscrHist(int idproducto, String nombre, String detalle, Date fecha, Date hora, Date fechahora, BigInteger idtarea, String direccionimagen, Integer idcategoria, String codigotienda, String descripcion, Double precio) {
+    public ProductoTwebscrHist(int idproducto, Tareawebscraper tareawebscraper, String nombre, String detalle, Date fecha, Date hora, Date fechahora, String direccionImagen, Integer idcategoria, String codigotienda, String descripcion, Double precio, String url) {
        this.idproducto = idproducto;
+       this.tareawebscraper = tareawebscraper;
        this.nombre = nombre;
        this.detalle = detalle;
        this.fecha = fecha;
        this.hora = hora;
        this.fechahora = fechahora;
-       this.idtarea = idtarea;
-       this.direccionimagen = direccionimagen;
+       this.direccionImagen = direccionImagen;
        this.idcategoria = idcategoria;
        this.codigotienda = codigotienda;
        this.descripcion = descripcion;
        this.precio = precio;
+       this.url = url;
     }
    
     public int getIdproducto() {
@@ -54,6 +57,13 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
     
     public void setIdproducto(int idproducto) {
         this.idproducto = idproducto;
+    }
+    public Tareawebscraper getTareawebscraper() {
+        return this.tareawebscraper;
+    }
+    
+    public void setTareawebscraper(Tareawebscraper tareawebscraper) {
+        this.tareawebscraper = tareawebscraper;
     }
     public String getNombre() {
         return this.nombre;
@@ -90,23 +100,13 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
     public void setFechahora(Date fechahora) {
         this.fechahora = fechahora;
     }
-    public BigInteger getIdtarea() {
-        return this.idtarea;
+    public String getDireccionImagen() {
+        return this.direccionImagen;
     }
     
-    public void setIdtarea(BigInteger idtarea) {
-        this.idtarea = idtarea;
+    public void setDireccionImagen(String direccionImagen) {
+        this.direccionImagen = direccionImagen;
     }
-
-
-    public String getDireccionimagen() {
-        return direccionimagen;
-    }
-
-    public void setDireccionimagen(String direccionimagen) {
-        this.direccionimagen = direccionimagen;
-    }
-
     public Integer getIdcategoria() {
         return this.idcategoria;
     }
@@ -134,6 +134,13 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
     
     public void setPrecio(Double precio) {
         this.precio = precio;
+    }
+    public String getUrl() {
+        return this.url;
+    }
+    
+    public void setUrl(String url) {
+        this.url = url;
     }
 
 

@@ -16,7 +16,16 @@ var config = {
     }
 };
 
-
+function myFunction() {
+        var url = direccionserver+'getWebScrapingTodos';
+            axios.get(url, config).then(response => {
+                var hjkh = response.data;
+            }).catch(error => {
+                //loading = false;
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de categorias.");
+            });
+}
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();

@@ -1,5 +1,5 @@
 package modelos;
-// Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1
+// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,6 +16,7 @@ public class Producto  implements java.io.Serializable {
      private String nombre;
      private String detalle;
      private String direccionImagen;
+     private Integer listaPredeterminada;
      @JsonIgnore
      private Set productoTiendas = new HashSet(0);
      @JsonIgnore
@@ -24,8 +25,7 @@ public class Producto  implements java.io.Serializable {
      private Set productoTiendaCadenas = new HashSet(0);
      @JsonIgnore
      private Set productoxcategorias = new HashSet(0);
-     private Double valor;
-
+private Double valor;
     public Producto() {
     }
 
@@ -33,11 +33,12 @@ public class Producto  implements java.io.Serializable {
     public Producto(int idproducto) {
         this.idproducto = idproducto;
     }
-    public Producto(int idproducto, String nombre, String detalle, String direccionImagen, Set productoTiendas, Set listaProductos, Set productoTiendaCadenas, Set productoxcategorias) {
+    public Producto(int idproducto, String nombre, String detalle, String direccionImagen, Integer listaPredeterminada, Set productoTiendas, Set listaProductos, Set productoTiendaCadenas, Set productoxcategorias) {
        this.idproducto = idproducto;
        this.nombre = nombre;
        this.detalle = detalle;
        this.direccionImagen = direccionImagen;
+       this.listaPredeterminada = listaPredeterminada;
        this.productoTiendas = productoTiendas;
        this.listaProductos = listaProductos;
        this.productoTiendaCadenas = productoTiendaCadenas;
@@ -72,6 +73,13 @@ public class Producto  implements java.io.Serializable {
     public void setDireccionImagen(String direccionImagen) {
         this.direccionImagen = direccionImagen;
     }
+    public Integer getListaPredeterminada() {
+        return this.listaPredeterminada;
+    }
+    
+    public void setListaPredeterminada(Integer listaPredeterminada) {
+        this.listaPredeterminada = listaPredeterminada;
+    }
     public Set getProductoTiendas() {
         return this.productoTiendas;
     }
@@ -101,16 +109,14 @@ public class Producto  implements java.io.Serializable {
         this.productoxcategorias = productoxcategorias;
     }
 
-    public Double getValor() {
+
+   public Double getValor() {
         return valor;
     }
 
     public void setValor(Double valor) {
         this.valor = valor;
     }
-
-
-
 
 }
 

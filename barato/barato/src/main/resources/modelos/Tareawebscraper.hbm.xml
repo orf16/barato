@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/11/2019 08:26:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Tareawebscraper" table="tareawebscraper" schema="public" optimistic-lock="version">
+        <id name="idtarea" type="long">
+            <column name="idtarea" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="almacen" class="modelos.Almacen" fetch="select">
+            <column name="idalmacen" />
+        </many-to-one>
+        <property name="fechahoraini" type="timestamp">
+            <column name="fechahoraini" length="27" not-null="true" />
+        </property>
+        <property name="fechahorafin" type="timestamp">
+            <column name="fechahorafin" length="29" />
+        </property>
+        <property name="cantidadproductos" type="java.lang.Long">
+            <column name="cantidadproductos" />
+        </property>
+        <property name="productoscopiados" type="java.lang.Boolean">
+            <column name="productoscopiados" />
+        </property>
+        <set name="productoTwebscrHists" table="producto_twebscr_hist" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idtarea" />
+            </key>
+            <one-to-many class="modelos.ProductoTwebscrHist" />
+        </set>
+    </class>
+</hibernate-mapping>

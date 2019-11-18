@@ -1,5 +1,5 @@
 package modelos;
-// Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1
+// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
 
 
 
@@ -18,8 +18,6 @@ public class ProductoTienda  implements java.io.Serializable {
      private Boolean estado;
      private String codigotienda;
 
-
-
     public ProductoTienda() {
     }
 
@@ -27,16 +25,16 @@ public class ProductoTienda  implements java.io.Serializable {
     public ProductoTienda(int idproductoTienda) {
         this.idproductoTienda = idproductoTienda;
     }
-    public ProductoTienda(int idproductoTienda, Producto producto, Tienda tienda, String nombre, Double valor, Double valorUnidad) {
+    public ProductoTienda(int idproductoTienda, Producto producto, Tienda tienda, String nombre, Double valor, Double valorUnidad, Boolean estado, String codigotienda) {
        this.idproductoTienda = idproductoTienda;
        this.producto = producto;
        this.tienda = tienda;
        this.nombre = nombre;
        this.valor = valor;
        this.valorUnidad = valorUnidad;
+       this.estado = estado;
+       this.codigotienda = codigotienda;
     }
-
-
    
     public int getIdproductoTienda() {
         return this.idproductoTienda;
@@ -59,14 +57,6 @@ public class ProductoTienda  implements java.io.Serializable {
     public void setTienda(Tienda tienda) {
         this.tienda = tienda;
     }
-    public String getCodigotienda() {
-        return this.codigotienda;
-    }
-
-    public void setCodigotienda(String codigotienda) {
-        this.codigotienda = codigotienda;
-    }
-
     public String getNombre() {
         return this.nombre;
     }
@@ -88,13 +78,19 @@ public class ProductoTienda  implements java.io.Serializable {
     public void setValorUnidad(Double valorUnidad) {
         this.valorUnidad = valorUnidad;
     }
-
     public Boolean getEstado() {
         return this.estado;
     }
-
+    
     public void setEstado(Boolean estado) {
         this.estado = estado;
+    }
+    public String getCodigotienda() {
+        return this.codigotienda;
+    }
+    
+    public void setCodigotienda(String codigotienda) {
+        this.codigotienda = codigotienda;
     }
 
 

@@ -1,15 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/11/2019 08:26:26 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelos.Municipio" table="municipio" schema="public" optimistic-lock="version">
         <comment>Municipios de colombia</comment>
         <id name="idmunicipio" type="int">
             <column name="idmunicipio" />
-            <generator class="sequence" >
-                <param name="sequence">sidmunicipio</param>
-            </generator>
+            <generator class="assigned" />
         </id>
         <many-to-one name="departamento" class="modelos.Departamento" fetch="select">
             <column name="iddepartamento">
@@ -31,6 +29,12 @@
                 <comment>1 = Activo, 2 = Inactivo</comment>
             </column>
         </property>
+        <set name="almacens" table="almacen" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idmunicipio" />
+            </key>
+            <one-to-many class="modelos.Almacen" />
+        </set>
         <set name="usuarioDireccions" table="usuario_direccion" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idmunicipio" not-null="true">

@@ -1,26 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/11/2019 08:26:26 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelos.ListaProducto" table="lista_producto" schema="public" optimistic-lock="version">
         <id name="idlistaproducto" type="int">
             <column name="idlistaproducto" />
-            <generator class="sequence" >
-                <param name="sequence">sidlistaproducto</param>
-            </generator>
+            <generator class="assigned" />
         </id>
         <many-to-one name="lista" class="modelos.Lista" fetch="select">
             <column name="idlista" />
         </many-to-one>
-        <!--
         <many-to-one name="producto" class="modelos.Producto" fetch="select">
             <column name="producto_idproducto" />
         </many-to-one>
-        -->
-        <property name="producto_idproducto" type="int">
-            <column name="producto_idproducto" />
-        </property>
         <property name="nombreproducto" type="string">
             <column name="nombreproducto" />
         </property>

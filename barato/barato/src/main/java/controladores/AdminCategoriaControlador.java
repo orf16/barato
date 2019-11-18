@@ -8,6 +8,7 @@ package controladores;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import interfaces.CaracteristicaInterface;
 import java.util.List;
 
 import modelos.Categoria;
@@ -22,6 +23,12 @@ import servicios.AdminCategoriasImplementacion;
 import servicios.AdminProductos;
 import interfaces.CategoriasInterface;
 import interfaces.ProductoInterface;
+import java.io.IOException;
+import modelos.Caracteristica;
+import modelos.ProductoTwebscrHist;
+import org.json.JSONException;
+import org.springframework.web.bind.annotation.RequestParam;
+import servicios.AdminCaracteristicaImplementacion;
 
 
 /**
@@ -54,6 +61,23 @@ public class AdminCategoriaControlador {
             categoria.setListaProducto(traerProductosxcategoriaxidCategoria);
         }        
         return mapper.writeValueAsString( categoriaList );
+    }
+    
+    @RequestMapping(value = "/getCategoriaWS", method = RequestMethod.GET)
+    @ResponseBody
+    public String getCategoriaWS(Integer id) throws IOException, JSONException{   
+        CaracteristicaInterface cad = new AdminCaracteristicaImplementacion();
+        
+        List<Caracteristica> caracteristicaList = cad.obtenerCaracteristica(id);
+        return mapper.writeValueAsString( caracteristicaList );
+    }
+    @RequestMapping(value = "/getProductosWS", method = RequestMethod.GET)
+    @ResponseBody
+    public String getProductosWS() throws IOException, JSONException{   
+        CaracteristicaInterface cad = new AdminCaracteristicaImplementacion();
+        
+        List<Caracteristica> caracteristicaList = cad.obtenerCategoriasProductos();
+        return mapper.writeValueAsString( caracteristicaList );
     }
     
 }

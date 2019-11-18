@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 16/11/2019 08:26:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.Almacen" table="almacen" schema="public" optimistic-lock="version">
+        <id name="idalmacen" type="int">
+            <column name="idalmacen" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="municipio" class="modelos.Municipio" fetch="select">
+            <column name="idmunicipio" />
+        </many-to-one>
+        <many-to-one name="tienda" class="modelos.Tienda" fetch="select">
+            <column name="idtienda" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" not-null="true" />
+        </property>
+        <set name="tareawebscrapers" table="tareawebscraper" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idalmacen" />
+            </key>
+            <one-to-many class="modelos.Tareawebscraper" />
+        </set>
+    </class>
+</hibernate-mapping>

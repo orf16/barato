@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/11/2019 08:26:26 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelos.SubPagina" table="sub_pagina" schema="public" optimistic-lock="version">
         <id name="idsubpagina" type="int">
             <column name="idsubpagina" />
-            <generator class="sequence" >
-                <param name="sequence">sidsubpagina</param>
-            </generator>
+            <generator class="assigned" />
         </id>
         <many-to-one name="pagina" class="modelos.Pagina" fetch="select">
             <column name="idpagina" />

@@ -128,7 +128,7 @@ public class ActualizarProduct {
             Integer idprod = findIdproductoProductoTiendaByCodigoSimilar(prod.getCodigotienda(), idtienda, todosTienda);
 
             if (idprod != null) {
-                script = " UPDATE public.producto SET direccion_imagen='" + prod.getDireccionimagen().replace("'", "''") + "' where idproducto=" + idprod + ";";
+                script = " UPDATE public.producto SET direccion_imagen='" + prod.getDireccionImagen().replace("'", "''") + "' where idproducto=" + idprod + ";";
                 scripts.add(script);
 
             }

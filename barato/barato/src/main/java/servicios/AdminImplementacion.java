@@ -11,7 +11,7 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelos.Departamento;
-import modelos.Login;
+
 import modelos.Municipio;
 import org.springframework.stereotype.Service;
 import modelos.Usuario;
@@ -134,35 +134,35 @@ public class AdminImplementacion implements AdminInterface{
         return municipio;         
     }           
 
-    @Override
-    public boolean guardarSesion(Login usuario) {      
-       Session conexion = funciones.getConexion();
-       Transaction trans = funciones.getTransaccion();  
-       Hibernate.initialize(usuario.getToken());        
-       try {            
-            trans.begin();
-            conexion.save( usuario );            
-            trans.commit();            
-            return true;      
-        }
-        catch (Exception e) {
-            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Error al guardar sesion con token de usuario : {0}", e);
-            if (trans!=null) trans.rollback();  
-            return false;
-        }
-    }
-    
-    @Override
-    public Login capturarSesion( String token) {     
-        Session conexion = funciones.getConexion();
-        Login usuarioLogin = (Login)conexion.createQuery("FROM Login WHERE token='"+token+"'" ).uniqueResult();        
-        return usuarioLogin;        
-    }
-
-    @Override
-    public Login updateSesion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    @Override
+//    public boolean guardarSesion(Login usuario) {      
+//       Session conexion = funciones.getConexion();
+//       Transaction trans = funciones.getTransaccion();  
+//       Hibernate.initialize(usuario.getToken());        
+//       try {            
+//            trans.begin();
+//            conexion.save( usuario );            
+//            trans.commit();            
+//            return true;      
+//        }
+//        catch (Exception e) {
+//            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Error al guardar sesion con token de usuario : {0}", e);
+//            if (trans!=null) trans.rollback();  
+//            return false;
+//        }
+//    }
+//    
+//    @Override
+//    public Login capturarSesion( String token) {     
+//        Session conexion = funciones.getConexion();
+//        Login usuarioLogin = (Login)conexion.createQuery("FROM Login WHERE token='"+token+"'" ).uniqueResult();        
+//        return usuarioLogin;        
+//    }
+//
+//    @Override
+//    public Login updateSesion() {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     @Override
     public Boolean eleminarSesion() {

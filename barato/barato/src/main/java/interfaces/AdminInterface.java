@@ -6,7 +6,7 @@
 package interfaces;
 import java.util.List;
 import modelos.Departamento;
-import modelos.Login;
+//import modelos.Login;
 import modelos.Municipio;
 import modelos.Usuario;
 import modelos.UsuarioDireccion;
@@ -28,11 +28,11 @@ public interface AdminInterface {
     
     List<Usuario> buscarUsuario(); 
     
-    boolean guardarSesion( Login sesion);    
-    
-    Login capturarSesion( String token );    
-    
-    Login updateSesion( );    
+//    boolean guardarSesion( Login sesion);    
+//    
+//    Login capturarSesion( String token );    
+//    
+//    Login updateSesion( );    
     
     Boolean eleminarSesion( );
 

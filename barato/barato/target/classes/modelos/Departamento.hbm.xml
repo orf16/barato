@@ -1,22 +1,20 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/11/2019 08:26:26 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelos.Departamento" table="departamento" schema="public" optimistic-lock="version">
         <comment>Departamentos de colombia</comment>
         <id name="iddepartamento" type="int">
             <column name="iddepartamento" />
-            <generator class="sequence" >
-                <param name="sequence">siddepartamento</param>
-            </generator>
+            <generator class="assigned" />
         </id>
-        <property name="indicativo" type="int">
+        <property name="indicativo" type="java.lang.Short">
             <column name="indicativo">
                 <comment>Indicativo del departamento</comment>
             </column>
         </property>
-        <property name="estado" type="int">
+        <property name="estado" type="java.lang.Short">
             <column name="estado">
                 <comment>Estado del departamento</comment>
             </column>

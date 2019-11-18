@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/11/2019 08:26:26 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelos.Lista" table="lista" schema="public" optimistic-lock="version">
         <id name="idlista" type="int">
             <column name="idlista" />
-            <generator class="sequence" >
-                <param name="sequence">sidlista</param>
-            </generator>
+            <generator class="assigned" />
         </id>
         <many-to-one name="usuario" class="modelos.Usuario" fetch="select">
             <column name="idusuario" />
@@ -27,6 +25,12 @@
         <property name="nombrelista" type="string">
             <column name="nombrelista" length="20" />
         </property>
+        <set name="listasCompartidases" table="listas_compartidas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idlista" />
+            </key>
+            <one-to-many class="modelos.ListasCompartidas" />
+        </set>
         <set name="listaProductos" table="lista_producto" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="idlista" />

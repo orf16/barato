@@ -77,4 +77,23 @@ public class AdminProductoControlador {
         List<ProductoTwebscrHist> productoList = prod.traerProductosxID( id );
         return mapper.writeValueAsString( productoList );
     }
+    ////BUSQUEDA APROXIMADA GENERAL
+    @RequestMapping(value = "/getProductos", method = RequestMethod.GET)
+    @ResponseBody
+    public String getProductos( @RequestParam(required = false, value = "nombre") String nombre,
+                                @RequestParam(required = false, value = "categoria") String categoria,
+                                @RequestParam(required = false, value = "producto") String producto,
+                                @RequestParam(required = false, value = "marca") String marca,
+                                @RequestParam(required = false, value = "presentacion") String presentacion,
+                                @RequestParam(required = false, value = "volumen") String volumen
+    
+    ) throws IOException, JSONException{  
+        if (nombre != null && !nombre.isEmpty()) {
+            List<ProductoTwebscrHist> productoList = prod.traerProductos( nombre, categoria,producto,marca,presentacion,volumen );
+        return mapper.writeValueAsString( productoList );
+        }
+        else{
+            return null;
+        }        
+    }
 }

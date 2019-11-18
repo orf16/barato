@@ -181,7 +181,7 @@ public class unificarProduct {
             ProductoTwebscrHist prod = todosExitoCarulla.get(x);
 
             try {
-                URL urlex = new URL(prod.getDireccionimagen());
+                URL urlex = new URL(prod.getDireccionImagen());
                 imageexit = ImageIO.read(urlex);
                 imageexit = resizeimage(imageexit);
                 //ImageIO.write(imageexit, "jpg", new File("/tmp/imageexito.jpg"));
@@ -194,7 +194,7 @@ public class unificarProduct {
 
 
                 try {
-                    URL urlol = new URL(prodol.getDireccionimagen());
+                    URL urlol = new URL(prodol.getDireccionImagen());
                     imageolim = ImageIO.read(urlol);
                     imageolim = resizeimage(imageolim);
                     //ImageIO.write(imageolim, "jpg", new File("/tmp/imageolimp.jpg"));
@@ -214,7 +214,7 @@ public class unificarProduct {
                 ProductoTwebscrHist prodjum = todosJumbo.get(x);
 
                 try {
-                    URL urlju = new URL(prodjum.getDireccionimagen());
+                    URL urlju = new URL(prodjum.getDireccionImagen());
                     imagejumb = ImageIO.read(urlju);
                     imagejumb = resizeimage(imagejumb);
                     //ImageIO.write(imagejumb, "jpg", new File("/tmp/imagejumb.jpg"));

@@ -17,5 +17,5 @@ public interface CategoriasInterface {
     
     public List <Categoria> getCategoriasxLimite(Integer limite);
 
-    
+
 }

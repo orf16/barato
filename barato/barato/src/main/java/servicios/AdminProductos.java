@@ -232,11 +232,13 @@ public class AdminProductos implements ProductoInterface {
 
     @Override
     public List<ProductoTwebscrHist> traerProductosxID(String id) {
-        int hh=0;
+        int hh=10;
+        Long numInLong = Long.valueOf(Integer.parseInt(id));
         Session conexion = funciones.getConexion();
-        Query query = conexion.createQuery("from ProductoTwebscrHist where idproducto= :idproductos");
+        //Query query = conexion.createQuery("from ProductoTwebscrHist where id= :idproductos");
+        Query query = conexion.createQuery("from ProductoTwebscrHist").setMaxResults(10);
         //query.setParameter("idProductos", 1);
-        query.setParameter("idproductos", Integer.parseInt(id));
+        //query.setParameter("idproductos", hh);
         
         
             
@@ -245,5 +247,65 @@ public class AdminProductos implements ProductoInterface {
         return productoList;
     }
     
+   
+    
+    
+    ////BUSQUEDA APROXIMADA GENERAL
+    @Override
+    public List<ProductoTwebscrHist> traerProductos(String nombre, String categoria,String producto,String marca,String presentacion,String volumen) {
+        int hh=10;
+        //Long numInLong = Long.valueOf(Integer.parseInt(nombre));
+        //String base="from ProductoTwebscrHist where lower(nombre) similar to '%(aguila|águila)%'";
+        String base="from ProductoTwebscrHist where similarity(nombre,:nombre) > 0.10";
+        String order=" order by similarity(nombre,:nombre) desc";
+        String and=" and ";
+        String or=" or ";
+        String query_cat=" and lower(nombre) like :categoria";
+        String query_prd=" and lower(nombre) like :producto";
+        String query_mrc=" and lower(nombre) like :marca";
+        String query_pre=" and lower(nombre) like :presentacion";
+        String query_vol=" and lower(nombre) like :volumen";
+        Session conexion = funciones.getConexion();
+        
+        if (categoria != null && !categoria.isEmpty()) {
+            base+=query_cat;
+        }
+        if (producto != null && !producto.isEmpty()) {
+            base+=query_prd;
+        }
+        if (marca != null && !marca.isEmpty()) {
+            base+=query_mrc;
+        }
+        if (presentacion != null && !presentacion.isEmpty()) {
+            base+=query_pre;
+        }
+        if (volumen != null && !volumen.isEmpty()) {
+            base+=query_vol;
+        }
+        
+        base+=order;
+        Query query = conexion.createQuery(base);
+
+        //Query query = conexion.createQuery("from ProductoTwebscrHist").setMaxResults(10);
+        query.setParameter("nombre", nombre);
+        if (categoria != null && !categoria.isEmpty()) {
+            query.setParameter("categoria", "%"+categoria.toLowerCase()+"%");
+        }
+        if (producto != null && !producto.isEmpty()) {
+            query.setParameter("producto", "%"+producto.toLowerCase()+"%");
+        }
+        if (marca != null && !marca.isEmpty()) {
+            query.setParameter("marca", "%"+marca.toLowerCase()+"%");
+        }
+        if (presentacion != null && !presentacion.isEmpty()) {
+            query.setParameter("presentacion", "%"+presentacion.toLowerCase()+"%");
+        }
+        if (volumen != null && !volumen.isEmpty()) {
+            query.setParameter("volumen", "%"+volumen.toLowerCase()+"%");
+        }
+        List<ProductoTwebscrHist> productoList = query.list();
+        conexion.close();
+        return productoList;
+    }
     
 }

@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/11/2019 08:26:26 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelos.Producto" table="producto" schema="public" optimistic-lock="version">
         <id name="idproducto" type="int">
             <column name="idproducto" />
-            <generator class="sequence" >
-                <param name="sequence">sidproducto</param>
-            </generator>
+            <generator class="assigned" />
         </id>
         <property name="nombre" type="string">
             <column name="nombre" />
@@ -18,6 +16,9 @@
         </property>
         <property name="direccionImagen" type="string">
             <column name="direccion_imagen" />
+        </property>
+        <property name="listaPredeterminada" type="java.lang.Integer">
+            <column name="lista_predeterminada" />
         </property>
         <set name="productoTiendas" table="producto_tienda" inverse="true" lazy="true" fetch="select">
             <key>

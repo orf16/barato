@@ -1,8 +1,7 @@
 package modelos;
-// Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1
+// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,10 +24,9 @@ public class Usuario  implements java.io.Serializable {
      private Date fechanacimiento;
      private String telefono;
      private short tipousuario;
-     @JsonIgnore
      private Set listas = new HashSet(0);
-     @JsonIgnore
      private Set usuarioDireccions = new HashSet(0);
+     private Set listasCompartidases = new HashSet(0);
 
     public Usuario() {
     }
@@ -42,7 +40,7 @@ public class Usuario  implements java.io.Serializable {
         this.telefono = telefono;
         this.tipousuario = tipousuario;
     }
-    public Usuario(int idusuario, String nombre, String apellido, String email, String clave, Integer idtipodocumento, String documento, Short sexo, Short estadocivil, Date fechanacimiento, String telefono, short tipousuario, Set listas, Set usuarioDireccions) {
+    public Usuario(int idusuario, String nombre, String apellido, String email, String clave, Integer idtipodocumento, String documento, Short sexo, Short estadocivil, Date fechanacimiento, String telefono, short tipousuario, Set listas, Set usuarioDireccions, Set listasCompartidases) {
        this.idusuario = idusuario;
        this.nombre = nombre;
        this.apellido = apellido;
@@ -57,6 +55,7 @@ public class Usuario  implements java.io.Serializable {
        this.tipousuario = tipousuario;
        this.listas = listas;
        this.usuarioDireccions = usuarioDireccions;
+       this.listasCompartidases = listasCompartidases;
     }
    
     public int getIdusuario() {
@@ -156,6 +155,13 @@ public class Usuario  implements java.io.Serializable {
     
     public void setUsuarioDireccions(Set usuarioDireccions) {
         this.usuarioDireccions = usuarioDireccions;
+    }
+    public Set getListasCompartidases() {
+        return this.listasCompartidases;
+    }
+    
+    public void setListasCompartidases(Set listasCompartidases) {
+        this.listasCompartidases = listasCompartidases;
     }
 
 

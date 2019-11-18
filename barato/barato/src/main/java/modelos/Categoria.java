@@ -1,5 +1,5 @@
 package modelos;
-// Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1
+// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -16,14 +16,13 @@ public class Categoria  implements java.io.Serializable {
      private int idcategoria;
      private String nombre;
      private String abreviatura;
-     private String direccionimagen;
+     private String direccionImagen;
      @JsonIgnore
      private Set productoxcategorias = new HashSet(0);
      @JsonIgnore
      private Set subcategorias = new HashSet(0);
-     @JsonIgnore
+@JsonIgnore
      List<Producto> listaProducto;
-
     public Categoria() {
     }
 
@@ -31,11 +30,11 @@ public class Categoria  implements java.io.Serializable {
     public Categoria(int idcategoria) {
         this.idcategoria = idcategoria;
     }
-    public Categoria(int idcategoria, String nombre, String abreviatura, String direccionimagen, Set productoxcategorias, Set subcategorias) {
+    public Categoria(int idcategoria, String nombre, String abreviatura, String direccionImagen, Set productoxcategorias, Set subcategorias) {
        this.idcategoria = idcategoria;
        this.nombre = nombre;
        this.abreviatura = abreviatura;
-        this.direccionimagen = direccionimagen;
+       this.direccionImagen = direccionImagen;
        this.productoxcategorias = productoxcategorias;
        this.subcategorias = subcategorias;
     }
@@ -61,6 +60,13 @@ public class Categoria  implements java.io.Serializable {
     public void setAbreviatura(String abreviatura) {
         this.abreviatura = abreviatura;
     }
+    public String getDireccionImagen() {
+        return this.direccionImagen;
+    }
+    
+    public void setDireccionImagen(String direccionImagen) {
+        this.direccionImagen = direccionImagen;
+    }
     public Set getProductoxcategorias() {
         return this.productoxcategorias;
     }
@@ -71,28 +77,18 @@ public class Categoria  implements java.io.Serializable {
     public Set getSubcategorias() {
         return this.subcategorias;
     }
-
+    
     public void setSubcategorias(Set subcategorias) {
         this.subcategorias = subcategorias;
     }
 
-    public String getDireccionimagen() {
-        return direccionimagen;
-    }
-
-    public void setDireccionimagen(String direccionimagen) {
-        this.direccionimagen = direccionimagen;
-    }
-
-    public List<Producto> getListaProducto() {
+public List<Producto> getListaProducto() {
         return listaProducto;
     }
 
     public void setListaProducto(List<Producto> listaProducto) {
         this.listaProducto = listaProducto;
     }
-
-
 
 
 }

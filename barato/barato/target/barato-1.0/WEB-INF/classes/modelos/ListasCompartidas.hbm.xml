@@ -1,14 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/07/2018 12:11:32 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/11/2019 08:26:26 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelos.ListasCompartidas" table="listas_compartidas" schema="public" optimistic-lock="version">
         <id name="idcompartida" type="int">
             <column name="idcompartida" />
-            <generator class="sequence" >
-                <param name="sequence">sidlistacompartida</param>
-            </generator>
+            <generator class="assigned" />
         </id>
         <many-to-one name="lista" class="modelos.Lista" fetch="select">
             <column name="idlista" />
@@ -16,11 +14,11 @@
         <many-to-one name="usuario" class="modelos.Usuario" fetch="select">
             <column name="idusuario" />
         </many-to-one>
-        <property name="emailuser" type="string">
-            <column name="emailuser" length="200" />
+        <property name="fechacompartido" type="timestamp">
+            <column name="fechacompartido" length="35" />
         </property>
-        <property name="fechacompartido" type="time">
-            <column name="fechacompartido" length="15" />
+        <property name="emailuser" type="string">
+            <column name="emailuser" />
         </property>
     </class>
 </hibernate-mapping>

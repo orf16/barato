@@ -1,5 +1,5 @@
 package modelos;
-// Generated 22/06/2018 12:17:42 PM by Hibernate Tools 4.3.1
+// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,7 +22,7 @@ public class ListaProducto  implements java.io.Serializable {
      private String url;
      private String direccionproducto;
      private Date fechaagregado;
-     private int producto_idproducto;
+private int producto_idproducto;
 
     public ListaProducto() {
     }
@@ -106,15 +106,17 @@ public class ListaProducto  implements java.io.Serializable {
     public void setFechaagregado(Date fechaagregado) {
         this.fechaagregado = fechaagregado;
     }
-
-    public int getProducto_idproducto() {
+public int getProducto_idproducto() {
         return this.producto_idproducto;
     }
 
     public void setProducto_idproducto(int producto_idproducto) {
         this.producto_idproducto = producto_idproducto;
-    }  
-    
+    }
+
+
+
+
 }
 
 

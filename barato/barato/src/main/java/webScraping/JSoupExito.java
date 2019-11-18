@@ -109,162 +109,11 @@ public class JSoupExito {
         tx.commit();
         conexion.close();
 
-        //Pollo y Pescado
-        pagina = "https://www.exito.com/Mercado-Frescos-Pollo-_carne_y_pescado/_/N-2bbb?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("8"));
-
-        //Frutas
-        pagina = "https://www.exito.com/Mercado-Frescos-Frutas_y_verduras-Frutas/_/N-2bb6?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("6"));
-
-        //Pulpa Frutas
-        pagina = "https://www.exito.com/Mercado-Congelados_y_refrigerados-Congelados-Fruta_y_pulpa_congelada/_/N-2avh?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("6"));
-
-        //Verduras
-        pagina = "https://www.exito.com/Mercado-Frescos-Frutas_y_verduras-Verduras/_/N-2bb4?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("7"));
-
-        //Papas
-        pagina = "https://www.exito.com/Mercado-Frescos-Frutas_y_verduras-Papas/_/N-2bb5?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("7"));
-
-        //Verduras Congeladas
-        pagina = "https://www.exito.com/Mercado-Congelados_y_refrigerados-Congelados-Papas-_yucas_y_verduras_congeladas/_/N-2av7?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("7"));
-
-        //Despensa
-        pagina = "https://www.exito.com/Mercado-Alimentos_y_bebidas-Despensa/_/N-2amt?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("3"));
-
-        //Snacks
-        pagina = "https://www.exito.com/Mercado-Alimentos_y_bebidas-Galleteria-_confiteria_y_pasabocas/_/N-2ar6?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("1"));
-
-        //Bebidas
-        pagina = "https://www.exito.com/Mercado-Alimentos_y_bebidas-Bebidas/_/N-2apq?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("2"));
-
-        //Congelados
-        pagina = "https://www.exito.com/Mercado-Congelados_y_refrigerados-Congelados/_/N-2au4?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("4"));
-
-
-        //Refrigerados
-        pagina = "https://www.exito.com/Mercado-Congelados_y_refrigerados-Lacteos-_huevos_y_refrigerados/_/N-2at3?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("5"));
-
-
-        //Mundo Vinos
-        pagina = "https://www.exito.com/Mercado-Mundo_vinos/_/N-2d9g?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("10"));
-
         //Licores
-        pagina = "https://www.exito.com/Mercado-Vinos_y_licores/_/N-2aky?No=";
+        pagina = "https://www.exito.com/Mercado/Vinos_y_licores/_/N-2aky?No=";
         totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("10"));
 
-        //Delicatessen
-        pagina = "https://www.exito.com/Mercado-Alimentos_y_bebidas-Delicatessen/_/N-2aqd?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("9"));
-
-        //Panaderia y Reposteria
-        pagina = "https://www.exito.com/Mercado-Alimentos_y_bebidas-Panaderia_y_reposteria/_/N-2aqr?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("11"));
-
-        //Aseo Hogar
-        pagina = "https://www.exito.com/Mercado-Aseo_del_hogar/_/N-2avk?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("12"));
-
-        //MASCOTAS
-
-        //alimento gatos
-        pagina = "https://www.exito.com/Mercado-Mascotas-Gatos-Alimentos/_/N-2am4?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("14"));
-
-        //alimento gatos humedos
-        pagina = "https://www.exito.com/Mercado-Mascotas-Gatos-Alimentos_humedos/_/N-2am2?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("14"));
-
-        //alimento seco perros
-        pagina = "https://www.exito.com/Mercado-Mascotas-Perros-Alimentos_secos/_/N-2ame?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("14"));
-
-
-        //alimento humedo perros
-        pagina = "https://www.exito.com/Mercado-Mascotas-Perros-Alimentos_humedos/_/N-2amd?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("14"));
-
-
-        //CUIDADO PERSONAL
-        //Cuidado Femenino
-        pagina = "https://www.exito.com/Salud_y_Belleza-Cuidado_femenino/_/N-2bii?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("13"));
-
-        //Cuidado Masculino
-        pagina = "https://www.exito.com/Salud_y_Belleza-Cuidado_masculino/_/N-2bhw?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("13"));
-
-        //Cuidado Bucal
-        pagina = "https://www.exito.com/Salud_y_Belleza-Cuidado_bucal/_/N-2bh9?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("13"));
-
-        //Cuidado Capilar
-        pagina = "https://www.exito.com/Salud_y_Belleza-Cuidado_capilar/_/N-2bjn?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("13"));
-
-        //Cuidado Corporal
-        pagina = "https://www.exito.com/Salud_y_Belleza-Cuidado_corporal/_/N-2bg8?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("13"));
-
-        //Cuidado Facial
-        pagina = "https://www.exito.com/Salud_y_Belleza-Cuidado_facial/_/N-2bks?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("13"));
-
-
-        //BEBES
-        //Pañales Bebes
-        pagina = "https://www.exito.com/Bebes-Panales_y_Panaleras/_/N-2afz?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("15"));
-
-        //Leche Tarro
-        pagina = "https://www.exito.com/Bebes-Alimentacion_del_Bebe-Leche_De_Tarro_Para_Bebes/_/N-2ado?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("15"));
-
-        //Compotas
-        pagina = "https://www.exito.com/Bebes-Alimentacion_del_Bebe-Compotas/_/N-2adv?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("15"));
-
-
-        //Cereales Bebe
-        pagina = "https://www.exito.com/Bebes-Alimentacion_del_Bebe-Cereales_Para_Bebe/_/N-2adt?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("15"));
-
-        //Jugos Bebe
-        pagina = "https://www.exito.com/Bebes-Alimentacion_del_Bebe-Jugos_y_Papillas_Para_Bebes/_/N-2adu?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("15"));
-
-
-
-
-        //Shampoo Bebe
-        pagina = "https://www.exito.com/Bebes-Higiene_Del_Bebe-Shampoo_Para_Bebe/_/N-2afn?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("15"));
-
-        //Colonias Bebe
-        pagina = "https://www.exito.com/Bebes-Higiene_Del_Bebe-Colonias_Para_Bebe/_/N-2afr?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("15"));
-
-        //Acondicionadores Bebe
-        pagina = "https://www.exito.com/Bebes-Higiene_Del_Bebe-Acondicionadores_Para_Bebe/_/N-2afq?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("15"));
-
-        //Aceites Bebe
-        pagina = "https://www.exito.com/Bebes-Higiene_Del_Bebe-Aceites_Para_Bebe/_/N-2afo?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("15"));
-
-        //Talcos Bebe
-        pagina = "https://www.exito.com/Bebes-Higiene_Del_Bebe-Talcos_Para_Bebe/_/N-2afl?No=";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("15"));
+ 
 
         Session conexionf = funciones.getConexion();
         Transaction txf = conexionf.beginTransaction();
@@ -314,6 +163,7 @@ public class JSoupExito {
             //inserart tags de categorias
             //insertar y clasificar 
             //Constantes
+            //Realizar select si existe el producto
             String scriptfijo = "INSERT INTO public.producto_twebscr_hist(nombre, detalle,precio,idtarea,direccion_imagen,codigotienda,idcategoria) VALUES (";
             String idtienda = "1";
             int cantporpag = 20;
@@ -344,6 +194,7 @@ public class JSoupExito {
             try {
                 docOneConn = connectionone.get();
             } catch (Exception e) {
+                String hjhj="";
             }
             //Obtenemos total productos
             org.jsoup.select.Elements numproductos = docOneConn.select(clascantprod);

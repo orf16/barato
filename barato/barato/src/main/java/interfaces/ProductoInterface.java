@@ -26,4 +26,6 @@ public interface ProductoInterface {
     public List <Producto> traerProductosxIds(List<Integer> idProductos);
     public Boolean crearproductos(String tiendprods);
     public List <ProductoTwebscrHist> traerProductosxID(String id);
+    ////BUSQUEDA APROXIMADA GENERAL
+    public List <ProductoTwebscrHist> traerProductos(String nombre, String categoria, String producto,String marca,String presentacion,String volumen);
 }

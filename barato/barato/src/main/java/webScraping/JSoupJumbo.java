@@ -22,6 +22,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import static javax.ws.rs.core.HttpHeaders.USER_AGENT;
+import modelos.Diccionario;
+import modelos.ProductoTwebscrHist;
+import org.hibernate.Query;
 
 /**
  * @author andres
@@ -48,7 +51,7 @@ public class JSoupJumbo {
             }
         }
         int responseCode = conn.getResponseCode();
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
         String inputLine;
         StringBuffer response = new StringBuffer();
         while ((inputLine = in.readLine()) != null) {
@@ -83,113 +86,11 @@ public class JSoupJumbo {
 
 
 
-        //Despensa
-        pagina = "%2f2000055%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(3));
-
-
-        //Pescados y Mariscos
-        pagina = "%2f2000039%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(8));
-
-
-        //Frutas
-        pagina = "%2f2000045%2f2000048%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(6));
-
-
-        //Pulpa Frutas
-        pagina = "%2f2000045%2f2000221%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(6));
-
-
-
-        // Hortalizas
-        pagina = "%2f2000045%2f2000046%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(7));
-
-        //Carne y Pollo
-        pagina = "%2f2000030%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(8));
-
-
-        //Bebidas
-        pagina = "%2f2000098%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(2));
-
-
-        //Charcuteria
-        pagina = "%2f2000051%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(9));
-
-
-        //Panaderia y Pasteleria
-        pagina = "%2f2000083%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(11));
-
-
+ 
         //Vinos y Licores
         pagina = "%2f1000060%2f";
         totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(10));
 
-
-
-
-        //Aseo Hogar
-        pagina = "%2f2000006%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(12));
-
-        //Cuidado Personal
-        pagina = "%2f2000014%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(13));
-
-
-
-        //Dulces y Postres
-        pagina = "%2f2000052%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(1));
-
-
-        //Productos congelados
-        pagina = "%2f2000087%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(4));
-
-
-
-        //Cigarrillos
-        pagina = "%2f2000002%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(10));
-
-
-        //Cuidado del Bebe
-        pagina = "%2f2000179%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(15));
-
-        //lacteos  refrigerados
-        pagina = "%2f2000023%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(5));
-
-
-        //huevos
-        pagina = "%2f2000023%2f2000026%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(3));
-
-
-        //Pasabocas  
-        pagina = "%2f2000217%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(1));
-
-        //Cuidado ropa y calzado
-        pagina = "%2f2000231%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(12));
-
-        //Limpieza de cocina
-        pagina = "%2f2000235%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(12));
-
-        //Mascotas    
-        pagina = "%2f2000228%2f";
-        totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer(14));
 
         Session conexionf = funciones.getConexion();
         Transaction txf = conexionf.beginTransaction();
@@ -242,6 +143,9 @@ public class JSoupJumbo {
             //Constantes
             int numprod = 0;
             String scriptfijo = "INSERT INTO public.producto_twebscr_hist(nombre,detalle,descripcion,precio,idtarea,direccion_imagen,codigotienda,idcategoria) VALUES (";
+            String scriptfijo3 = "INSERT INTO public.diccionario(palabra) VALUES (";
+            String scriptfijo1 = "UPDATE public.producto_twebscr_hist SET precio=";
+            String scriptfijo2 = " WHERE idproducto=";
             String idtienda = "2";
             String page = "https://www.tiendasjumbo.co/api/catalog_system/pub/products/search/?&fq=C%3a%2f2000001";
             String clasprod = "productName";
@@ -252,6 +156,7 @@ public class JSoupJumbo {
             String clascodig = "productId";
 
             String script = "";
+            String script1 = "";
             //se requiere para que entre en el while no borrar
             String retorno = "[contend]";
             Integer cant = 0;
@@ -289,7 +194,9 @@ public class JSoupJumbo {
                     String codigotienda = jsonObj.getString(clascodig);
                     String precio = "0";
                     String imagen = "";
-
+                    String[] arrOfStr = nombreprod.split(" ", 20);
+                    
+                        
                     try {
                         JSONObject precObj = jsonObj.getJSONArray("items").getJSONObject(0).getJSONArray("sellers").getJSONObject(0).getJSONObject("commertialOffer").getJSONArray("Installments").getJSONObject(0);
 
@@ -305,17 +212,58 @@ public class JSoupJumbo {
                     } catch (Exception e) {
                         String error = script;
                     }
-                    if (listaCodigos.contains(codigotienda)==false) {
-                        script = scriptfijo + "'" + nombreprod + "','" + detalleprod + "','" + descriprod + "'," + precio + "," + idtarea + ",'" + imagen + "'" + ",'" + codigotienda.trim() + "'," + idcategoria + ");" + System.getProperty("line.separator");
-                        scripts.add(script);
-                        listaCodigos.add(codigotienda);
-                        ++totalprodProc;
+                    
+                    Session conexion = funciones.getConexion();
+                    try {
+                        Query query = conexion.createQuery("from ProductoTwebscrHist where codigotienda= :nombre").setMaxResults(1);
+                        //Query query = conexion.createQuery("from ProductoTwebscrHist where nombre= :nombre and detalle= :detalle and direccion_imagen= :direccion_imagen and codigotienda= :codigotienda");
+                        query.setParameter("nombre", codigotienda.trim());
+
+                        List<ProductoTwebscrHist> productoList = query.list();
+                        conexion.close();
+                        if (productoList.isEmpty()) {
+                            if (listaCodigos.contains(codigotienda) == false) {
+                                script = scriptfijo + "'" + nombreprod + "','" + detalleprod + "','" + descriprod + "'," + precio + "," + idtarea + ",'" + imagen + "'" + ",'" + codigotienda.trim() + "'," + idcategoria + ");" + System.getProperty("line.separator");
+                                scripts.add(script);
+                                listaCodigos.add(codigotienda);
+                                ++totalprodProc;
+                            }
+                        } else {
+                                int id=productoList.get(0).getIdproducto();
+                                script = scriptfijo1+precio+scriptfijo2+Integer.toString(id);
+                                scripts.add(script);
+                                listaCodigos.add(codigotienda);
+                                ++totalprodProc;
+                        }
+                    } catch (Exception e) {
+                        conexion.close();
                     }
 
+                    
+                    //construir diccionario
+                    for (String a : arrOfStr){
+                        Session conexion1 = funciones.getConexion();
+                        try {
+                            Query query = conexion1.createQuery("from Diccionario where palabra= :palabra").setMaxResults(1);
+                            //Query query = conexion.createQuery("from ProductoTwebscrHist where nombre= :nombre and detalle= :detalle and direccion_imagen= :direccion_imagen and codigotienda= :codigotienda");
+                            query.setParameter("palabra", a);
+
+                            List<Diccionario> DiccionarioList = query.list();
+                            conexion1.close();
+                            if (DiccionarioList.isEmpty()) {
+                                script1 = scriptfijo3 + "'" + a + "');" + System.getProperty("line.separator");
+                                scripts.add(script1);
+                            } 
+                        } catch (Exception e) {
+                            conexion1.close();
+                        }  
+                    } 
 
                 }
 
             }
+            
+            
             Integer nuact=0;
             Integer cantscripts=500;
             Integer nufin=0;

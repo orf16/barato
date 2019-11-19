@@ -14,5 +14,6 @@ import java.util.List;
  */
 public interface CaracteristicaInterface {
     public List <Caracteristica> obtenerCaracteristica(Integer id);
+    public List <Caracteristica> obtenerCaracteristicaPalabra(String nombre, String categoria, String producto,String marca,String presentacion,String volumen);
     public List <Caracteristica> obtenerCategoriasProductos();
 }

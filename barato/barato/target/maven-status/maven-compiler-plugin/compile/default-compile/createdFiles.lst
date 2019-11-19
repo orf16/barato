@@ -65,6 +65,7 @@ servicios\AdminCategoriasImplementacion.class
 webScraping\JSoupAra.class
 modelos\Subcategoria.class
 modelos\Lista.class
+modelos\Login.class
 controladores\AdminProductoTiendaControlador.class
 controladores\AdminScrapingControlador$2.class
 modelos\Departamento.class

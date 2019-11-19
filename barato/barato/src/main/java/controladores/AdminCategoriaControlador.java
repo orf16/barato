@@ -79,5 +79,17 @@ public class AdminCategoriaControlador {
         List<Caracteristica> caracteristicaList = cad.obtenerCategoriasProductos();
         return mapper.writeValueAsString( caracteristicaList );
     }
-    
+    @RequestMapping(value = "/getCategoriaWord", method = RequestMethod.GET)
+    @ResponseBody
+    public String getCategoriaWS(@RequestParam(required = false, value = "nombre") String nombre,
+                                @RequestParam(required = false, value = "categoria") String categoria,
+                                @RequestParam(required = false, value = "producto") String producto,
+                                @RequestParam(required = false, value = "marca") String marca,
+                                @RequestParam(required = false, value = "presentacion") String presentacion,
+                                @RequestParam(required = false, value = "volumen") String volumen) throws IOException, JSONException{   
+        CaracteristicaInterface cad = new AdminCaracteristicaImplementacion();
+        
+        List<Caracteristica> caracteristicaList = cad.obtenerCaracteristicaPalabra(nombre, categoria, producto, marca, presentacion, volumen);
+        return mapper.writeValueAsString( caracteristicaList );
+    }
 }

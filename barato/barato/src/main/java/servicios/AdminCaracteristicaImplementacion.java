@@ -39,8 +39,8 @@ public class AdminCaracteristicaImplementacion implements CaracteristicaInterfac
     @Override
     public List <Caracteristica> obtenerCaracteristicaPalabra(String nombre, String categoria, String producto,String marca,String presentacion,String volumen) {
         
-        String base="from ProductoTwebscrHist where similarity(nombre,:nombre) > 0.10";
-        String order=" order by similarity(nombre,:nombre) desc";
+        String base="from ProductoTwebscrHist where similarity(concat(nombre, ' ', detalle),:nombre) > 0.10";
+        String order=" order by similarity(concat(nombre, ' ', detalle),:nombre) desc";
         String and=" and ";
         String or=" or ";
         String query_cat=" and lower(nombre) like :categoria";

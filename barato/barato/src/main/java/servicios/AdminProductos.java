@@ -256,8 +256,8 @@ public class AdminProductos implements ProductoInterface {
         int hh=10;
         //Long numInLong = Long.valueOf(Integer.parseInt(nombre));
         //String base="from ProductoTwebscrHist where lower(nombre) similar to '%(aguila|águila)%'";
-        String base="from ProductoTwebscrHist where similarity(nombre,:nombre) > 0.10";
-        String order=" order by similarity(nombre,:nombre) desc";
+        String base="from ProductoTwebscrHist p where similarity(concat(p.nombre, ' ', p.detalle),:nombre) > 0.10";
+        String order=" order by similarity(concat(nombre, ' ', detalle),:nombre) desc"; 
         String and=" and ";
         String or=" or ";
         String query_cat=" and lower(nombre) like :categoria";

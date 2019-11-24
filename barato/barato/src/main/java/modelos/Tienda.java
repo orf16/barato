@@ -1,5 +1,5 @@
 package modelos;
-// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
+// Generated 24/11/2019 10:52:28 AM by Hibernate Tools 4.3.1
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,6 +21,7 @@ public class Tienda  implements java.io.Serializable {
      private String placeId;
      private String imagen;
      private String urlWeb;
+     private Integer scrId;
      @JsonIgnore
      private Set almacens = new HashSet(0);
      @JsonIgnore
@@ -35,7 +36,7 @@ public class Tienda  implements java.io.Serializable {
     public Tienda(int idtienda) {
         this.idtienda = idtienda;
     }
-    public Tienda(int idtienda, String nombre, String detalle, String lugar, Double lat, Double lng, String placeId, String imagen, String urlWeb, Set almacens, Set productoTiendaCadenas, Set productoTiendas) {
+    public Tienda(int idtienda, String nombre, String detalle, String lugar, Double lat, Double lng, String placeId, String imagen, String urlWeb, Integer scrId, Set almacens, Set productoTiendaCadenas, Set productoTiendas) {
        this.idtienda = idtienda;
        this.nombre = nombre;
        this.detalle = detalle;
@@ -45,6 +46,7 @@ public class Tienda  implements java.io.Serializable {
        this.placeId = placeId;
        this.imagen = imagen;
        this.urlWeb = urlWeb;
+       this.scrId = scrId;
        this.almacens = almacens;
        this.productoTiendaCadenas = productoTiendaCadenas;
        this.productoTiendas = productoTiendas;
@@ -112,6 +114,13 @@ public class Tienda  implements java.io.Serializable {
     
     public void setUrlWeb(String urlWeb) {
         this.urlWeb = urlWeb;
+    }
+    public Integer getScrId() {
+        return this.scrId;
+    }
+    
+    public void setScrId(Integer scrId) {
+        this.scrId = scrId;
     }
     public Set getAlmacens() {
         return this.almacens;

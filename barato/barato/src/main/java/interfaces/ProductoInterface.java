@@ -27,5 +27,5 @@ public interface ProductoInterface {
     public Boolean crearproductos(String tiendprods);
     public List <ProductoTwebscrHist> traerProductosxID(String id);
     ////BUSQUEDA APROXIMADA GENERAL
-    public List <ProductoTwebscrHist> traerProductos(String nombre, String categoria, String producto,String marca,String presentacion,String volumen);
+    public List <ProductoTwebscrHist> traerProductos(String nombre, String categoria, String producto,String marca,String presentacion,String volumen, String tienda, String pi, String pf);
 }

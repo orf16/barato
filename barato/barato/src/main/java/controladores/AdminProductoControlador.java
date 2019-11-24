@@ -85,11 +85,14 @@ public class AdminProductoControlador {
                                 @RequestParam(required = false, value = "producto") String producto,
                                 @RequestParam(required = false, value = "marca") String marca,
                                 @RequestParam(required = false, value = "presentacion") String presentacion,
-                                @RequestParam(required = false, value = "volumen") String volumen
+                                @RequestParam(required = false, value = "volumen") String volumen,
+                                @RequestParam(required = false, value = "tienda") String tienda,
+                                @RequestParam(required = false, value = "pi") String pi,
+                                @RequestParam(required = false, value = "pf") String pf
     
     ) throws IOException, JSONException{  
         if (nombre != null && !nombre.isEmpty()) {
-            List<ProductoTwebscrHist> productoList = prod.traerProductos( nombre, categoria,producto,marca,presentacion,volumen );
+            List<ProductoTwebscrHist> productoList = prod.traerProductos( nombre, categoria,producto,marca,presentacion,volumen, tienda, pi, pf );
         return mapper.writeValueAsString( productoList );
         }
         else{

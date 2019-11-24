@@ -1,7 +1,8 @@
 package modelos;
-// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
+// Generated 24/11/2019 10:52:28 AM by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,9 @@ public class Departamento  implements java.io.Serializable {
      private Short indicativo;
      private Short estado;
      private String nombredepartamento;
+     @JsonIgnore
      private Set usuarioDireccions = new HashSet(0);
+     @JsonIgnore
      private Set municipios = new HashSet(0);
 
     public Departamento() {

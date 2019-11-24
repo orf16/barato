@@ -1,7 +1,8 @@
 package modelos;
-// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
+// Generated 24/11/2019 10:52:28 AM by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,8 +25,11 @@ public class Usuario  implements java.io.Serializable {
      private Date fechanacimiento;
      private String telefono;
      private short tipousuario;
+     @JsonIgnore
      private Set listas = new HashSet(0);
+     @JsonIgnore
      private Set usuarioDireccions = new HashSet(0);
+     @JsonIgnore
      private Set listasCompartidases = new HashSet(0);
 
     public Usuario() {

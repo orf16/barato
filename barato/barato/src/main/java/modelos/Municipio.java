@@ -1,7 +1,9 @@
 package modelos;
-// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
+// Generated 24/11/2019 10:52:28 AM by Hibernate Tools 4.3.1
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,11 +14,14 @@ public class Municipio  implements java.io.Serializable {
 
 
      private int idmunicipio;
+     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+     @JsonIgnore
      private Departamento departamento;
      private String nombremunicipio;
      private String codigomunicipio;
      private Short estado;
      private Set almacens = new HashSet(0);
+     @JsonIgnore
      private Set usuarioDireccions = new HashSet(0);
 
     public Municipio() {

@@ -1,5 +1,5 @@
 package modelos;
-// Generated 16/11/2019 08:26:25 PM by Hibernate Tools 4.3.1
+// Generated 24/11/2019 10:52:28 AM by Hibernate Tools 4.3.1
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,7 +25,8 @@ public class Producto  implements java.io.Serializable {
      private Set productoTiendaCadenas = new HashSet(0);
      @JsonIgnore
      private Set productoxcategorias = new HashSet(0);
-private Double valor;
+     private Double valor;
+
     public Producto() {
     }
 
@@ -110,7 +111,7 @@ private Double valor;
     }
 
 
-   public Double getValor() {
+public Double getValor() {
         return valor;
     }
 

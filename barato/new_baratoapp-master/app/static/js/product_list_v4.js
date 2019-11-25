@@ -1,5 +1,3 @@
-
-
 const product_temp_list = {
     data: function () {
         return {

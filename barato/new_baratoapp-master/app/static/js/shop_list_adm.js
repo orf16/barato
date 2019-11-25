@@ -244,14 +244,6 @@ const shop_list = {
             var itemId = [];
             this.currentList.productos.forEach(item => {     itemId.push(item.id);      });
             var url = direccionserver+'getProductosxID?id=50';
-            var url1= direccionserver+'getFiltro?palabra=nectar&categoria=aguardiente&tipo=negra&...'
-
-            lista de productos
-            categorias
-            tipos
-            rangos de precios
-            etc...
-
             loading = true;
             axios
                 .get(url, config)

@@ -10,6 +10,7 @@ import modelos.Departamento;
 import modelos.Municipio;
 import modelos.Usuario;
 import modelos.UsuarioDireccion;
+import modelos.UsuarioNew;
 
 /**
  *
@@ -55,5 +56,9 @@ public interface AdminInterface {
     Municipio buscarMunicipio( int idMunicipio );
     
     Departamento buscarDepartamento( long idDepartamento );
-
+    
+    //IMPLEMENTACION JAVIER
+    
+    UsuarioNew buscarUsuarioNew(String usuario_new); // Buscar solo por correo
+    Boolean guardarUsuarioNew(String usuario_new);
 }

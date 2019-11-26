@@ -27,6 +27,7 @@ import interfaces.BuscadorInterface;
 import interfaces.ProductoInterface;
 import java.text.SimpleDateFormat;
 import modelos.ListasCompartidas;
+import modelos.UsuarioNew;
 import org.json.JSONArray;
 import org.springframework.web.bind.annotation.RequestParam;
 import servicios.AdminListasImplementacion;
@@ -218,6 +219,61 @@ public class AdminListasControlador {
         return result.toString(); 
     }
      
+     ///Implementacion listas nuevo barato app
+     @RequestMapping(value = "/setLista",method = RequestMethod.POST ,  headers = "Content-Type=application/json" )
+    @ResponseBody
+    public String setLista( @RequestParam(required = false, value = "body") String body,
+                                @RequestParam(required = false, value = "producto") String id ) throws Exception{
+        
+
+        String usuarios=body;
+        
+        
+        //JSONObject param = new JSONObject( body );
+        
+        //Integer idUsuario = param.getInt("idUsuario");
+        String listProductoId = id;
+        //String emailUser = usuario;
+        
+        
+        String nombrelista = "default";
+        
+        
+//        if( listProductoId.length() > 0 ){
+        
+            //if( !param.isNull("nombreLista") ){
+              //  nombrelista = param.getString("nombreLista");
+            //}
+            //Usuario usuario = adminUsuario.buscarUsuario( idUsuario );
+            //NUEVA TABLA DE USUARIOS DE APP
+            UsuarioNew usuario = adminUsuario.buscarUsuarioNew(body);
+            //Si no exite crear la sessión
+            if (usuario==null) {
+                if (adminUsuario.guardarUsuarioNew(body)) {
+                    usuario = adminUsuario.buscarUsuarioNew(body);
+                    if (usuario==null) {
+                        //Guardar en lista
+                        
+                    }
+                }
+            }
+            else{
+                //Guardar en lista
+                
+            }        
+            
+            
+            List<Integer> listaProductos = new ArrayList<Integer>();
+            
+            
+            
+            return mapper.writeValueAsString( "" ); 
+            //return mapper.writeValueAsString( result ); 
+            
+        /*}else
+            return mapper.writeValueAsString( true ); */
+    }
+
    
     
 }

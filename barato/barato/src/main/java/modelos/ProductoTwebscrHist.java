@@ -1,5 +1,5 @@
 package modelos;
-// Generated 24/11/2019 10:52:28 AM by Hibernate Tools 4.3.1
+// Generated 25/11/2019 06:05:58 PM by Hibernate Tools 4.3.1
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,6 +25,7 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
      private String descripcion;
      private Double precio;
      private String url;
+     private String relacion;
 
     public ProductoTwebscrHist() {
     }
@@ -35,7 +36,7 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
         this.fecha = fecha;
         this.hora = hora;
     }
-    public ProductoTwebscrHist(int idproducto, Tareawebscraper tareawebscraper, String nombre, String detalle, Date fecha, Date hora, Date fechahora, String direccionImagen, Integer idcategoria, String codigotienda, String descripcion, Double precio, String url) {
+    public ProductoTwebscrHist(int idproducto, Tareawebscraper tareawebscraper, String nombre, String detalle, Date fecha, Date hora, Date fechahora, String direccionImagen, Integer idcategoria, String codigotienda, String descripcion, Double precio, String url, String relacion) {
        this.idproducto = idproducto;
        this.tareawebscraper = tareawebscraper;
        this.nombre = nombre;
@@ -49,6 +50,7 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
        this.descripcion = descripcion;
        this.precio = precio;
        this.url = url;
+       this.relacion = relacion;
     }
    
     public int getIdproducto() {
@@ -141,6 +143,13 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
     
     public void setUrl(String url) {
         this.url = url;
+    }
+    public String getRelacion() {
+        return this.relacion;
+    }
+    
+    public void setRelacion(String relacion) {
+        this.relacion = relacion;
     }
 
 

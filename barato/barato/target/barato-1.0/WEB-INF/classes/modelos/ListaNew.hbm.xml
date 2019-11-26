@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/11/2019 06:05:59 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelos.ListaNew" table="lista_new" schema="public" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="fechacreada" type="timestamp">
+            <column name="fechacreada" length="29" />
+        </property>
+        <property name="idusuario" type="string">
+            <column name="idusuario" length="20" not-null="true" />
+        </property>
+        <property name="nombrelista" type="string">
+            <column name="nombrelista" length="20" />
+        </property>
+    </class>
+</hibernate-mapping>

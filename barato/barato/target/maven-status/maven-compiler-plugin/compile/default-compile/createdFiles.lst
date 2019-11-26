@@ -35,6 +35,7 @@ modelos\SubPagina.class
 servicios\AdminListasImplementacion.class
 util\ProductosxTiendaUtil.class
 webScraping\JSoupOlimpica.class
+modelos\UsuarioNew.class
 servicios\AdminCaracteristicaImplementacion.class
 modelos\ListasCompartidas.class
 controladores\AdminScrapingControlador$6.class
@@ -43,6 +44,7 @@ webScraping\JSoupExito.class
 interfaces\AdminInterface.class
 controladores\AdminProductoControlador.class
 modelos\Tienda.class
+modelos\ListaNew.class
 util\HttpURLConnectionGoogle.class
 webScraping\ActualizarProduct.class
 webScraping\unificarProduct.class
@@ -58,6 +60,7 @@ controladores\AdminScrapingControlador$1.class
 modelos\Tareawebscraper.class
 interfaces\CaracteristicaInterface.class
 modelos\ProductoTiendaCadena.class
+modelos\ListaProductoNew.class
 modelos\ProductoxcategoriaId.class
 modelos\Usuario.class
 modelos\Pagina.class

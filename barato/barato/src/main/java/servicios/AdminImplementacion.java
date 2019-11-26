@@ -28,6 +28,7 @@ import javax.mail.NoSuchProviderException;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import modelos.UsuarioNew;
 
 /**
  *
@@ -259,5 +260,37 @@ public class AdminImplementacion implements AdminInterface{
         conexion.close();
         return usuario;
     }    
+    //IMPLEMENTACION JAVIER
+    @Override
+    public UsuarioNew buscarUsuarioNew(String idnew) {
+        Session conexion = funciones.getConexion();
+        UsuarioNew usuario = (UsuarioNew)conexion.createQuery("FROM UsuarioNew WHERE key= "+idnew ).uniqueResult();
+        conexion.close();
+        return usuario;
+    }
+    @Override
+    public Boolean guardarUsuarioNew(String usuarios) {
+        
+        UsuarioNew usuario = new UsuarioNew();
+        usuario.setKey(usuarios);
 
+       Session conexion = funciones.getConexion();
+       Transaction trans = funciones.getTransaccion();             
+       Boolean result = false;
+       try{                       
+            trans.begin();
+            conexion.save( usuario );            
+            trans.commit();   
+            result = true;
+        }
+        catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Error al crear el usuario: {0}", e);
+            if (trans!=null) trans.rollback(); 
+            result = false;
+        }
+        finally {
+            conexion.close();            
+        }      
+        return result;      
+    }
 }

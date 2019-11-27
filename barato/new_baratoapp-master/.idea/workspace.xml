@@ -61,15 +61,15 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\orf16\Documents\NetBeansProjects\barato - copia (2)\new_baratoapp-master\app\templates\new_baratoapp\index" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/templates/new_baratoapp/index" />
       <recent name="$PROJECT_DIR$/app/static/js" />
       <recent name="$PROJECT_DIR$/app/templates/new_baratoapp" />
       <recent name="$PROJECT_DIR$/app/templates/users" />
       <recent name="$PROJECT_DIR$/app" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\orf16\Documents\NetBeansProjects\barato - copia (2)\new_baratoapp-master\app\templates\new_baratoapp\index" />
     </key>
   </component>
   <component name="RunDashboard">

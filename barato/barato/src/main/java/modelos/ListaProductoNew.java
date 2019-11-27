@@ -1,5 +1,5 @@
 package modelos;
-// Generated 25/11/2019 06:05:58 PM by Hibernate Tools 4.3.1
+// Generated 27/11/2019 12:55:08 AM by Hibernate Tools 4.3.1
 
 
 
@@ -16,6 +16,8 @@ public class ListaProductoNew  implements java.io.Serializable {
      private String descripcion;
      private String precioproducto;
      private String url;
+     private Integer items;
+     private String imagen;
 
     public ListaProductoNew() {
     }
@@ -24,7 +26,7 @@ public class ListaProductoNew  implements java.io.Serializable {
     public ListaProductoNew(int id) {
         this.id = id;
     }
-    public ListaProductoNew(int id, Integer idlista, Integer idproducto, String nombreproducto, String descripcion, String precioproducto, String url) {
+    public ListaProductoNew(int id, Integer idlista, Integer idproducto, String nombreproducto, String descripcion, String precioproducto, String url, Integer items, String imagen) {
        this.id = id;
        this.idlista = idlista;
        this.idproducto = idproducto;
@@ -32,6 +34,8 @@ public class ListaProductoNew  implements java.io.Serializable {
        this.descripcion = descripcion;
        this.precioproducto = precioproducto;
        this.url = url;
+       this.items = items;
+       this.imagen = imagen;
     }
    
     public int getId() {
@@ -82,6 +86,20 @@ public class ListaProductoNew  implements java.io.Serializable {
     
     public void setUrl(String url) {
         this.url = url;
+    }
+    public Integer getItems() {
+        return this.items;
+    }
+    
+    public void setItems(Integer items) {
+        this.items = items;
+    }
+    public String getImagen() {
+        return this.imagen;
+    }
+    
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
 

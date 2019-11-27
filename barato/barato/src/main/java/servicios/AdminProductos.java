@@ -250,7 +250,7 @@ public class AdminProductos implements ProductoInterface {
    
     
     
-    ////BUSQUEDA APROXIMADA GENERAL
+    ////BUSQUEDA APROXIMADA GENERAL1
     @Override
     public List<ProductoTwebscrHist> traerProductos(String nombre, String categoria,String producto,String marca,String presentacion,String volumen, String tienda, String pi, String pf) {
         int hh=10;

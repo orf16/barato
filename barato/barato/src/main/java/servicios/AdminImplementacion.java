@@ -6,6 +6,8 @@
 package servicios;
 
 import interfaces.AdminInterface;
+import java.math.BigInteger;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -28,6 +30,7 @@ import javax.mail.NoSuchProviderException;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import modelos.Producto;
 import modelos.UsuarioNew;
 
 /**
@@ -264,17 +267,33 @@ public class AdminImplementacion implements AdminInterface{
     @Override
     public UsuarioNew buscarUsuarioNew(String idnew) {
         Session conexion = funciones.getConexion();
-        UsuarioNew usuario = (UsuarioNew)conexion.createQuery("FROM UsuarioNew WHERE key= "+idnew ).uniqueResult();
-        conexion.close();
-        return usuario;
+        Query query = conexion.createQuery("FROM UsuarioNew WHERE key_user = :nombreProducto");
+        query.setParameter("nombreProducto",  idnew );
+        List<UsuarioNew> usuario= query.list();
+        if (usuario.size()>0) {
+            return usuario.get(0);
+        }
+        else{
+            return null;
+        }        
+        
     }
     @Override
     public Boolean guardarUsuarioNew(String usuarios) {
         
         UsuarioNew usuario = new UsuarioNew();
-        usuario.setKey(usuarios);
+        usuario.setKeyUser(usuarios);
 
        Session conexion = funciones.getConexion();
+       
+       String script = "";
+        script = "SELECT nextval('usuario_new_id_seq') AS CONSECUTIVO";
+        Iterator<BigInteger> iter;
+        iter = (Iterator<BigInteger>) conexion.createSQLQuery(script).list().iterator();
+        Long idtareal = iter.next().longValue();
+        usuario.setId(idtareal.intValue());
+        
+        
        Transaction trans = funciones.getTransaccion();             
        Boolean result = false;
        try{                       

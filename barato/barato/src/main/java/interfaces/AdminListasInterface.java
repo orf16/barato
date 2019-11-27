@@ -11,6 +11,8 @@ import modelos.ListasCompartidas;
 import modelos.Usuario;
 
 import java.util.List;
+import modelos.ListaNew;
+import modelos.ListaProductoNew;
 
 /**
  *
@@ -29,5 +31,8 @@ public interface AdminListasInterface {
     public boolean eliminarCompartirLista( Integer idUsuario, Integer idLista, String emailUsers); //Eliminar Lista comparti
     public boolean eliminarLista( Integer idLista ); //Eliminar Lista
     public boolean eliminarCompartirLista( Integer idLista); 
-    
+    public boolean crearListasNew(ListaNew lista);
+    public ListaNew buscarUsuarioNew(String idnew);
+    public boolean crearListasProductoNew(ListaProductoNew lista);
+    public List<ListaProductoNew> traerListaProdNew(String lista);
 }

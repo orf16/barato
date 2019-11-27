@@ -1,8 +1,139 @@
 {% load static %}
 <div class="content-wrapper" style="display:block" id="scrapping">
     <a @click="atrasMapa();verCat();" name="fff">
-            <span class="text">
-                Scrapp
-            </span>
-        </a>
+
+    </a>
+    <div class="row ml-1">
+        <div class="col-sm-12 mb-1">
+            <div class="col-sm-12 mb-1">
+                <button onclick="myFunction()" type="button" title="Realizar Scrapping" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Realizar Scrapping</button>
+            </div>
+            <div class="col-sm-8">
+            <input id="search" type="search" placeholder="Buscar productos..." class="form-control">
+        </div>
+            <div class="col-sm-4">
+            <button onclick="myFunction2()" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button>
+            <button onclick="myFunction4()" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">usuario</button>
+                <button onclick="myFunction5()" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">traer lista</button>
+                <button onclick="myFunction6()" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Eliminar usu</button>
+        </div>
+        </div>
+
+
+
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <span>Categoria</span>
+            </div>
+            <div class="col-sm-12">
+                <select id="categoriaddl" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                <template v-for="list in shopCategoria" v-if="!loading">
+                    <template v-if="list.idTipo==6">
+                        <option v-bind:value="list.caracteristica">${list.caracteristica}</option>
+                    </template>
+                </template>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <span>Producto</span>
+            </div>
+            <div class="col-sm-12">
+                <select id="categoriaddl1" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                <template v-for="list in shopCategoria" v-if="!loading">
+                    <template v-if="list.idTipo==3">
+                        <option v-bind:value="list.caracteristica">${list.caracteristica}</option>
+                    </template>
+                </template>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <span>Presentacion</span>
+            </div>
+            <div class="col-sm-12">
+                <select id="categoriaddl2" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                <template v-for="list in shopCategoria" v-if="!loading">
+                    <template v-if="list.idTipo==4">
+                        <option v-bind:value="list.alias">${list.caracteristica}</option>
+                    </template>
+                </template>
+                </select>
+            </div>
+        </div>
+
+               <div class="col-sm-4">
+            <div class="col-sm-12">
+                <span>Marca</span>
+            </div>
+            <div class="col-sm-12">
+                <select id="categoriaddl3" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                <template v-for="list in shopCategoria" v-if="!loading">
+                    <template v-if="list.idTipo==2">
+                        <option v-bind:value="list.caracteristica">${list.caracteristica}</option>
+                    </template>
+                </template>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <span>Volumen</span>
+            </div>
+            <div class="col-sm-12">
+                <select id="categoriaddl4" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                <template v-for="list in shopCategoria" v-if="!loading">
+                    <template v-if="list.idTipo==5">
+                        <option v-bind:value="list.caracteristica">${list.caracteristica}</option>
+                    </template>
+                </template>
+                </select>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <span>Tienda</span>
+            </div>
+            <div class="col-sm-12">
+                <select id="categoriaddl5" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                <template v-for="list in shopListMap" v-if="!loading">
+                        <option v-bind:value="list.scrId">${list.nombre}</option>
+                </template>
+                </select>
+            </div>
+        </div>
+
+
+
+
+
+        <table class="table" id="results_tb">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">nombre</th>
+      <th scope="col">detalle</th>
+      <th scope="col">codigotienda</th>
+        <th scope="col">precio</th>
+        <th scope="col">Agregar</th>
+    </tr>
+  </thead>
+         <tbody>
+
+  </tbody>
+</table>
+    </div>
+
 </div>

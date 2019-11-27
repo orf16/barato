@@ -16,7 +16,123 @@ var config = {
     }
 };
 
+function myFunction() {
+        var url = direccionserver+'getWebScrapingTodos';
+            axios.get(url, config).then(response => {
+                var hjkh = response.data;
+            }).catch(error => {
+                //loading = false;
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de categorias.");
+            });
+}
+function myFunction1() {
+        var url = direccionserver+'getWebScrapingTodos1';
+            axios.get(url, config).then(response => {
+                var hjkh = response.data;
+            }).catch(error => {
+                //loading = false;
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de categorias.");
+            });
+}
+function myFunction3(param) {
+    if(localStorage.getItem("session")!=null){
+        var url = direccionserver+'setLista?body='+localStorage.getItem("session")+'&producto='+param.toString();
+        //var url = direccionserver+'getProductos?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen+'&tienda='+tienda+'&pi='+pi+'&pf='+pf;
+            axios.get(url, config).then(response => {
+                var productos = response.data;
+            }).catch(error => {
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de productos.");
+            });
+    }
 
+
+}
+function myFunction5() {
+    if(localStorage.getItem("session")!=null){
+        var url = direccionserver+'getLista?body='+localStorage.getItem("session");
+            axios.get(url, config).then(response => {
+                var productos = response.data;
+            }).catch(error => {
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de productos.");
+            });
+    }
+
+
+}
+function myFunction4() {
+
+        if(localStorage.getItem("session")==null){
+         localStorage.setItem("session", makeid(10));
+         var nombre = localStorage.getItem("session");
+        }
+        var nombre = localStorage.getItem("session");
+}
+
+function myFunction6() {
+
+        localStorage.clear();
+}
+
+
+function makeid(length) {
+   var result           = '';
+   var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+   var charactersLength = characters.length;
+   for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+function myFunction2() {
+        $("#results_tb tbody>tr").remove();
+        var nombre = document.getElementById("search").value;
+
+        var e = document.getElementById("categoriaddl");
+        var categoria = e.options[e.selectedIndex].value;
+
+        var e1 = document.getElementById("categoriaddl1");
+        var producto = e1.options[e1.selectedIndex].value;
+
+        var e2 = document.getElementById("categoriaddl3");
+        var marca = e2.options[e2.selectedIndex].value;
+
+        var e3 = document.getElementById("categoriaddl2");
+        var presentacion = e3.options[e3.selectedIndex].value;
+
+        var e4 = document.getElementById("categoriaddl4");
+        var volumen = e4.options[e4.selectedIndex].value;
+
+        var e5 = document.getElementById("categoriaddl5");
+        var tienda = e5.options[e5.selectedIndex].value;
+
+        var pi="1000";
+        var pf="1000000";
+
+        var url = direccionserver+'getProductos?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen+'&tienda='+tienda+'&pi='+pi+'&pf='+pf;
+            axios.get(url, config).then(response => {
+                var productos = response.data;
+                $.each(productos  , function(i, star) {
+                    $('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>'+'</tr>');
+                });
+            }).catch(error => {
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de productos.");
+            });
+}
+function cargarCategoria() {
+        var url = direccionserver+'getWebScrapingTodos1';
+            axios.get(url, config).then(response => {
+                var hjkh = response.data;
+            }).catch(error => {
+                //loading = false;
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de categorias.");
+            });
+}
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();

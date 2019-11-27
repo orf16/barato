@@ -1,5 +1,5 @@
 package modelos;
-// Generated 25/11/2019 06:05:58 PM by Hibernate Tools 4.3.1
+// Generated 27/11/2019 12:55:08 AM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -19,9 +19,8 @@ public class ListaNew  implements java.io.Serializable {
     }
 
 	
-    public ListaNew(int id, String idusuario) {
+    public ListaNew(int id) {
         this.id = id;
-        this.idusuario = idusuario;
     }
     public ListaNew(int id, Date fechacreada, String idusuario, String nombrelista) {
        this.id = id;

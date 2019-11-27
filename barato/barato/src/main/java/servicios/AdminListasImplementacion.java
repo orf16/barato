@@ -6,6 +6,7 @@
 package servicios;
 
 import interfaces.AdminListasInterface;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,7 +18,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelos.ListaNew;
+import modelos.ListaProductoNew;
 import modelos.ListasCompartidas;
+import modelos.ProductoTwebscrHist;
 import modelos.Usuario;
 import org.hibernate.Query;
 
@@ -261,8 +265,130 @@ public class AdminListasImplementacion implements AdminListasInterface{
         }
     }
     
-    
+    @Override
+    public boolean crearListasNew(ListaNew lista) {
+                
+        Session conexion = funciones.getConexion();  
+        
+        String script = "";
+        script = "SELECT nextval('lista_new_id_seq') AS CONSECUTIVO";
+        Iterator<BigInteger> iter;
+        iter = (Iterator<BigInteger>) conexion.createSQLQuery(script).list().iterator();
+        Long idtareal = iter.next().longValue();
+        lista.setId(idtareal.intValue());
+        
+        Transaction trans = null;
+        
+        try {
+            Logger.getLogger(getClass().getName()).log(Level.INFO, "entra a crear la lista: {0}", lista);
+            trans = conexion.getTransaction();
+            trans.begin();
+            conexion.save(lista);            
+            trans.commit();
+            return true; 
+        }
+        catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Error al crear la lista: {0}", e);
+            if (trans!=null) trans.rollback();
+            return false;
+        }
+        finally {
+            conexion.close();            
+        }
+    }
+@Override
+    public ListaNew buscarUsuarioNew(String idnew) {
+        Session conexion = funciones.getConexion();
+        Query query = conexion.createQuery("FROM ListaNew WHERE idusuario = :nombreProducto");
+        query.setParameter("nombreProducto",  idnew );
+        List<ListaNew> usuario= query.list();
+        if (usuario.size()>0) {
+            return usuario.get(0);
+        }
+        else{
+            return null;
+        }        
+    }
+    @Override
+    public boolean crearListasProductoNew(ListaProductoNew lista) {
+                
+        Session conexion = funciones.getConexion();  
+        
+        String script = "";
+        script = "SELECT nextval('lista_producto_new_id_seq') AS CONSECUTIVO";
+        Iterator<BigInteger> iter;
+        iter = (Iterator<BigInteger>) conexion.createSQLQuery(script).list().iterator();
+        Long idtareal = iter.next().longValue();
+        lista.setId(idtareal.intValue());
+        
+        Transaction trans = null;
+        
+        try {
+            Logger.getLogger(getClass().getName()).log(Level.INFO, "entra a crear la lista: {0}", lista);
+            trans = conexion.getTransaction();
+            trans.begin();
+            conexion.save(lista);            
+            trans.commit();
+            return true; 
+        }
+        catch (Exception e) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Error al crear la lista: {0}", e);
+            if (trans!=null) trans.rollback();
+            return false;
+        }
+        finally {
+            conexion.close();            
+        }
+    }
+    @Override
+    public List<ListaProductoNew> traerListaProdNew(String lista) {
+        int hh = 10;
+        //Long numInLong = Long.valueOf(Integer.parseInt(nombre));
+        //String base="from ProductoTwebscrHist where lower(nombre) similar to '%(aguila|águila)%'";
+        String base = "SELECT * from lista_producto_new p INNER JOIN lista_new d ON p.idlista = d.id where d.idusuario=:nombre";
+        //String order=" order by similarity(concat(p.nombre, ' ', p.detalle),:nombre) desc"; 
+        //String and=" and ";
 
-    
-    
+        Session conexion = funciones.getConexion();
+        Query query = conexion.createSQLQuery(base).addEntity(ListaProductoNew.class);
+        query.setString("nombre", lista);
+        List<ListaProductoNew> productoList = query.list();
+        conexion.close();
+        List<ListaProductoNew> productoList1 = new ArrayList<>();
+        for (ListaProductoNew p : productoList) {
+            boolean contiene=false;
+            
+            for (ListaProductoNew c : productoList1) {
+                if (c.getIdproducto().equals(p.getIdproducto())) {
+                    contiene=true;
+                }
+            }
+            
+            if (!contiene) {
+                Integer id = p.getIdproducto();
+                Session conexion1 = funciones.getConexion();
+                String base1 = "SELECT * from producto_twebscr_hist p where p.idproducto = :nombre1";
+                Query query1 = conexion1.createSQLQuery(base1).addEntity(ProductoTwebscrHist.class);
+                query1.setInteger("nombre1", id);
+                List<ProductoTwebscrHist> productoList_ = query1.list();
+                if (productoList_.size() > 0) {
+                    p.setNombreproducto(productoList_.get(0).getNombre());
+                    p.setDescripcion(productoList_.get(0).getDescripcion());
+                    Double precio = productoList_.get(0).getPrecio();
+                    String precioSTR = precio.toString();
+                    p.setPrecioproducto(precioSTR);
+                    p.setUrl(productoList_.get(0).getUrl());
+                    p.setImagen(productoList_.get(0).getDireccionImagen());
+                    p.setItems(productoList_.size());
+                    productoList1.add(p);
+                }
+                conexion1.close();
+            }
+
+            //ListaProductoNew prod= new ListaProductoNew();
+            //prod.setDescripcion("desc");
+        }
+
+        return productoList1;
+    }
 }

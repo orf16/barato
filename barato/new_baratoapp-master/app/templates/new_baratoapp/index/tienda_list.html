@@ -10,9 +10,26 @@
             <!--<span class="badge badge-pill badge-warning">${Object.keys(shopList.productos).length}</span>-->
         </a>
     </template>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">nombre</th>
+      <th scope="col">detalle</th>
+      <th scope="col">codigotienda</th>
+        <th scope="col"></th>
+    </tr>
+  </thead>
+         <tbody>
     <template v-for="shopList in shopWS" v-if="!loading">
-        <span>
-            ${shopList.nombre}
-        </span>
+    <tr>
+      <th scope="row">${shopList.idproducto}</th>
+      <td>${shopList.nombre}</td>
+      <td>${shopList.detalle}</td>
+      <td>${shopList.codigotienda}</td>
+        <td><button onclick="myFunction()" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>
+    </tr>
     </template>
+  </tbody>
+</table>
 </div>

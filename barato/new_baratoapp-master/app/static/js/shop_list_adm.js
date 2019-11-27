@@ -16,6 +16,7 @@ const shop_list = {
             shopList: [],
             shopListMap: [],
             shopWS: [],
+            shopCategoria: [],
             shopListMapsin: [],
             //map: Object,
             markersMap: [],
@@ -34,6 +35,7 @@ const shop_list = {
     created: function () {
         this.getShopListMap();
         this.getWS();
+        this.getCategoria();
     },
     mounted() {
         this.car_sidebar = $
@@ -244,6 +246,10 @@ const shop_list = {
             var itemId = [];
             this.currentList.productos.forEach(item => {     itemId.push(item.id);      });
             var url = direccionserver+'getProductosxID?id=50';
+            //var url1= direccionserver+'getFiltro?palabra=nectar&categoria=aguardiente&tipo=negra&...'
+
+
+
             loading = true;
             axios
                 .get(url, config)
@@ -251,6 +257,35 @@ const shop_list = {
                     var result = response.data;
                     if (result) {
                         this.shopWS = result;
+                    }
+                    loading = false;
+                })
+                .catch(error => {
+                    alert("Ha ocurrido un error al momento de cargar la lista de tiendas más barato.");
+                    loading = false;
+                    console.log(error);
+                });
+        },
+        getCategoria: function () {
+           var texto="tequila don julio";
+
+           var url = direccionserver+'getCategoriaWord?nombre='+texto;
+           // var url = direccionserver+'getProductosWS';
+            //var url1= direccionserver+'getFiltro?palabra=nectar&categoria=aguardiente&tipo=negra&...'
+
+         //   lista de productos
+        //    categorias
+        //    tipos
+       //     rangos de precios
+       //     etc...
+
+            loading = true;
+            axios
+                .get(url, config)
+                .then(response => {
+                    var result = response.data;
+                    if (result) {
+                        this.shopCategoria = result;
                     }
                     loading = false;
                 })

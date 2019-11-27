@@ -1,5 +1,5 @@
 package modelos;
-// Generated 25/11/2019 06:05:58 PM by Hibernate Tools 4.3.1
+// Generated 26/11/2019 06:43:24 PM by Hibernate Tools 4.3.1
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -110,7 +110,6 @@ public class Producto  implements java.io.Serializable {
         this.productoxcategorias = productoxcategorias;
     }
 
-
 public Double getValor() {
         return valor;
     }
@@ -118,6 +117,7 @@ public Double getValor() {
     public void setValor(Double valor) {
         this.valor = valor;
     }
+
 
 }
 

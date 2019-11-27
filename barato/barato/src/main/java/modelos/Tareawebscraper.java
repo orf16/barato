@@ -1,8 +1,7 @@
 package modelos;
-// Generated 25/11/2019 06:05:58 PM by Hibernate Tools 4.3.1
+// Generated 26/11/2019 06:43:24 PM by Hibernate Tools 4.3.1
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +18,6 @@ public class Tareawebscraper  implements java.io.Serializable {
      private Date fechahorafin;
      private Long cantidadproductos;
      private Boolean productoscopiados;
-     @JsonIgnore
      private Set productoTwebscrHists = new HashSet(0);
 
     public Tareawebscraper() {

@@ -26,6 +26,8 @@ import interfaces.AdminListasInterface;
 import interfaces.BuscadorInterface;
 import interfaces.ProductoInterface;
 import java.text.SimpleDateFormat;
+import modelos.ListaNew;
+import modelos.ListaProductoNew;
 import modelos.ListasCompartidas;
 import modelos.UsuarioNew;
 import org.json.JSONArray;
@@ -220,58 +222,107 @@ public class AdminListasControlador {
     }
      
      ///Implementacion listas nuevo barato app
-     @RequestMapping(value = "/setLista",method = RequestMethod.POST ,  headers = "Content-Type=application/json" )
+    @RequestMapping(value = "/setLista", method = RequestMethod.GET)
     @ResponseBody
-    public String setLista( @RequestParam(required = false, value = "body") String body,
-                                @RequestParam(required = false, value = "producto") String id ) throws Exception{
-        
+    public String setLista(@RequestParam(required = false, value = "body") String body,
+            @RequestParam(required = false, value = "producto") Integer id) throws Exception {
 
-        String usuarios=body;
-        
-        
-        //JSONObject param = new JSONObject( body );
-        
-        //Integer idUsuario = param.getInt("idUsuario");
-        String listProductoId = id;
-        //String emailUser = usuario;
-        
-        
+        String usuarios = body;
         String nombrelista = "default";
-        
-        
-//        if( listProductoId.length() > 0 ){
-        
-            //if( !param.isNull("nombreLista") ){
-              //  nombrelista = param.getString("nombreLista");
-            //}
-            //Usuario usuario = adminUsuario.buscarUsuario( idUsuario );
-            //NUEVA TABLA DE USUARIOS DE APP
-            UsuarioNew usuario = adminUsuario.buscarUsuarioNew(body);
-            //Si no exite crear la sessión
-            if (usuario==null) {
-                if (adminUsuario.guardarUsuarioNew(body)) {
-                    usuario = adminUsuario.buscarUsuarioNew(body);
-                    if (usuario==null) {
-                        //Guardar en lista
-                        
+        ListaNew lista = new ListaNew();
+        lista.setIdusuario(usuarios);
+        lista.setFechacreada(new Date());
+        lista.setNombrelista(nombrelista);
+
+        //NUEVA TABLA DE USUARIOS DE APP
+        UsuarioNew usuario = adminUsuario.buscarUsuarioNew(body);
+        if (usuario == null) {
+            if (adminUsuario.guardarUsuarioNew(body)) {
+                usuario = adminUsuario.buscarUsuarioNew(body);
+                if (usuario != null) {
+                    ListaNew listanew = adminListas.buscarUsuarioNew(body);
+                    if (listanew == null) {
+                        Boolean result = adminListas.crearListasNew(lista);
+                        if (result) {
+                            listanew = adminListas.buscarUsuarioNew(body);
+                            ListaProductoNew lista_producto = new ListaProductoNew();
+                            lista_producto.setIdlista(listanew.getId());
+                            lista_producto.setIdproducto(id);
+                            Boolean list_prod = adminListas.crearListasProductoNew(lista_producto);
+                        }
+                    } else {
+                        ListaProductoNew lista_producto = new ListaProductoNew();
+                        lista_producto.setIdlista(listanew.getId());
+                        lista_producto.setIdproducto(id);
+                        Boolean list_prod = adminListas.crearListasProductoNew(lista_producto);
                     }
                 }
             }
-            else{
-                //Guardar en lista
-                
-            }        
-            
-            
-            List<Integer> listaProductos = new ArrayList<Integer>();
-            
-            
-            
-            return mapper.writeValueAsString( "" ); 
-            //return mapper.writeValueAsString( result ); 
-            
-        /*}else
-            return mapper.writeValueAsString( true ); */
+        } else {
+            ListaNew listanew = adminListas.buscarUsuarioNew(body);
+            if (listanew == null) {
+                Boolean result = adminListas.crearListasNew(lista);
+                if (result) {
+                    listanew = adminListas.buscarUsuarioNew(body);
+                    ListaProductoNew lista_producto = new ListaProductoNew();
+                    lista_producto.setIdlista(listanew.getId());
+                    lista_producto.setIdproducto(id);
+                    Boolean list_prod = adminListas.crearListasProductoNew(lista_producto);
+                }
+            } else {
+                ListaProductoNew lista_producto = new ListaProductoNew();
+                lista_producto.setIdlista(listanew.getId());
+                lista_producto.setIdproducto(id);
+                Boolean list_prod = adminListas.crearListasProductoNew(lista_producto);
+            }
+        }
+
+        List<ListaProductoNew> listaProductos = adminListas.traerListaProdNew(body);
+        if (listaProductos == null) {
+            return mapper.writeValueAsString("Falla al intentar guardar el producto en el carrito");
+        } else {
+            return mapper.writeValueAsString(listaProductos);
+        }
+
+    }
+    
+    @RequestMapping(value = "/getLista", method = RequestMethod.GET)
+    @ResponseBody
+    public String getLista(@RequestParam(required = false, value = "body") String body) throws Exception {
+
+        String usuarios = body;
+        String nombrelista = "default";
+        ListaNew lista = new ListaNew();
+        lista.setIdusuario(usuarios);
+        lista.setFechacreada(new Date());
+        lista.setNombrelista(nombrelista);
+
+        //NUEVA TABLA DE USUARIOS DE APP
+        boolean usuario_existe = false;
+        UsuarioNew usuario = adminUsuario.buscarUsuarioNew(body);
+        if (usuario == null) {
+            if (adminUsuario.guardarUsuarioNew(body)) {
+                usuario = adminUsuario.buscarUsuarioNew(body);
+                if (usuario != null) {
+                    usuario_existe = true;
+
+                }
+            }
+        } else {
+            usuario_existe = true;
+        }
+
+        if (usuario_existe) {
+            List<ListaProductoNew> listaProductos = adminListas.traerListaProdNew(body);
+            if (listaProductos == null) {
+                return mapper.writeValueAsString("Falla al intentar guardar el producto en el carrito");
+            } else {
+                return mapper.writeValueAsString(listaProductos);
+            }
+        } else {
+            return mapper.writeValueAsString("No se puede mostrar la lista de usuario");
+        }
+
     }
 
    

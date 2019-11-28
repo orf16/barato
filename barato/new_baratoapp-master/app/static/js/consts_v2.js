@@ -50,6 +50,20 @@ function myFunction3(param) {
 
 
 }
+function myFunction7(param) {
+    if(localStorage.getItem("session")!=null){
+        var url = direccionserver+'removefromLista?body='+localStorage.getItem("session")+'&producto='+param.toString();
+        //var url = direccionserver+'getProductos?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen+'&tienda='+tienda+'&pi='+pi+'&pf='+pf;
+            axios.get(url, config).then(response => {
+                var productos = response.data;
+            }).catch(error => {
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de productos.");
+            });
+    }
+
+
+}
 function myFunction5() {
     if(localStorage.getItem("session")!=null){
         var url = direccionserver+'getLista?body='+localStorage.getItem("session");
@@ -66,7 +80,7 @@ function myFunction5() {
 function myFunction4() {
 
         if(localStorage.getItem("session")==null){
-         localStorage.setItem("session", makeid(10));
+         localStorage.setItem("session", makeid(30));
          var nombre = localStorage.getItem("session");
         }
         var nombre = localStorage.getItem("session");
@@ -116,7 +130,7 @@ function myFunction2() {
             axios.get(url, config).then(response => {
                 var productos = response.data;
                 $.each(productos  , function(i, star) {
-                    $('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>'+'</tr>');
+                    $('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>'+ '</td>'+'<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">eliminar</button></td>'+'</tr>');
                 });
             }).catch(error => {
                 console.log(error);

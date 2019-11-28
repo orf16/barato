@@ -342,13 +342,8 @@ public class AdminListasImplementacion implements AdminListasInterface{
     }
     @Override
     public List<ListaProductoNew> traerListaProdNew(String lista) {
-        int hh = 10;
-        //Long numInLong = Long.valueOf(Integer.parseInt(nombre));
-        //String base="from ProductoTwebscrHist where lower(nombre) similar to '%(aguila|águila)%'";
+ 
         String base = "SELECT * from lista_producto_new p INNER JOIN lista_new d ON p.idlista = d.id where d.idusuario=:nombre";
-        //String order=" order by similarity(concat(p.nombre, ' ', p.detalle),:nombre) desc"; 
-        //String and=" and ";
-
         Session conexion = funciones.getConexion();
         Query query = conexion.createSQLQuery(base).addEntity(ListaProductoNew.class);
         query.setString("nombre", lista);
@@ -358,6 +353,16 @@ public class AdminListasImplementacion implements AdminListasInterface{
         for (ListaProductoNew p : productoList) {
             boolean contiene=false;
             
+            int idproducto=p.getIdproducto();
+            Session conexion2 = funciones.getConexion();
+            String base2 = "SELECT * from lista_producto_new p INNER JOIN lista_new d ON p.idlista = d.id where d.idusuario=:nombre2 and p.idproducto =:prod";
+            Query query2 = conexion2.createSQLQuery(base2).addEntity(ListaProductoNew.class);
+            query2.setString("nombre2", lista);
+            query2.setInteger("prod", idproducto);
+            List<ListaProductoNew> productoList2 = query2.list();
+            int count=productoList2.size();
+            conexion2.close();
+
             for (ListaProductoNew c : productoList1) {
                 if (c.getIdproducto().equals(p.getIdproducto())) {
                     contiene=true;
@@ -371,6 +376,7 @@ public class AdminListasImplementacion implements AdminListasInterface{
                 Query query1 = conexion1.createSQLQuery(base1).addEntity(ProductoTwebscrHist.class);
                 query1.setInteger("nombre1", id);
                 List<ProductoTwebscrHist> productoList_ = query1.list();
+                conexion1.close();
                 if (productoList_.size() > 0) {
                     p.setNombreproducto(productoList_.get(0).getNombre());
                     p.setDescripcion(productoList_.get(0).getDescripcion());
@@ -379,16 +385,53 @@ public class AdminListasImplementacion implements AdminListasInterface{
                     p.setPrecioproducto(precioSTR);
                     p.setUrl(productoList_.get(0).getUrl());
                     p.setImagen(productoList_.get(0).getDireccionImagen());
-                    p.setItems(productoList_.size());
+                    p.setItems(count);
                     productoList1.add(p);
                 }
-                conexion1.close();
             }
-
-            //ListaProductoNew prod= new ListaProductoNew();
-            //prod.setDescripcion("desc");
         }
-
         return productoList1;
+    }
+    
+    @Override
+    public boolean EliminarDeListasProductoNew(String usuario, Integer Producto) {
+
+        Session cnx1 = funciones.getConexion();
+        String base1 = "SELECT * from lista_producto_new p INNER JOIN lista_new d ON p.idlista = d.id where d.idusuario=:nombre2 and p.idproducto =:prod";
+        Query query1 = cnx1.createSQLQuery(base1).addEntity(ListaProductoNew.class);
+        query1.setString("nombre2", usuario);
+        query1.setInteger("prod", Producto);
+        //ListaProductoNew productoList1 = (ListaProductoNew)query1.list();
+        List<ListaProductoNew> productoList1 = query1.list();
+        cnx1.close();
+        if (productoList1.size() > 0) {
+            int idlistaprodnew = productoList1.get(0).getId();
+            Session conexion = funciones.getConexion();
+            Transaction trans = null;
+            try {
+                trans = conexion.getTransaction();
+                trans.begin();
+
+                Query query = conexion.createQuery("DELETE FROM ListaProductoNew lp WHERE lp.id = :idlista");
+                query.setParameter("idlista", idlistaprodnew);
+                query.executeUpdate();
+                trans.commit();
+                return true;
+            } catch (Exception e) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Error al eliminar productos lisa ", e);
+                if (trans != null) {
+                    trans.rollback();
+                }
+                return false;
+            } finally {
+                conexion.close();
+            }
+        } else {
+            return false;
+        }
+        
+
+        //return false;
+
     }
 }

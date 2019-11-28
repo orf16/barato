@@ -325,6 +325,33 @@ public class AdminListasControlador {
 
     }
 
-   
+
+    @RequestMapping(value = "/removefromLista", method = RequestMethod.GET)
+    @ResponseBody
+    public String removefromLista(@RequestParam(required = false, value = "body") String body,
+            @RequestParam(required = false, value = "producto") Integer id) throws Exception {
+
+        UsuarioNew usuario = adminUsuario.buscarUsuarioNew(body);
+        if (usuario != null) {
+            ListaNew listanew = adminListas.buscarUsuarioNew(body);
+            if (listanew != null) {
+                Boolean list_prod = adminListas.EliminarDeListasProductoNew(body, id);
+                if (!list_prod) {
+                    return mapper.writeValueAsString("Error al eliminar elemento de lista");
+                }
+            } else {
+                return mapper.writeValueAsString("No existe lista de usuario");
+            }
+        } else {
+            return mapper.writeValueAsString("No existe lista de usuario");
+        }
+
+        List<ListaProductoNew> listaProductos = adminListas.traerListaProdNew(body);
+        if (listaProductos == null) {
+            return mapper.writeValueAsString("Falla consultar la lista del usuario");
+        } else {
+            return mapper.writeValueAsString(listaProductos);
+        }
+    }
     
 }

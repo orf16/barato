@@ -60,7 +60,7 @@ Contributor(s):
         <property name="hibernate.connection.password">Barato01</property>-->
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/metabuscador</property>
     <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">Andr3$R1v3r4011</property>
+    <property name="hibernate.connection.password">1234</property>
     <property name="hibernate.c3p0.min_size">5</property>
     <property name="hibernate.c3p0.max_size">20</property>
     <property name="hibernate.c3p0.acquire_increment">1800</property>

@@ -35,4 +35,5 @@ public interface AdminListasInterface {
     public ListaNew buscarUsuarioNew(String idnew);
     public boolean crearListasProductoNew(ListaProductoNew lista);
     public List<ListaProductoNew> traerListaProdNew(String lista);
+    public boolean EliminarDeListasProductoNew(String usuario, Integer Producto);
 }

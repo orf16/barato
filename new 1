@@ -1,0 +1,62 @@
+<div class="exito-search-result-3-x-galleryItem pa4 search-result-producto exito-search-result-3-x-withoutGrayBackGround" style="flex-basis: 33.3333%; max-width: 33.3333%;">
+    <section class="exito-product-summary-2-x-container exito-product-summary-2-x-containerNormal overflow-hidden br3 h-100 w-100 flex flex-column justify-between center tc">
+        <div class="exito-product-summary-2-x-addToListBtn absolute z-1 mt3"></div>
+        <div class="exito-product-summary-2-x-clearLink h-100 flex flex-column">
+            <article class="exito-product-summary-2-x-element pointer pt3 pb4 flex flex-column h-100">
+                <div class="exito-product-summary-2-x-imageContainer db w-100 center">
+                    <a href="/cerveza-lata-x-6-unds-885084/p">
+                        <div class="exito-vtex-components-2-x-discountContainer relative dib w-100">
+                            <div class="t-mini white absolute right-0 pv2 ph3 bg-emphasis exito-vtex-components-2-x-discountData">-22&nbsp;% </div><img class="exito-product-summary-2-x-imageNormal" src="https://exitocol.vteximg.com.br/arquivos/ids/883639-500-auto?width=500&amp;height=auto&amp;aspect=true" alt="Cerveza Lata X 6 Unds" crossorigin="anonymous"></div>
+                    </a>
+                </div>
+                <div class="exito-product-summary-2-x-information h-100 flex flex-column justify-between">
+                    <div>
+                        <div class="flex flex-column justify-end items-center relative exito-product-summary-2-x-priceContainer pv5">
+                            <div class="primeContainer flex items-center">
+                                <p class="exito-product-summary-2-x-noPrime">No prime</p>
+                            </div>
+                            <div class="exito-vtex-components-2-x-priceContainer flex flex-column justify-start">
+                                <div class="exito-vtex-components-2-x-listPrice pv1 normal c-muted-2"><span class="exito-vtex-components-2-x-listPriceValue dib f7 strike t-small-ns t-mini exito-vtex-component-precio-tachado">$&nbsp;12.900</span></div>
+                                <div class="exito-vtex-components-2-x-sellingPrice pt1 pb3 c-on-base"><span class="exito-vtex-components-2-x-sellingPrice dib ph2 t-body t-heading-5-ns exito-vtex-component-precio-rojo">$&nbsp;10.080</span></div>
+                                <div class="exito-vtex-components-2-x-alliedPrice pt1 pb3 c-on-base exito-vtex-components-2-x-productPriceHidden"><span class="exito-vtex-components-2-x-alliedPrice dib ph2 t-body t-heading-5-ns exito-vtex-component-precio-negro">$&nbsp;0</span>
+                                    <div></div>
+                                </div>
+                                <div class="exito-vtex-components-2-x-mainContainerProductPum">
+                                    <div> Mililitro a $ 4,73 </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/cerveza-lata-x-6-unds-885084/p" class="no-underline">
+                        <div class="flex items-start exito-product-summary-2-x-nameContainer justify-center pv6">
+                            <div class="exito-vtex-components-2-x-productNameContainer mv0 overflow-hidden c-on-base"><span class="exito-vtex-components-2-x-productBrand t-body galleryItem-productBrand exito-vtex-component-nombre-producto">Cerveza lata x 6 unds <b></b></span></div>
+                        </div>
+                    </a>
+                </div>
+            </article>
+        </div>
+        <div class="exito-product-summary-2-x-remove">
+            <p class="f7">Producto agotado</p>
+        </div>
+        <div class="exito-product-summary-2-x-buyButtonContainer pv3 w-100 db">
+            <div class="exito-product-summary-2-x-buyButton center mw-100 product-summary-add-to-car">
+                <button tabindex="0" class="vtex-button bw1 ba fw5 v-mid relative pa0 lh-solid br2 min-h-regular t-action bg-action-primary b--action-primary c-on-action-primary hover-bg-action-primary hover-b--action-primary hover-c-on-action-primary pointer w-100 " type="button">
+                    <div class="flex items-center justify-center h-100 ph6 w-100 border-box " style="padding-top: 0.25em; padding-bottom: 0.32em;">Agregar
+                        <svg width="28" height="28" viewBox="0 0 30 30" style="display: inline-block; fill: rgb(255, 255, 255); vertical-align: middle;">
+                            <g data-name="Group 1127">
+                                <g data-name="Group 1116">
+                                    <g transform="translate(-3.7 -6.8)">
+                                        <circle cx="1.78" cy="1.78" r="1.78" transform="translate(14 26.67)"></circle>
+                                        <circle data-name="Path" cx="1.78" cy="1.78" r="1.78" transform="translate(21.2 26.67)"></circle>
+                                        <path data-name="Path" d="M27.34 15.56H16.27v1.4h10.18l-1.17 5.07a1.64 1.64 0 0 1-1.59 1.26h-7.68a1.64 1.64 0 0 1-1.62-1.26l-1.97-8.7a.7.7 0 0 0-.68-.53H8.7v1.4h2.48l1.85 8.16a3.02 3.02 0 0 0 2.98 2.36h7.68a3.02 3.02 0 0 0 2.98-2.36l1.35-5.93a.7.7 0 0 0-.67-.87z"></path>
+                                    </g>
+                                    <path data-name="Rectangle 368" fill="none" d="M0 0h30v30H0z"></path>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+</div>

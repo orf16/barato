@@ -314,6 +314,7 @@ public class AdminListasControlador {
 
         if (usuario_existe) {
             List<ListaProductoNew> listaProductos = adminListas.traerListaProdNew(body);
+            
             if (listaProductos == null) {
                 return mapper.writeValueAsString("Falla al intentar guardar el producto en el carrito");
             } else {
@@ -325,7 +326,64 @@ public class AdminListasControlador {
 
     }
 
+@RequestMapping(value = "/getListaBaratoA", method = RequestMethod.GET)
+    @ResponseBody
+    public String getListaBaratoA(@RequestParam(required = false, value = "body") String body) throws Exception {
 
+        boolean usuario_existe = false;
+        UsuarioNew usuario = adminUsuario.buscarUsuarioNew(body);
+        if (usuario == null) {
+            if (adminUsuario.guardarUsuarioNew(body)) {
+                usuario = adminUsuario.buscarUsuarioNew(body);
+                if (usuario != null) {
+                    usuario_existe = true;
+
+                }
+            }
+        } else {
+            usuario_existe = true;
+        }
+
+        if (usuario_existe) {
+            List<ListaProductoNew> listaProductos1 = adminListas.listaComparacionBaseA(body);
+            if (listaProductos1 == null) {
+                return mapper.writeValueAsString("Falla al acceder a lista de productos más baratos");
+            } else {
+                return mapper.writeValueAsString(listaProductos1);
+            }
+        } else {
+            return mapper.writeValueAsString("No se puede mostrar la lista de productos más baratos");
+        }
+    }
+    @RequestMapping(value = "/getListaBaratoB", method = RequestMethod.GET)
+    @ResponseBody
+    public String getListaBaratoB(@RequestParam(required = false, value = "body") String body) throws Exception {
+
+        boolean usuario_existe = false;
+        UsuarioNew usuario = adminUsuario.buscarUsuarioNew(body);
+        if (usuario == null) {
+            if (adminUsuario.guardarUsuarioNew(body)) {
+                usuario = adminUsuario.buscarUsuarioNew(body);
+                if (usuario != null) {
+                    usuario_existe = true;
+
+                }
+            }
+        } else {
+            usuario_existe = true;
+        }
+
+        if (usuario_existe) {
+            List<ListaProductoNew> listaProductos1 = adminListas.listaComparacionBaseB(body);
+            if (listaProductos1 == null) {
+                return mapper.writeValueAsString("Falla al acceder a lista de productos más baratos");
+            } else {
+                return mapper.writeValueAsString(listaProductos1);
+            }
+        } else {
+            return mapper.writeValueAsString("No se puede mostrar la lista de productos más baratos");
+        }
+    }
     @RequestMapping(value = "/removefromLista", method = RequestMethod.GET)
     @ResponseBody
     public String removefromLista(@RequestParam(required = false, value = "body") String body,

@@ -1,5 +1,5 @@
 package modelos;
-// Generated 26/11/2019 06:43:24 PM by Hibernate Tools 4.3.1
+// Generated 30/11/2019 06:41:14 PM by Hibernate Tools 4.3.1
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -26,6 +26,8 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
      private Double precio;
      private String url;
      private String relacion;
+     private Boolean activo;
+     private String tiendaNom;
 
     public ProductoTwebscrHist() {
     }
@@ -36,7 +38,7 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
         this.fecha = fecha;
         this.hora = hora;
     }
-    public ProductoTwebscrHist(int idproducto, Tareawebscraper tareawebscraper, String nombre, String detalle, Date fecha, Date hora, Date fechahora, String direccionImagen, Integer idcategoria, String codigotienda, String descripcion, Double precio, String url, String relacion) {
+    public ProductoTwebscrHist(int idproducto, Tareawebscraper tareawebscraper, String nombre, String detalle, Date fecha, Date hora, Date fechahora, String direccionImagen, Integer idcategoria, String codigotienda, String descripcion, Double precio, String url, String relacion, Boolean activo, String tiendaNom) {
        this.idproducto = idproducto;
        this.tareawebscraper = tareawebscraper;
        this.nombre = nombre;
@@ -51,6 +53,8 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
        this.precio = precio;
        this.url = url;
        this.relacion = relacion;
+       this.activo = activo;
+       this.tiendaNom = tiendaNom;
     }
    
     public int getIdproducto() {
@@ -150,6 +154,20 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
     
     public void setRelacion(String relacion) {
         this.relacion = relacion;
+    }
+    public Boolean getActivo() {
+        return this.activo;
+    }
+    
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+    public String getTiendaNom() {
+        return this.tiendaNom;
+    }
+    
+    public void setTiendaNom(String tiendaNom) {
+        this.tiendaNom = tiendaNom;
     }
 
 

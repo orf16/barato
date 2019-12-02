@@ -248,23 +248,40 @@ public class AdminProductos implements ProductoInterface {
     }
     
    
-    
+    public static int countWordsUsingSplit(String input) {
+    if (input == null || input.isEmpty()) {
+      return 0;
+    }
+
+    String[] words = input.split("\\s+");
+    return words.length;
+  }
     
     ////BUSQUEDA APROXIMADA GENERAL1
     @Override
     public List<ProductoTwebscrHist> traerProductos(String nombre, String categoria,String producto,String marca,String presentacion,String volumen, String tienda, String pi, String pf) {
-        int hh=10;
+        int words=countWordsUsingSplit(nombre);
+        String precision="0.24";
+        if (words==1) {
+            precision="0.1";
+        }
         //Long numInLong = Long.valueOf(Integer.parseInt(nombre));
         //String base="from ProductoTwebscrHist where lower(nombre) similar to '%(aguila|águila)%'";
-        String base="SELECT * from producto_twebscr_hist p INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea where similarity(concat(p.nombre, ' ', p.detalle),:nombre) > 0.10";
+        String base="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, t.nombre as tienda_nom from producto_twebscr_hist p";
+        base+=" INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea ";
+        base+=" INNER JOIN  almacen s on d.idalmacen = s.idalmacen ";
+        base+=" INNER JOIN tienda t  ON t.idtienda = s.idtienda ";
+        //base+=" where p.relacion is not null and similarity(concat(p.nombre, ' ', p.detalle),:nombre) > 0.10";
+        base+=" where similarity(concat(p.nombre, ' ', p.detalle),:nombre) > "+precision;
+        //String base="SELECT * from producto_twebscr_hist p INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea where similarity(concat(p.nombre, ' ', p.detalle),:nombre) > 0.10";
         String order=" order by similarity(concat(p.nombre, ' ', p.detalle),:nombre) desc"; 
         String and=" and ";
         String or=" or ";
-        String query_cat=" and lower(p.nombre) like :categoria";
-        String query_prd=" and lower(p.nombre) like :producto";
-        String query_mrc=" and lower(p.nombre) like :marca";
-        String query_pre=" and lower(p.nombre) like :presentacion";
-        String query_vol=" and lower(p.nombre) like :volumen";
+        String query_cat=" and lower(p.nombre) similar to :categoria";
+        String query_prd=" and lower(p.nombre) similar to :producto";
+        String query_mrc=" and lower(p.nombre) similar to :marca";
+        String query_pre=" and lower(p.nombre) similar to :presentacion";
+        String query_vol=" and lower(p.nombre) similar to :volumen";
         String query_precio=" and p.precio >= :pi and p.precio <= :pf";
         String query_tienda="";
         int resultTienda=0;
@@ -272,23 +289,33 @@ public class AdminProductos implements ProductoInterface {
         Session conexion = funciones.getConexion();
         
         if (categoria != null && !categoria.isEmpty()) {
+            categoria=categoria.replace(';', '|');
+            categoria="%("+categoria+")%";
             base+=query_cat;
         }
         if (producto != null && !producto.isEmpty()) {
+            producto=producto.replace(';', '|');
+            producto="%("+producto+")%";
             base+=query_prd;
         }
         if (marca != null && !marca.isEmpty()) {
+            marca=marca.replace(';', '|');
+            marca="%("+marca+")%";
             base+=query_mrc;
         }
         if (presentacion != null && !presentacion.isEmpty()) {
+            presentacion=presentacion.replace(';', '|');
+            presentacion="%("+presentacion+")%";
             base+=query_pre;
         }
         if (volumen != null && !volumen.isEmpty()) {
+            volumen=volumen.replace(';', '|');
+            volumen="%("+volumen+")%";
             base+=query_vol;
         }
         if (tienda != null && !tienda.isEmpty()) {
             resultTienda = Integer.parseInt(tienda);
-            query_tienda=" and d.idalmacen = :tienda";
+            query_tienda=" and t.idtienda = :tienda";
             base+=query_tienda;
         }
         if (pi != null && !pi.isEmpty() && pf != null && !pf.isEmpty()) {
@@ -306,19 +333,19 @@ public class AdminProductos implements ProductoInterface {
         //Query query = conexion.createQuery("from ProductoTwebscrHist").setMaxResults(10);
         query.setString("nombre", nombre);
         if (categoria != null && !categoria.isEmpty()) {
-            query.setString("categoria", "%"+categoria.toLowerCase()+"%");
+            query.setString("categoria", categoria.toLowerCase());
         }
         if (producto != null && !producto.isEmpty()) {
-            query.setString("producto", "%"+producto.toLowerCase()+"%");
+            query.setString("producto", producto.toLowerCase());
         }
         if (marca != null && !marca.isEmpty()) {
-            query.setString("marca", "%"+marca.toLowerCase()+"%");
+            query.setString("marca", marca.toLowerCase());
         }
         if (presentacion != null && !presentacion.isEmpty()) {
-            query.setString("presentacion", "%"+presentacion.toLowerCase()+"%");
+            query.setString("presentacion", presentacion.toLowerCase());
         }
         if (volumen != null && !volumen.isEmpty()) {
-            query.setString("volumen", "%"+volumen.toLowerCase()+"%");
+            query.setString("volumen", volumen.toLowerCase());
         }
         if (tienda != null && !tienda.isEmpty()) {
             query.setInteger("tienda", resultTienda);
@@ -330,6 +357,7 @@ public class AdminProductos implements ProductoInterface {
             query.setDouble("pf", pfd);
         }
         List<ProductoTwebscrHist> productoList = query.list();
+        
         conexion.close();
         return productoList;
     }

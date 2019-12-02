@@ -268,8 +268,8 @@ const shop_list = {
         },
         getCategoria: function () {
            var texto="tequila don julio";
-
-           var url = direccionserver+'getCategoriaWord?nombre='+texto;
+            var url = direccionserver+'getCategoriaWS?id=1000';
+           //var url = direccionserver+'getCategoriaWord?nombre='+texto;
            // var url = direccionserver+'getProductosWS';
             //var url1= direccionserver+'getFiltro?palabra=nectar&categoria=aguardiente&tipo=negra&...'
 

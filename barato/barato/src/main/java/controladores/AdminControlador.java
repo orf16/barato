@@ -46,11 +46,31 @@ public class AdminControlador {
                                    
        JSONObject param = new JSONObject( body );
        String email = param.getString("email");
-       String clave = param.getString("clave");              
-       Usuario usuario = admin.buscarUsuario( email, clave);
+       String clave = param.getString("clave");     
        
-       return mapper.writeValueAsString(usuario);
+       Usuario usuario = admin.buscarUsuario( email, clave);
+       if (usuario!=null) {
+           return mapper.writeValueAsString(usuario);
+       }
+       else{
+            return mapper.writeValueAsString("Error al intentar acceder");
+       }     
    }
+    @RequestMapping(value = "/getLoginWS", method = RequestMethod.POST, headers = "Content-Type=application/json"  )   
+   @ResponseBody
+   //@Secured("ROLE_REGULAR_USER")   
+   public String getLoginWS( @RequestParam(required = false, value = "nombre") String nombre,
+                                @RequestParam(required = false, value = "clave") String clave ) throws Exception {
+                                   
+       Usuario usuario = admin.buscarUsuario( nombre, clave);
+       if (usuario!=null) {
+           return mapper.writeValueAsString(usuario);
+       }
+       else{
+            return mapper.writeValueAsString("Error al intentar acceder");
+       }     
+   }
+   
    
    @RequestMapping(value = "/getUsuarios" ,  method = RequestMethod.GET )   
    @ResponseBody

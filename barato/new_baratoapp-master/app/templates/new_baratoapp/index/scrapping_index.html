@@ -6,19 +6,32 @@
     <div class="row ml-1">
         <div class="col-sm-12 mb-1">
             <div class="col-sm-12 mb-1">
-                <button onclick="myFunction()" type="button" title="Realizar Scrapping" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Realizar Scrapping</button>
+                <button onclick="myFunction()" type="button" title="Realizar Scrapping" data-toggle="modal"
+                        data-target=".modal-shop-list" class="btn btn-warning btn-sm">Realizar Scrapping
+                </button>
             </div>
-            <div class="col-sm-8">
-            <input id="search" type="search" placeholder="Buscar productos..." class="form-control">
-        </div>
-            <div class="col-sm-4">
-            <button onclick="myFunction2()" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button>
-            <button onclick="myFunction4()" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">usuario</button>
-                <button onclick="myFunction5()" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">traer lista</button>
-                <button onclick="myFunction6()" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Eliminar usu</button>
-        </div>
-        </div>
+            <div class="col-sm-12 mt-5">
+                <div class="input-group mb-3">
+                    <input id="search" type="text" autocomplete="off" class="form-control" placeholder="Buscar productos..."
+                           aria-label="Buscar productos..." aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button onclick="myFunction2()" class="btn btn-outline-secondary" type="button">Buscar</button>
+                    </div>
+                </div>
+            </div>
+<!--            <div class="col-sm-12">
 
+                <button onclick="myFunction4()" type="button" title="Buscar Producto" data-toggle="modal"
+                        data-target=".modal-shop-list" class="btn btn-success btn-sm">usuario
+                </button>
+                <button onclick="myFunction5()" type="button" title="Buscar Producto" data-toggle="modal"
+                        data-target=".modal-shop-list" class="btn btn-success btn-sm">traer lista
+                </button>
+                <button onclick="myFunction6()" type="button" title="Buscar Producto" data-toggle="modal"
+                        data-target=".modal-shop-list" class="btn btn-success btn-sm">Eliminar usu
+                </button>
+            </div>-->
+        </div>
 
 
         <div class="col-sm-4">
@@ -28,11 +41,11 @@
             <div class="col-sm-12">
                 <select id="categoriaddl" name="select" class="form-control form-control-lg">
                     <option value=""></option>
-                <template v-for="list in shopCategoria" v-if="!loading">
-                    <template v-if="list.idTipo==6">
-                        <option v-bind:value="list.caracteristica">${list.caracteristica}</option>
+                    <template v-for="list in shopCategoria" v-if="!loading">
+                        <template v-if="list.idTipo==6">
+                            <option v-bind:value="list.alias">${list.caracteristica}</option>
+                        </template>
                     </template>
-                </template>
                 </select>
             </div>
         </div>
@@ -44,11 +57,11 @@
             <div class="col-sm-12">
                 <select id="categoriaddl1" name="select" class="form-control form-control-lg">
                     <option value=""></option>
-                <template v-for="list in shopCategoria" v-if="!loading">
-                    <template v-if="list.idTipo==3">
-                        <option v-bind:value="list.caracteristica">${list.caracteristica}</option>
+                    <template v-for="list in shopCategoria" v-if="!loading">
+                        <template v-if="list.idTipo==3">
+                            <option v-bind:value="list.alias">${list.caracteristica}</option>
+                        </template>
                     </template>
-                </template>
                 </select>
             </div>
         </div>
@@ -60,27 +73,27 @@
             <div class="col-sm-12">
                 <select id="categoriaddl2" name="select" class="form-control form-control-lg">
                     <option value=""></option>
-                <template v-for="list in shopCategoria" v-if="!loading">
-                    <template v-if="list.idTipo==4">
-                        <option v-bind:value="list.alias">${list.caracteristica}</option>
+                    <template v-for="list in shopCategoria" v-if="!loading">
+                        <template v-if="list.idTipo==4">
+                            <option v-bind:value="list.alias">${list.caracteristica}</option>
+                        </template>
                     </template>
-                </template>
                 </select>
             </div>
         </div>
 
-               <div class="col-sm-4">
+        <div class="col-sm-4">
             <div class="col-sm-12">
                 <span>Marca</span>
             </div>
             <div class="col-sm-12">
                 <select id="categoriaddl3" name="select" class="form-control form-control-lg">
                     <option value=""></option>
-                <template v-for="list in shopCategoria" v-if="!loading">
-                    <template v-if="list.idTipo==2">
-                        <option v-bind:value="list.caracteristica">${list.caracteristica}</option>
+                    <template v-for="list in shopCategoria" v-if="!loading">
+                        <template v-if="list.idTipo==2">
+                            <option v-bind:value="list.alias">${list.caracteristica}</option>
+                        </template>
                     </template>
-                </template>
                 </select>
             </div>
         </div>
@@ -92,11 +105,11 @@
             <div class="col-sm-12">
                 <select id="categoriaddl4" name="select" class="form-control form-control-lg">
                     <option value=""></option>
-                <template v-for="list in shopCategoria" v-if="!loading">
-                    <template v-if="list.idTipo==5">
-                        <option v-bind:value="list.caracteristica">${list.caracteristica}</option>
+                    <template v-for="list in shopCategoria" v-if="!loading">
+                        <template v-if="list.idTipo==5">
+                            <option v-bind:value="list.alias">${list.caracteristica}</option>
+                        </template>
                     </template>
-                </template>
                 </select>
             </div>
         </div>
@@ -108,33 +121,47 @@
             <div class="col-sm-12">
                 <select id="categoriaddl5" name="select" class="form-control form-control-lg">
                     <option value=""></option>
-                <template v-for="list in shopListMap" v-if="!loading">
-                        <option v-bind:value="list.scrId">${list.nombre}</option>
-                </template>
+                    <template v-for="list in shopListMap" v-if="!loading">
+                        <option v-bind:value="list.idtienda">${list.nombre}</option>
+                    </template>
                 </select>
             </div>
         </div>
 
+        <div class="col-sm-12 mt-2">
+            <div class="col-sm-12">
+                <span id="numRes"></span>
+            </div>
+        </div>
 
+ <table class="table mt-4" id="results_tb">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">nombre</th>
+                <th scope="col">detalle</th>
+                <th scope="col">codigo tienda</th>
+                <th scope="col">precio</th>
+                <th scope="col">tienda</th>
+                <th scope="col">Relaciones</th>
+                <th scope="col">Relacionar</th>
+            </tr>
+            </thead>
+            <tbody>
 
+            </tbody>
+        </table>
 
-
-        <table class="table" id="results_tb">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col">nombre</th>
-      <th scope="col">detalle</th>
-      <th scope="col">codigotienda</th>
-        <th scope="col">precio</th>
-        <th scope="col">Agregar</th>
-        <th scope="col">elemin</th>
-    </tr>
-  </thead>
-         <tbody>
-
-  </tbody>
-</table>
-    </div>
 
 </div>
+
+    </div>
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cuéntanos tu Experiencia">
+        <a class="nav-link" data-toggle="modal" data-target="#commentModal">
+            <i class="fa fa-fw fa-comment"></i>
+            <span class="nav-link-text">Cuéntanos tu Experiencia</span>
+        </a>
+    </li>
+</div>
+<!-- Comentarios Modal-->
+{% include 'new_baratoapp/index/scrap_modal.html' %}

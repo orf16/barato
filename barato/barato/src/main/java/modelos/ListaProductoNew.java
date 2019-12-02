@@ -1,5 +1,5 @@
 package modelos;
-// Generated 27/11/2019 12:55:08 AM by Hibernate Tools 4.3.1
+// Generated 30/11/2019 06:41:14 PM by Hibernate Tools 4.3.1
 
 
 
@@ -18,6 +18,10 @@ public class ListaProductoNew  implements java.io.Serializable {
      private String url;
      private Integer items;
      private String imagen;
+     private String relaciones;
+     private String tiendaNombre;
+     private Double precioDob;
+     private Double ahorro;
 
     public ListaProductoNew() {
     }
@@ -26,7 +30,7 @@ public class ListaProductoNew  implements java.io.Serializable {
     public ListaProductoNew(int id) {
         this.id = id;
     }
-    public ListaProductoNew(int id, Integer idlista, Integer idproducto, String nombreproducto, String descripcion, String precioproducto, String url, Integer items, String imagen) {
+    public ListaProductoNew(int id, Integer idlista, Integer idproducto, String nombreproducto, String descripcion, String precioproducto, String url, Integer items, String imagen, String relaciones, String tiendaNombre, Double precioDob, Double ahorro) {
        this.id = id;
        this.idlista = idlista;
        this.idproducto = idproducto;
@@ -36,6 +40,10 @@ public class ListaProductoNew  implements java.io.Serializable {
        this.url = url;
        this.items = items;
        this.imagen = imagen;
+       this.relaciones = relaciones;
+       this.tiendaNombre = tiendaNombre;
+       this.precioDob = precioDob;
+       this.ahorro = ahorro;
     }
    
     public int getId() {
@@ -100,6 +108,34 @@ public class ListaProductoNew  implements java.io.Serializable {
     
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+    public String getRelaciones() {
+        return this.relaciones;
+    }
+    
+    public void setRelaciones(String relaciones) {
+        this.relaciones = relaciones;
+    }
+    public String getTiendaNombre() {
+        return this.tiendaNombre;
+    }
+    
+    public void setTiendaNombre(String tiendaNombre) {
+        this.tiendaNombre = tiendaNombre;
+    }
+    public Double getPrecioDob() {
+        return this.precioDob;
+    }
+    
+    public void setPrecioDob(Double precioDob) {
+        this.precioDob = precioDob;
+    }
+    public Double getAhorro() {
+        return this.ahorro;
+    }
+    
+    public void setAhorro(Double ahorro) {
+        this.ahorro = ahorro;
     }
 
 

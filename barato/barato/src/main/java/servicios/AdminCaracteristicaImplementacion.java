@@ -22,20 +22,23 @@ import org.springframework.stereotype.Service;
 @Service("CaracteristicaInterface")
 public class AdminCaracteristicaImplementacion implements CaracteristicaInterface{
     private final Funciones funciones = new Funciones();
-    
+    //Obtiene todas la caracteristicas
     @Override
     public List <Caracteristica> obtenerCaracteristica(Integer limite) {
-        try {
-            Session conexion = funciones.getConexion();            
+        Session conexion = funciones.getConexion();  
+        try {   
             Query query = conexion.createQuery("FROM Caracteristica ORDER BY caracteristica").setMaxResults(limite);
             List<Caracteristica> productoList = query.list();
-            conexion.close();
             return productoList;
         } catch (Exception e) {
             System.out.println("ERROR-> traerProductosxcategoriaxNombre-> " + e);
             return null;
         }
+        finally{
+            conexion.close();
+        }
     }
+    //Categorias según busqueda
     @Override
     public List <Caracteristica> obtenerCaracteristicaPalabra(String nombre, String categoria, String producto,String marca,String presentacion,String volumen) {
         
@@ -89,9 +92,8 @@ public class AdminCaracteristicaImplementacion implements CaracteristicaInterfac
         List<ProductoTwebscrHist> productoList = query.list();
         conexion.close();
         
-        
+        Session conexion1 = funciones.getConexion();
         try {
-            Session conexion1 = funciones.getConexion();
             String[] parts = nombre.split("-");
             String ajuste="";
             int cont=0;
@@ -114,33 +116,36 @@ public class AdminCaracteristicaImplementacion implements CaracteristicaInterfac
                 }
             } 
             
-            
-            
             Query query1 = conexion1.createSQLQuery("SELECT distinct * FROM Caracteristica WHERE lower(alias) similar to :name").addEntity(Caracteristica.class);
             List pusList = query1.setString("name", "%("+ajuste.toLowerCase()+")%").list();
-
-            conexion1.close();
+            
             return pusList;
         } catch (Exception e) {
             System.out.println("ERROR-> traerProductosxcategoriaxNombre-> " + e);
             return null;
         }
-    }
-    @Override
-    public List <Caracteristica> obtenerCategoriasProductos() {
-        try {
-            //int productos_id=4;
-            Session conexion = funciones.getConexion();            
-            Query query = conexion.createQuery("FROM Caracteristica where id_tipo= :idproductos and mostrar=true ORDER BY caracteristica");
-            query.setParameter("idproductos", 3);
-            List<Caracteristica> productoList = query.list();
-            conexion.close();
-            return productoList;
-        } catch (Exception e) {
-            System.out.println("ERROR-> traerProductosxcategoria-> " + e);
-            return null;
+        finally{
+            conexion1.close();
         }
     }
+    //Obtiene caracteristicas de tipo producto
+    @Override
+    public List <Caracteristica> obtenerCategoriasProductos() {
+            Session conexion = funciones.getConexion();  
+            try {
+                Query query = conexion.createQuery("FROM Caracteristica where id_tipo= :idproductos and mostrar=true ORDER BY caracteristica");
+                query.setParameter("idproductos", 3);
+                List<Caracteristica> productoList = query.list();
+                return productoList;
+            } catch (Exception e) {
+                System.out.println("ERROR-> traerProductosxcategoria-> " + e);
+                return null;
+            }
+            finally{
+                conexion.close();
+            }
+        }
+    }
+
     
-    
-}
+

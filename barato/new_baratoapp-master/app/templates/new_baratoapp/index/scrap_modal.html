@@ -1,0 +1,141 @@
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="commentModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width:100%!important">
+        <div class="modal-content" style="width:900px!important">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentModalLabel">Relacionar Producto</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row ml-1">
+                    <div class="col-sm-12 mb-1">
+                        <div class="col-sm-12">
+                            <div class="input-group mb-3">
+                              <input id="Rsearch" type="text" autocomplete="off" class="form-control" placeholder="Buscar productos..." aria-label="Buscar productos..." aria-describedby="basic-addon2">
+                              <div class="input-group-append">
+                                <button onclick="myFunction2a()" class="btn btn-outline-secondary" type="button">Buscar</button>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-12">
+                            <span>Categoria</span>
+                        </div>
+                        <div class="col-sm-12">
+                            <select id="Rcategoriaddl" name="select" class="form-control form-control-lg">
+                                <option value=""></option>
+                                <template v-for="list in shopCategoria" v-if="!loading">
+                                    <template v-if="list.idTipo==6">
+                                        <option v-bind:value="list.alias">${list.caracteristica}</option>
+                                    </template>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-12">
+                            <span>Producto</span>
+                        </div>
+                        <div class="col-sm-12">
+                            <select id="Rcategoriaddl1" name="select" class="form-control form-control-lg">
+                                <option value=""></option>
+                                <template v-for="list in shopCategoria" v-if="!loading">
+                                    <template v-if="list.idTipo==3">
+                                        <option v-bind:value="list.alias">${list.caracteristica}</option>
+                                    </template>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-12">
+                            <span>Presentacion</span>
+                        </div>
+                        <div class="col-sm-12">
+                            <select id="Rcategoriaddl2" name="select" class="form-control form-control-lg">
+                                <option value=""></option>
+                                <template v-for="list in shopCategoria" v-if="!loading">
+                                    <template v-if="list.idTipo==4">
+                                        <option v-bind:value="list.alias">${list.caracteristica}</option>
+                                    </template>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-12">
+                            <span>Marca</span>
+                        </div>
+                        <div class="col-sm-12">
+                            <select id="Rcategoriaddl3" name="select" class="form-control form-control-lg">
+                                <option value=""></option>
+                                <template v-for="list in shopCategoria" v-if="!loading">
+                                    <template v-if="list.idTipo==2">
+                                        <option v-bind:value="list.alias">${list.caracteristica}</option>
+                                    </template>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-12">
+                            <span>Volumen</span>
+                        </div>
+                        <div class="col-sm-12">
+                            <select id="Rcategoriaddl4" name="select" class="form-control form-control-lg">
+                                <option value=""></option>
+                                <template v-for="list in shopCategoria" v-if="!loading">
+                                    <template v-if="list.idTipo==5">
+                                        <option v-bind:value="list.alias">${list.caracteristica}</option>
+                                    </template>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="col-sm-12">
+                            <span>Tienda</span>
+                        </div>
+                        <div class="col-sm-12">
+                            <select id="Rcategoriaddl5" name="select" class="form-control form-control-lg">
+                                <option value=""></option>
+                                <template v-for="list in shopListMap" v-if="!loading">
+                                    <option v-bind:value="list.idtienda">${list.nombre}</option>
+                                </template>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <table class="table" id="Rresults_tb">
+                        <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">nombre</th>
+                            <th scope="col">detalle</th>
+                            <th scope="col">codigotienda</th>
+                            <th scope="col">precio</th>
+                            <th scope="col">tienda</th>
+                            <th scope="col">Relaciones</th>
+                            <th scope="col">Relacionar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

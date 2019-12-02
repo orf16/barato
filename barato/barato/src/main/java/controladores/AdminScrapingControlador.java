@@ -35,14 +35,14 @@ public class AdminScrapingControlador {
                 //WebScrappingInterface wse = new AdminWebScrappersImplementacion();
                 //wse.webScrappingExito(new Integer(2));
 
-                //WebScrappingInterface wsc = new AdminWebScrappersImplementacion();
-                //wsc.webScrappingCarulla(new Integer(17));
+                WebScrappingInterface wsc = new AdminWebScrappersImplementacion();
+                wsc.webScrappingCarulla(new Integer(17));
 
                 //WebScrappingInterface wso = new AdminWebScrappersImplementacion();
                 //wso.webScrappingOlimpica(new Integer(22));
 
-                WebScrappingInterface wsj = new AdminWebScrappersImplementacion();
-                wsj.webScrappingJumbo(new Integer(21));
+                //WebScrappingInterface wsj = new AdminWebScrappersImplementacion();
+                //wsj.webScrappingJumbo(new Integer(21));
 
             }
         };

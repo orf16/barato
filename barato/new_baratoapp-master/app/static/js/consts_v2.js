@@ -66,7 +66,7 @@ function myFunction7(param) {
 }
 function myFunction5() {
     if(localStorage.getItem("session")!=null){
-        var url = direccionserver+'getLista?body='+localStorage.getItem("session");
+        var url = direccionserver+'getListaBaratoB?body='+localStorage.getItem("session");
             axios.get(url, config).then(response => {
                 var productos = response.data;
             }).catch(error => {
@@ -102,6 +102,7 @@ function makeid(length) {
    return result;
 }
 function myFunction2() {
+        document.getElementById("numRes").textContent='';
         $("#results_tb tbody>tr").remove();
         var nombre = document.getElementById("search").value;
 
@@ -129,8 +130,77 @@ function myFunction2() {
         var url = direccionserver+'getProductos?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen+'&tienda='+tienda+'&pi='+pi+'&pf='+pf;
             axios.get(url, config).then(response => {
                 var productos = response.data;
+                document.getElementById("numRes").textContent='Número de resultados: '+productos.length.toString();
+
+
+
+
+
                 $.each(productos  , function(i, star) {
-                    $('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>'+ '</td>'+'<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">eliminar</button></td>'+'</tr>');
+                    //$('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>'+ '</td>'+'<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">eliminar</button></td>'+'</tr>');
+                    var relacion_front='<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>';
+                    if(star.relacion==null){
+                        relacion_front='<td></td>';
+                    }
+
+                    //var relacionar='<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Relacionar</button></td>';
+                    var relacionar='<td><button data-toggle="modal" data-target="#commentModal"  name="'+star.idproducto+'" type="button" title="Buscar Producto" class="btn btn-success btn-sm">Relacionar</button></td>';
+
+                    $('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+relacion_front+ '</td>'+relacionar+'</tr>');
+
+                });
+            }).catch(error => {
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de productos.");
+            });
+}
+function myFunction2a() {
+        //document.getElementById("numRes").textContent='';
+        $("#Rresults_tb tbody>tr").remove();
+        var nombre = document.getElementById("Rsearch").value;
+
+        var e = document.getElementById("Rcategoriaddl");
+        var categoria = e.options[e.selectedIndex].value;
+
+        var e1 = document.getElementById("Rcategoriaddl1");
+        var producto = e1.options[e1.selectedIndex].value;
+
+        var e2 = document.getElementById("Rcategoriaddl3");
+        var marca = e2.options[e2.selectedIndex].value;
+
+        var e3 = document.getElementById("Rcategoriaddl2");
+        var presentacion = e3.options[e3.selectedIndex].value;
+
+        var e4 = document.getElementById("Rcategoriaddl4");
+        var volumen = e4.options[e4.selectedIndex].value;
+
+        var e5 = document.getElementById("Rcategoriaddl5");
+        var tienda = e5.options[e5.selectedIndex].value;
+
+        var pi="1000";
+        var pf="1000000";
+
+        var url = direccionserver+'getProductos?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen+'&tienda='+tienda+'&pi='+pi+'&pf='+pf;
+            axios.get(url, config).then(response => {
+                var productos = response.data;
+                //document.getElementById("numRes").textContent='Número de resultados: '+productos.length.toString();
+
+
+
+
+
+                $.each(productos  , function(i, star) {
+                    //$('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>'+ '</td>'+'<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">eliminar</button></td>'+'</tr>');
+                    var relacion_front='<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>';
+                    if(star.relacion==null){
+                        relacion_front='<td></td>';
+                    }
+                    relacion_front='<td></td>';
+                    //var relacionar='<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Relacionar</button></td>';
+                    var relacionar='<td><button data-toggle="modal" data-target="#commentModal"  name="'+star.idproducto+'" type="button" title="Buscar Producto" class="btn btn-danger btn-sm">Relacionar</button></td>';
+
+                    $('#Rresults_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+relacion_front+ '</td>'+relacionar+'</tr>');
+
                 });
             }).catch(error => {
                 console.log(error);

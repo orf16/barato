@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 27/11/2019 12:55:08 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated 30/11/2019 06:41:15 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="modelos.Tienda" table="tienda" schema="public" optimistic-lock="version">
         <id name="idtienda" type="int">

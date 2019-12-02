@@ -5,6 +5,9 @@
  */
 package webScraping;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jsoup.Connection;
@@ -49,7 +52,7 @@ public class JSoupCarulla {
             conexion.close();
 
             //Bebidas
-            pagina = "https://www.carulla.com/Vinos_y_licores/_/N-2bsm?No=";
+            pagina = "https://www.carulla.com/Vinos_y_licores/_/N-2c5u?No=";
             totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("2"));
 
 
@@ -105,8 +108,8 @@ public class JSoupCarulla {
             String idtienda = "5";
             int cantporpag = 20;
             String pageadic = "&Nrpp=" + cantporpag;
-            String clasprod = "h1[class=\"name plpName\"]";
-            String clasdet = "h2[class=\"brand plpBrand\"]";
+            String clasprod = "span[class=\"name plpName\"]";
+            String clasdet = "span[class=\"brand plpBrand\"]";
             String clasprec = "div[class=\"col-price\"]";
             String clasimag = "div[class=\"image\"]";
             String clascodprod = "div[data-skuid]";
@@ -166,7 +169,11 @@ public class JSoupCarulla {
                         reintentar = true;
                     }
                 }
+                StringSelection stringSelection = new StringSelection(docCustomConn.wholeText());
+Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+clipboard.setContents(stringSelection, null);
                 org.jsoup.select.Elements Productos = docCustomConn.select(clasprod);
+                
                 org.jsoup.select.Elements Detalles = docCustomConn.select(clasdet);
                 org.jsoup.select.Elements Precios = docCustomConn.select(clasprec);
                 org.jsoup.select.Elements Imagenes = docCustomConn.select(clasimag);

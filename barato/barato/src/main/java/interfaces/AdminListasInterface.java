@@ -36,4 +36,6 @@ public interface AdminListasInterface {
     public boolean crearListasProductoNew(ListaProductoNew lista);
     public List<ListaProductoNew> traerListaProdNew(String lista);
     public boolean EliminarDeListasProductoNew(String usuario, Integer Producto);
+    public List<ListaProductoNew> listaComparacionBaseA(String usuario);
+     public List<ListaProductoNew> listaComparacionBaseB(String usuario);
 }

@@ -5,6 +5,9 @@
  */
 package webScraping;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -25,6 +28,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
 
 
 import static javax.ws.rs.core.HttpHeaders.USER_AGENT;
@@ -110,7 +114,7 @@ public class JSoupExito {
         conexion.close();
 
         //Licores
-        pagina = "https://www.exito.com/Mercado/Vinos_y_licores/_/N-2aky?No=";
+        pagina = "https://www.exito.com/mercado/vinos-y-licores?page=1";
         totalprodProc = totalprodProc + obtenerproductcat(idalmacen, pagina, new BigInteger(idtarea), new Integer("10"));
 
  
@@ -176,13 +180,13 @@ public class JSoupExito {
             //  String clascodprod = "div[class=\"product grocery col-xs-12 col-sm-4 col-md-4 col-lg-3\"]";
             String clascodprod = "div[data-skuid]";
 
-            String clascantprod = "div[class=\"plp-pagination-result col-md-4\"]";
+            String clascantprod = "div[class=\"exito-search-result-3-x-totalProducts\"]";
 
             int timeout = 120000;
             String script = "";
 
             //Cargamos primera pagina para obtener total productos
-            String blogUrlone = pagina + "0" + pageadic;
+            String blogUrlone = pagina;
             Connection connectionone = Jsoup.connect(blogUrlone);
             connectionone.userAgent("Mozilla");
             connectionone.timeout(timeout);
@@ -196,12 +200,21 @@ public class JSoupExito {
             } catch (Exception e) {
                 String hjhj="";
             }
+            String fff=docOneConn.html();
             //Obtenemos total productos
+            StringSelection stringSelection = new StringSelection(docOneConn.html());
+Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+clipboard.setContents(stringSelection, null);
+
             org.jsoup.select.Elements numproductos = docOneConn.select(clascantprod);
             org.jsoup.nodes.Element nprod = numproductos.get(0);
             String labeltotalprod = nprod.html().replace("</strong>", "").replace("'", "''");
             int numini = labeltotalprod.indexOf("de");
             int numfin = labeltotalprod.indexOf("resultados");
+            
+            
+            
+            
             String totalprodstr = labeltotalprod.substring(numini + 3, numfin).trim();
             int totalprod = Integer.parseInt(totalprodstr);
             int numPag = 0;

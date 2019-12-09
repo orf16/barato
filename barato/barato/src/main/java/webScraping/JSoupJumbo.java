@@ -142,10 +142,13 @@ public class JSoupJumbo {
         try {
             //Constantes
             int numprod = 0;
-            String scriptfijo = "INSERT INTO public.producto_twebscr_hist(nombre,detalle,descripcion,precio,idtarea,direccion_imagen,codigotienda,idcategoria) VALUES (";
+            String scriptfijo = "INSERT INTO public.producto_twebscr_hist(nombre,detalle,descripcion,precio,idtarea,direccion_imagen,codigotienda,idcategoria, url) VALUES (";
             String scriptfijo3 = "INSERT INTO public.diccionario(palabra) VALUES (";
             String scriptfijo1 = "UPDATE public.producto_twebscr_hist SET precio=";
             String scriptfijo2 = " WHERE idproducto=";
+            String scriptfijo4 = " , direccion_imagen=";
+            String scriptfijo5 = " , url=";
+            
             String idtienda = "2";
             String page = "https://www.tiendasjumbo.co/api/catalog_system/pub/products/search/?&fq=C%3a%2f2000001";
             String clasprod = "productName";
@@ -154,6 +157,7 @@ public class JSoupJumbo {
             String clasprec = "Value";
             String clasimag = "imageUrl";
             String clascodig = "productId";
+            String claslink = "link";
 
             String script = "";
             String script1 = "";
@@ -192,6 +196,7 @@ public class JSoupJumbo {
                     String descriprod = jsonObj.getString(clasdesc).replace("'", "''");
                     String detalleprod = jsonObj.getString(clasdet).replace("'", "''");
                     String codigotienda = jsonObj.getString(clascodig);
+                    String url = jsonObj.getString(claslink);
                     String precio = "0";
                     String imagen = "";
                     String[] arrOfStr = nombreprod.split(" ", 20);
@@ -223,14 +228,16 @@ public class JSoupJumbo {
                         conexion.close();
                         if (productoList.isEmpty()) {
                             if (listaCodigos.contains(codigotienda) == false) {
-                                script = scriptfijo + "'" + nombreprod + "','" + detalleprod + "','" + descriprod + "'," + precio + "," + idtarea + ",'" + imagen + "'" + ",'" + codigotienda.trim() + "'," + idcategoria + ");" + System.getProperty("line.separator");
+                                script = scriptfijo + "'" + nombreprod + "','" + detalleprod + "','" + descriprod + "'," + precio + "," + idtarea + ",'" + imagen + "'" + ",'" + codigotienda.trim() + "'," + idcategoria + ",'" + url.trim() + "'" + ");" + System.getProperty("line.separator");
                                 scripts.add(script);
                                 listaCodigos.add(codigotienda);
                                 ++totalprodProc;
                             }
                         } else {
+                            //url="'"+url+"'";
+                            //imagen="'"+imagen+"'";
                                 int id=productoList.get(0).getIdproducto();
-                                script = scriptfijo1+precio+scriptfijo2+Integer.toString(id);
+                                script = scriptfijo1+precio+scriptfijo4+"'"+imagen+"'"+scriptfijo5+"'"+url.trim()+"'"+scriptfijo2+Integer.toString(id);
                                 scripts.add(script);
                                 listaCodigos.add(codigotienda);
                                 ++totalprodProc;

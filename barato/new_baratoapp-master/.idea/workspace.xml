@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1cdc40fd-11c5-4f6e-96d1-df433d583148" name="Default" comment="" />
+    <list default="true" id="1cdc40fd-11c5-4f6e-96d1-df433d583148" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/../barato/src/main/java/controladores/AdminScrapingControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/java/controladores/AdminScrapingControlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/src/main/java/webScraping/JSoupExito.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/java/webScraping/JSoupExito.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/src/main/java/webScraping/JSoupJumbo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/java/webScraping/JSoupJumbo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0.war" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/AdminScrapingControlador$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/AdminScrapingControlador$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/webScraping/JSoupExito.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/webScraping/JSoupExito.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/webScraping/JSoupJumbo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/webScraping/JSoupJumbo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminScrapingControlador$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminScrapingControlador$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/target/classes/webScraping/JSoupExito.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/webScraping/JSoupExito.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/target/classes/webScraping/JSoupJumbo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/webScraping/JSoupJumbo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/js/consts_v2.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/consts_v2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/new_baratoapp/index/scrapping_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/new_baratoapp/index/scrapping_index.html" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,9 +57,14 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
   <component name="ProjectId" id="1P4wDmPEK3nJp9iumNn61TIuFt3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551273353736" />
@@ -193,6 +212,19 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.js" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="masterDetails">
     <states>

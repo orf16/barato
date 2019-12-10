@@ -270,6 +270,7 @@ public class AdminImplementacion implements AdminInterface{
         Query query = conexion.createQuery("FROM UsuarioNew WHERE key_user = :nombreProducto");
         query.setParameter("nombreProducto",  idnew );
         List<UsuarioNew> usuario= query.list();
+        conexion.close();
         if (usuario.size()>0) {
             return usuario.get(0);
         }

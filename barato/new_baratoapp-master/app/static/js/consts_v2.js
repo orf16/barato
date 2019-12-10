@@ -1,5 +1,6 @@
 //var direccionserver = 'https://servicio.baratoapp.co/barato/';
-var direccionserver = 'http://localhost:8083/barato-1.0/';
+var direccionserver = 'http://ec2-54-164-83-211.compute-1.amazonaws.com:8080/barato-1.0/';
+//var direccionserver = 'http://localhost:8083/barato-1.0/';
 var pass = 'gTddSgsRD!Csta5gKXZ$Dfh7jNvg?pMeS75%45A9GCje&^X^?3&$?5Z*Fj#YC47fGaNNX4Mp=syV9UqC-CcAM^^$_7rDsFT89^e+';
 var user = 'baratoUser';
 var UserEmail = document.getElementById('userEmailToken').value;

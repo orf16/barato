@@ -287,30 +287,37 @@ public class AdminListasImplementacion implements AdminListasInterface {
             trans.begin();
             conexion.save(lista);
             trans.commit();
+            conexion.close();
             return true;
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Error al crear la lista: {0}", e);
             if (trans != null) {
                 trans.rollback();
             }
-            return false;
-        } finally {
             conexion.close();
-        }
+            return false;
+        } 
     }
 
     @Override
     public ListaNew buscarUsuarioNew(String idnew) {
+        
         Session conexion = funciones.getConexion();
-        Query query = conexion.createQuery("FROM ListaNew WHERE idusuario = :nombreProducto");
+        try {
+            Query query = conexion.createQuery("FROM ListaNew WHERE idusuario = :nombreProducto");
         query.setParameter("nombreProducto", idnew);
         List<ListaNew> usuario = query.list();
         conexion.close();
-        if (usuario.size() > 0) {
-            return usuario.get(0);
-        } else {
+        
+            if (usuario.size() > 0) {
+                return usuario.get(0);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            conexion.close();
             return null;
-        }
+        } 
     }
 
     @Override
@@ -333,16 +340,16 @@ public class AdminListasImplementacion implements AdminListasInterface {
             trans.begin();
             conexion.save(lista);
             trans.commit();
+            conexion.close();
             return true;
         } catch (Exception e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Error al crear la lista: {0}", e);
             if (trans != null) {
                 trans.rollback();
             }
-            return false;
-        } finally {
             conexion.close();
-        }
+            return false;
+        } 
     }
 
     @Override

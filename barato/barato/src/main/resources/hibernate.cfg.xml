@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
@@ -58,9 +57,9 @@ Contributor(s):
     <!--<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/metabuscador</property>
         <property name="hibernate.connection.username">postgres</property>
         <property name="hibernate.connection.password">Barato01</property>-->
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/metabuscador</property>
-    <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">1234</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://metabynd.ccyoqrh9jvkv.us-east-1.rds.amazonaws.com:5432/metabynd</property>
+    <property name="hibernate.connection.username">bduserbynd</property>
+    <property name="hibernate.connection.password">Metabydaws2019*</property>
     <property name="hibernate.c3p0.min_size">5</property>
     <property name="hibernate.c3p0.max_size">20</property>
     <property name="hibernate.c3p0.acquire_increment">1800</property>

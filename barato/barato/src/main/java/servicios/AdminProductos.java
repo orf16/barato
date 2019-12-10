@@ -277,11 +277,11 @@ public class AdminProductos implements ProductoInterface {
         String order=" order by similarity(concat(p.nombre, ' ', p.detalle),:nombre) desc"; 
         String and=" and ";
         String or=" or ";
-        String query_cat=" and lower(p.nombre) similar to :categoria";
-        String query_prd=" and lower(p.nombre) similar to :producto";
-        String query_mrc=" and lower(p.nombre) similar to :marca";
-        String query_pre=" and lower(p.nombre) similar to :presentacion";
-        String query_vol=" and lower(p.nombre) similar to :volumen";
+        String query_cat=" and lower(p.nombre) similar to  :categoria";
+        String query_prd=" and lower(p.nombre) similar to  :producto";
+        String query_mrc=" and lower(p.nombre) similar to  :marca";
+        String query_pre=" and lower(p.nombre) similar to  :presentacion";
+        String query_vol=" and lower(p.nombre) similar to  :volumen";
         String query_precio=" and p.precio >= :pi and p.precio <= :pf";
         String query_tienda="";
         int resultTienda=0;

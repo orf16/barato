@@ -2,19 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1cdc40fd-11c5-4f6e-96d1-df433d583148" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../barato/src/main/java/servicios/AdminImplementacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/java/servicios/AdminImplementacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/src/main/java/servicios/AdminListasImplementacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/java/servicios/AdminListasImplementacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/src/main/java/servicios/AdminProductos.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/java/servicios/AdminProductos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/resources/hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0.war" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/servicios/AdminImplementacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/servicios/AdminImplementacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/servicios/AdminListasImplementacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/servicios/AdminListasImplementacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/servicios/AdminProductos.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/servicios/AdminProductos.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/hibernate.cfg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/servicios/AdminImplementacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/servicios/AdminImplementacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/servicios/AdminListasImplementacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/servicios/AdminListasImplementacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/servicios/AdminProductos.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/servicios/AdminProductos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/static/js/consts_v2.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/consts_v2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />

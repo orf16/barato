@@ -128,7 +128,7 @@ function myFunction2() {
         var pi="1000";
         var pf="1000000";
 
-        var url = direccionserver+'getProductos?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen+'&tienda='+tienda+'&pi='+pi+'&pf='+pf;
+        var url = direccionserver+'getProductos_?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen+'&tienda='+tienda+'&pi='+pi+'&pf='+pf;
             axios.get(url, config).then(response => {
                 var productos = response.data;
                 document.getElementById("numRes").textContent='Número de resultados: '+productos.length.toString();
@@ -139,11 +139,11 @@ function myFunction2() {
 
                 $.each(productos  , function(i, star) {
                     //$('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>'+ '</td>'+'<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">eliminar</button></td>'+'</tr>');
-                    var relacion_front='<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>';
+                    var relacion_front='<td><button id="modal1"  onclick="myFunction2b(\''+star.relacion+'\')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target="#commentModal1" class="relacion_class btn btn-success btn-sm">Buscar ('+star.num_relacion+')</button></td>';
                     if(star.relacion==null){
-                        relacion_front='<td></td>';
+                        relacion_front='<td>SIN</td>';
                     }
-                    var imagen='<img border="0" alt="W3Schools" src="'+star.direccionImagen+'" width="100" height="100">';
+                    var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
                     //var relacionar='<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Relacionar</button></td>';
                     var relacionar='<td><button data-toggle="modal" data-target="#commentModal"  name="'+star.idproducto+'" type="button" title="Buscar Producto" class="btn btn-success btn-sm">Relacionar</button></td>';
 
@@ -155,6 +155,12 @@ function myFunction2() {
                 alert("Ha ocurrido un error al momento de cargar la lista de productos.");
             });
 }
+
+
+$(".relacion_class").on('click', function(event){
+    alert('functioin');
+});
+
 function myFunction2a() {
         //document.getElementById("numRes").textContent='';
         $("#Rresults_tb tbody>tr").remove();
@@ -208,6 +214,58 @@ function myFunction2a() {
                 alert("Ha ocurrido un error al momento de cargar la lista de productos.");
             });
 }
+function myFunction2b(rel) {
+
+
+    $("#rel_name").attr('name', '');
+$("#rel_name").text('name', '');
+$("#relacionado_result").attr('name', '');
+
+
+        $("#rel_name").attr('name', rel);
+        $("#rel_name").text(rel);
+        //$("#rel_name").text(rel);
+        $("#relacionado_result").attr('name', rel);
+
+
+        $("#relacionado_result tbody>tr").remove();
+        var nombre = rel;
+        var url = direccionserver+'getRelacionados?nombre='+nombre;
+            axios.get(url, config).then(response => {
+                var productos = response.data;
+                $.each(productos  , function(i, star) {
+                    var relacion_delete='<button onclick="myFunction2c('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Eliminar de Relaciones" class="btn btn-warning btn-sm">Eliminar</button>';
+                    var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
+                    $('#relacionado_result tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
+                });
+            }).catch(error => {
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de productos.");
+            });
+}
+function myFunction2c(id) {
+
+        $("#relacionado_result tbody>tr").remove();
+        var nombre = rel;
+        var url = direccionserver+'getRelacionados?nombre='+nombre;
+            axios.get(url, config).then(response => {
+                var productos = response.data;
+                $.each(productos  , function(i, star) {
+
+                    var relacion_delete='<button onclick="myFunction2c('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Eliminar de Relaciones" class="btn btn-warning btn-sm">Eliminar</button>';
+                    var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
+                    $('#relacionado_result tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
+                });
+            }).catch(error => {
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de productos.");
+            });
+}
+
+        $('#commentModal1').on('show.bs.modal', function (e) {
+
+        })
+
 function cargarCategoria() {
         var url = direccionserver+'getWebScrapingTodos1';
             axios.get(url, config).then(response => {

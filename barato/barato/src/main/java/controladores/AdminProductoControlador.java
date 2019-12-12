@@ -99,4 +99,39 @@ public class AdminProductoControlador {
             return null;
         }        
     }
+    @RequestMapping(value = "/getProductos_", method = RequestMethod.GET)
+    @ResponseBody
+    public String getProductos_( @RequestParam(required = false, value = "nombre") String nombre,
+                                @RequestParam(required = false, value = "categoria") String categoria,
+                                @RequestParam(required = false, value = "producto") String producto,
+                                @RequestParam(required = false, value = "marca") String marca,
+                                @RequestParam(required = false, value = "presentacion") String presentacion,
+                                @RequestParam(required = false, value = "volumen") String volumen,
+                                @RequestParam(required = false, value = "tienda") String tienda,
+                                @RequestParam(required = false, value = "pi") String pi,
+                                @RequestParam(required = false, value = "pf") String pf,
+                                @RequestParam(required = false, value = "nr") String nr
+    
+    ) throws IOException, JSONException{  
+        if (nombre != null && !nombre.isEmpty()) {
+            List<ProductoTwebscrHist> productoList = prod.traerProductosAdmin( nombre, categoria,producto,marca,presentacion,volumen, tienda, pi, pf , nr);
+        return mapper.writeValueAsString( productoList );
+        }
+        else{
+            return null;
+        }        
+    }
+    @RequestMapping(value = "/getRelacionados", method = RequestMethod.GET)
+    @ResponseBody
+    public String getRelacionados( @RequestParam(required = false, value = "nombre") String nombre
+    
+    ) throws IOException, JSONException{  
+        if (nombre != null && !nombre.isEmpty()) {
+            List<ProductoTwebscrHist> productoList = prod.traerRelacionados(nombre);
+            return mapper.writeValueAsString( productoList );
+        }
+        else{
+            return null;
+        }        
+    }
 }

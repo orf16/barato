@@ -1,31 +1,7 @@
 {% extends "new_baratoapp/base_admin.html" %}
-
 {% load static %}
-
 {% block title %} Barato App {% endblock title %}
-
 {% block content %}
-    <!-- Navbar-->
-    {% include 'new_baratoapp/index/navbar_adm.html' %}
-
-
-    {% include 'new_baratoapp/index/scrapping_index.html' %}
-    {% include 'new_baratoapp/index/tienda_list.html' %}
-    {% include 'new_baratoapp/index/categ_adm.html' %}
-    {% include 'new_baratoapp/index/product_adm.html' %}
-    {% include 'new_baratoapp/index/productsimilares_modal.html' %}
-
-    <!-- /.container-fluid-->
-
-    <!-- Cart Sidebar-->
-
-
-
-    <footer class="sticky-footer">
-        {% include 'new_baratoapp/index/footer.html' %}
-    </footer>
-    {% include 'new_baratoapp/index/productsimilares_modal.html' %}
-
-    <!-- /.content-wrapper-->
+{% include 'new_baratoapp/index/scrapping_index.html' %}
 {% endblock content %}
 

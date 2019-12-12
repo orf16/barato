@@ -271,8 +271,8 @@ public class AdminProductos implements ProductoInterface {
         base+=" INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea ";
         base+=" INNER JOIN  almacen s on d.idalmacen = s.idalmacen ";
         base+=" INNER JOIN tienda t  ON t.idtienda = s.idtienda ";
-        //base+=" where p.relacion is not null and similarity(concat(p.nombre, ' ', p.detalle),:nombre) > 0.10";
-        base+=" where similarity(concat(p.nombre, ' ', p.detalle),:nombre) > "+precision;
+        base+=" where p.relacion is not null and similarity(concat(p.nombre, ' ', p.detalle),:nombre) >" +precision;
+        //base+=" where similarity(concat(p.nombre, ' ', p.detalle),:nombre) > "+precision;
         //String base="SELECT * from producto_twebscr_hist p INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea where similarity(concat(p.nombre, ' ', p.detalle),:nombre) > 0.10";
         String order=" order by similarity(concat(p.nombre, ' ', p.detalle),:nombre) desc"; 
         String and=" and ";
@@ -362,4 +362,142 @@ public class AdminProductos implements ProductoInterface {
         return productoList;
     }
     
+     @Override
+    public List<ProductoTwebscrHist> traerProductosAdmin(String nombre, String categoria,String producto,String marca,String presentacion,String volumen, String tienda, String pi, String pf, String nr) {
+        int words=countWordsUsingSplit(nombre);
+        String precision="0.15";
+        if (words==1) {
+            precision="0.1";
+        }
+        
+        String base="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, t.nombre as tienda_nom from producto_twebscr_hist p";
+        base+=" INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea ";
+        base+=" INNER JOIN  almacen s on d.idalmacen = s.idalmacen ";
+        base+=" INNER JOIN tienda t  ON t.idtienda = s.idtienda ";
+        //base+=" where p.relacion is not null and similarity(concat(p.nombre, ' ', p.detalle),:nombre) > 0.10";
+        base+=" where similarity(concat(p.nombre, ' ', p.detalle),:nombre) > "+precision;
+        //String base="SELECT * from producto_twebscr_hist p INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea where similarity(concat(p.nombre, ' ', p.detalle),:nombre) > 0.10";
+        String order=" order by similarity(concat(p.nombre, ' ', p.detalle),:nombre) desc"; 
+        String and=" and ";
+        String or=" or ";
+        String query_cat=" and lower(p.nombre) similar to  :categoria";
+        String query_prd=" and lower(p.nombre) similar to  :producto";
+        String query_mrc=" and lower(p.nombre) similar to  :marca";
+        String query_pre=" and lower(p.nombre) similar to  :presentacion";
+        String query_vol=" and lower(p.nombre) similar to  :volumen";
+        String query_precio=" and p.precio >= :pi and p.precio <= :pf";
+        String query_tienda="";
+        int resultTienda=0;
+     
+        Session conexion = funciones.getConexion();
+        
+        if (categoria != null && !categoria.isEmpty()) {
+            categoria=categoria.replace(';', '|');
+            categoria="%("+categoria+")%";
+            base+=query_cat;
+        }
+        if (producto != null && !producto.isEmpty()) {
+            producto=producto.replace(';', '|');
+            producto="%("+producto+")%";
+            base+=query_prd;
+        }
+        if (marca != null && !marca.isEmpty()) {
+            marca=marca.replace(';', '|');
+            marca="%("+marca+")%";
+            base+=query_mrc;
+        }
+        if (presentacion != null && !presentacion.isEmpty()) {
+            presentacion=presentacion.replace(';', '|');
+            presentacion="%("+presentacion+")%";
+            base+=query_pre;
+        }
+        if (volumen != null && !volumen.isEmpty()) {
+            volumen=volumen.replace(';', '|');
+            volumen="%("+volumen+")%";
+            base+=query_vol;
+        }
+        if (tienda != null && !tienda.isEmpty()) {
+            resultTienda = Integer.parseInt(tienda);
+            query_tienda=" and t.idtienda = :tienda";
+            base+=query_tienda;
+        }
+        if (pi != null && !pi.isEmpty() && pf != null && !pf.isEmpty()) {
+            base+=query_precio;
+        }
+        base+=order;
+        Query query = conexion.createSQLQuery(base).addEntity(ProductoTwebscrHist.class);
+        
+        //query.setString("categoria", "%"+categoria.toLowerCase()+"%");
+        
+        
+        
+        //List pusList = query1.setString("name", "%("+ajuste.toLowerCase()+")%");
+
+        //Query query = conexion.createQuery("from ProductoTwebscrHist").setMaxResults(10);
+        query.setString("nombre", nombre);
+        if (categoria != null && !categoria.isEmpty()) {
+            query.setString("categoria", categoria.toLowerCase());
+        }
+        if (producto != null && !producto.isEmpty()) {
+            query.setString("producto", producto.toLowerCase());
+        }
+        if (marca != null && !marca.isEmpty()) {
+            query.setString("marca", marca.toLowerCase());
+        }
+        if (presentacion != null && !presentacion.isEmpty()) {
+            query.setString("presentacion", presentacion.toLowerCase());
+        }
+        if (volumen != null && !volumen.isEmpty()) {
+            query.setString("volumen", volumen.toLowerCase());
+        }
+        if (tienda != null && !tienda.isEmpty()) {
+            query.setInteger("tienda", resultTienda);
+        }
+        if (pi != null && !pi.isEmpty() && pf != null && !pf.isEmpty()) {
+            double pid = Double.parseDouble(pi); 
+            double pfd = Double.parseDouble(pf); 
+            query.setDouble("pi", pid);
+            query.setDouble("pf", pfd);
+        }
+        List<ProductoTwebscrHist> productoList = query.list();
+        conexion.close();
+        for (ProductoTwebscrHist item : productoList) {
+            String relacion=item.getRelacion();
+            if (relacion!=null) {
+                Session cnx = funciones.getConexion();
+                String query_rel="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo from producto_twebscr_hist p where p.relacion=:relacion";
+                Query qry = cnx.createSQLQuery(query_rel);
+                qry.setString("relacion", relacion);
+                List<ProductoTwebscrHist> relaciones = qry.list();
+                if (relaciones.size()>0) {
+                    item.setNum_relacion(relaciones.size());
+                }
+                cnx.close();
+            }
+            else{
+                item.setNum_relacion(-1);
+            }
+            //listaEmails.add(valor);
+            
+        }
+        return productoList;
+    }
+    
+     @Override
+    public List<ProductoTwebscrHist> traerRelacionados(String nombre) {
+        
+        Session cnx = funciones.getConexion();
+                String query_rel="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, p.tienda_nom from producto_twebscr_hist p where p.relacion=:relacion";
+                Query qry = cnx.createSQLQuery(query_rel).addEntity(ProductoTwebscrHist.class);
+                qry.setString("relacion", nombre);
+                List<ProductoTwebscrHist> relaciones = qry.list();
+                if (relaciones.size()>0) {
+                    cnx.close();
+                    return relaciones;
+                }
+                else{
+                    cnx.close();
+                    return null;
+                }
+    }
 }

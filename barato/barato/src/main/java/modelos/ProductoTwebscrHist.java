@@ -28,7 +28,7 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
      private String relacion;
      private Boolean activo;
      private String tiendaNom;
-
+     private int num_relacion;
     public ProductoTwebscrHist() {
     }
 
@@ -55,8 +55,10 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
        this.relacion = relacion;
        this.activo = activo;
        this.tiendaNom = tiendaNom;
+       this.num_relacion = num_relacion;
     }
    
+    
     public int getIdproducto() {
         return this.idproducto;
     }
@@ -64,6 +66,8 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
     public void setIdproducto(int idproducto) {
         this.idproducto = idproducto;
     }
+    
+
     public Tareawebscraper getTareawebscraper() {
         return this.tareawebscraper;
     }
@@ -171,7 +175,13 @@ public class ProductoTwebscrHist  implements java.io.Serializable {
     }
 
 
-
+    public int getNum_relacion() {
+        return this.num_relacion;
+    }
+    
+    public void setNum_relacion(int num_relacion) {
+        this.num_relacion = num_relacion;
+    }
 
 }
 

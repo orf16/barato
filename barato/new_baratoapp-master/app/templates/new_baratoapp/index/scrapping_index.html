@@ -19,6 +19,8 @@
                     </div>
                 </div>
             </div>
+
+
 <!--            <div class="col-sm-12">
 
                 <button onclick="myFunction4()" type="button" title="Buscar Producto" data-toggle="modal"
@@ -113,6 +115,18 @@
                 </select>
             </div>
         </div>
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <span>Relacion</span>
+            </div>
+            <div class="col-sm-12">
+                <select id="categoriaddl6" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                    <option value="0">0</option>
+                    <option v-for="n  in 50 " :key="n" v-bind:value="n">${n}</option>
+                </select>
+            </div>
+        </div>
 
         <div class="col-sm-4">
             <div class="col-sm-12">
@@ -157,12 +171,8 @@
 </div>
 
     </div>
-    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cuéntanos tu Experiencia">
-        <a class="nav-link" data-toggle="modal" data-target="#commentModal">
-            <i class="fa fa-fw fa-comment"></i>
-            <span class="nav-link-text">Cuéntanos tu Experiencia</span>
-        </a>
-    </li>
+
 </div>
 <!-- Comentarios Modal-->
 {% include 'new_baratoapp/index/scrap_modal.html' %}
+{% include 'new_baratoapp/index/scrap_modal_1.html' %}

@@ -28,4 +28,6 @@ public interface ProductoInterface {
     public List <ProductoTwebscrHist> traerProductosxID(String id);
     ////BUSQUEDA APROXIMADA GENERAL
     public List <ProductoTwebscrHist> traerProductos(String nombre, String categoria, String producto,String marca,String presentacion,String volumen, String tienda, String pi, String pf);
+    public List <ProductoTwebscrHist> traerProductosAdmin(String nombre, String categoria, String producto,String marca,String presentacion,String volumen, String tienda, String pi, String pf, String nr);
+    public List <ProductoTwebscrHist> traerRelacionados(String nombre);
 }

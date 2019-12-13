@@ -144,4 +144,25 @@ public class AdminProductoControlador {
             return mapper.writeValueAsString( productoList );
        
     }
+    @RequestMapping(value = "/getRelacionar", method = RequestMethod.GET)
+    @ResponseBody
+    public String getRelacionar( @RequestParam(required = true, value = "idbase") int idbase,
+                                @RequestParam(required = true, value = "idrel") int idrel 
+    
+    ) throws IOException, JSONException{  
+
+            Boolean trasaccion= prod.relacionarproducto(idbase, idrel);
+            return mapper.writeValueAsString( trasaccion );
+       
+    }
+    @RequestMapping(value = "/getEliminarRelacionar", method = RequestMethod.GET)
+    @ResponseBody
+    public String getEliminarRelacionar( @RequestParam(required = true, value = "idbase") int idbase 
+    
+    ) throws IOException, JSONException{  
+
+            Boolean trasaccion= prod.eliminarrelacion(idbase);
+            return mapper.writeValueAsString( trasaccion );
+       
+    }
 }

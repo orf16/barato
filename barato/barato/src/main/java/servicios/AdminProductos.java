@@ -6,16 +6,24 @@
 package servicios;
 
 import interfaces.ProductoInterface;
+import static java.lang.String.format;
+import static java.lang.String.format;
 
 import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import modelos.Producto;
 import modelos.Productoxcategoria;
 import modelos.ProductoTwebscrHist;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
@@ -594,22 +602,161 @@ public class AdminProductos implements ProductoInterface {
                     return null;
                 }
     }
-    public Boolean relacionarproducto(int idproducto, String Relacion) {
+    @Override
+    public Boolean relacionarproducto(int idproducto_base, int idproducto_rel) {
         //Consultar si existe la relacion
-        //Si existe captar el número
-        //Si no crear codigo nuevo relacionado con la fecha y hora
-        //actualizar el producto con la nueva relación
-        //Si el producto ya esta relacionado se debe indicar
+        Boolean tiene_relacion_base=null;
+        Boolean tiene_relacion_rel=null;
+        String relacion_base=null;
+        String relacion_rel=null;
+        Session cnx1 = funciones.getConexion();
+        String base1="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, t.nombre as tienda_nom from producto_twebscr_hist p ";
+        base1+=" INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea ";
+        base1+=" INNER JOIN  almacen s on d.idalmacen = s.idalmacen ";
+        base1+=" INNER JOIN tienda t  ON t.idtienda = s.idtienda ";
+        base1+=" where p.idproducto=:idproducto ";
+                        
+        Query qry1 = cnx1.createSQLQuery(base1).addEntity(ProductoTwebscrHist.class);
+        qry1.setInteger("idproducto", idproducto_base);
+        List<ProductoTwebscrHist> producto_base = qry1.list();      
+        cnx1.close();
+        if (producto_base.size()>0) {
+             relacion_base= producto_base.get(0).getRelacion();
+                    if (relacion_base!=null) {
+                     //Existe una relacion asignada
+                     tiene_relacion_base=true;
+                    }
+                    else{
+                        //No Existe una relacion asignada
+                        tiene_relacion_base=false;
+                    }
+        }
         
-        return null;
-    }
-    public Boolean eliminarrelacion(int idproducto, String Relacion) {
-        //Consultar si existe la relacion
-        //Si existe captar el número
-        //Si no crear codigo nuevo relacionado con la fecha y hora
-        //actualizar el producto con la nueva relación
-        //Si el producto ya esta relacionado se debe indicar
+        Session cnx2 = funciones.getConexion();
+        String base2="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, t.nombre as tienda_nom from producto_twebscr_hist p ";
+        base2+=" INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea ";
+        base2+=" INNER JOIN  almacen s on d.idalmacen = s.idalmacen ";
+        base2+=" INNER JOIN tienda t  ON t.idtienda = s.idtienda ";
+        base2+=" where p.idproducto=:idproducto ";
+                        
+        Query qry2 = cnx2.createSQLQuery(base2).addEntity(ProductoTwebscrHist.class);
+        qry2.setInteger("idproducto", idproducto_rel);
+        List<ProductoTwebscrHist> producto_rel = qry2.list();      
+        cnx2.close();
+        if (producto_rel.size()>0) {
+             relacion_rel= producto_rel.get(0).getRelacion();
+                    if (relacion_rel!=null) {
+                    tiene_relacion_rel=true;
+                    }
+                    else{
+                    tiene_relacion_rel=false;
+                    }
+        }
         
-        return null;
+        if (tiene_relacion_rel && tiene_relacion_base) {
+            //No se puede 
+            return false;
+        }
+        if (!tiene_relacion_rel && tiene_relacion_base) {
+            //usar relacion del base
+            String code=relacion_base;
+            
+            Session conexionf = funciones.getConexion();
+            Transaction txf2 = conexionf.beginTransaction();
+            String script = "UPDATE public.producto_twebscr_hist set relacion='" + code + "' WHERE idproducto =" + idproducto_base + " or idproducto=" + idproducto_rel;
+            conexionf.createSQLQuery(script).executeUpdate();
+            txf2.commit();
+            conexionf.close();
+            return true;
+            
+        }
+        if (tiene_relacion_rel && !tiene_relacion_base) {
+           //usar relacion del rel
+           String code=relacion_rel;
+           
+           Session conexionf = funciones.getConexion();
+            Transaction txf2 = conexionf.beginTransaction();
+            String script = "UPDATE public.producto_twebscr_hist set relacion='" + code + "' WHERE idproducto =" + idproducto_base + " or idproducto=" + idproducto_rel;
+            conexionf.createSQLQuery(script).executeUpdate();
+            txf2.commit();
+            conexionf.close();
+            return true;
+        }
+        if (!tiene_relacion_rel && !tiene_relacion_base) {
+            //crear nueva relacion 
+            String random_str=rand();
+            Date date = Calendar.getInstance().getTime();  
+            DateFormat dateFormat = new SimpleDateFormat("yyyymmddhhmmss");  
+            String strDate = dateFormat.format(date); 
+            String code=random_str+strDate;
+            
+            Session conexionf = funciones.getConexion();
+            Transaction txf2 = conexionf.beginTransaction();
+            String script = "UPDATE public.producto_twebscr_hist set relacion='" + code + "' WHERE idproducto =" + idproducto_base + " or idproducto=" + idproducto_rel;
+            conexionf.createSQLQuery(script).executeUpdate();
+            txf2.commit();
+            conexionf.close();
+            return true;
+        }
+
+       
+        return false;
     }
+    @Override
+    public Boolean eliminarrelacion(int idproducto) {
+                Boolean tiene_relacion_base=null;
+        Boolean tiene_relacion_rel=null;
+        String relacion_base=null;
+        String relacion_rel=null;
+        Session cnx1 = funciones.getConexion();
+        String base1="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, t.nombre as tienda_nom from producto_twebscr_hist p ";
+        base1+=" INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea ";
+        base1+=" INNER JOIN  almacen s on d.idalmacen = s.idalmacen ";
+        base1+=" INNER JOIN tienda t  ON t.idtienda = s.idtienda ";
+        base1+=" where p.idproducto=:idproducto ";
+                        
+        Query qry1 = cnx1.createSQLQuery(base1).addEntity(ProductoTwebscrHist.class);
+        qry1.setInteger("idproducto", idproducto);
+        List<ProductoTwebscrHist> producto_base = qry1.list();      
+        cnx1.close();
+        if (producto_base.size()>0) {
+             relacion_base= producto_base.get(0).getRelacion();
+                    if (relacion_base!=null) {
+                     //Existe una relacion asignada
+                     tiene_relacion_base=true;
+                    }
+                    else{
+                        //No Existe una relacion asignada
+                        tiene_relacion_base=false;
+                    }
+        }
+        if (tiene_relacion_base) {
+            //usar relacion del base
+            String code=relacion_base;
+            
+            Session conexionf = funciones.getConexion();
+            Transaction txf2 = conexionf.beginTransaction();
+            String script = "UPDATE public.producto_twebscr_hist set relacion=null WHERE idproducto =" + idproducto ;
+            conexionf.createSQLQuery(script).executeUpdate();
+            txf2.commit();
+            conexionf.close();
+            return true;
+            
+        }
+        return false;
+    }
+     public String rand() {
+        int leftLimit = 97;
+        int rightLimit = 122;
+        int targetStringLength = 6;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+         for (int i = 0; i < targetStringLength; i++) {
+             int randomLimitedInt = leftLimit + (int)(random.nextFloat() * (rightLimit - leftLimit + 1));
+             buffer.append((char) randomLimitedInt);
+         }
+         String generatedString = buffer.toString();
+        return generatedString;
+    }
+
 }

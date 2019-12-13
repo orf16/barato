@@ -31,4 +31,6 @@ public interface ProductoInterface {
     public List <ProductoTwebscrHist> traerProductosAdmin(String nombre, String categoria, String producto,String marca,String presentacion,String volumen, String tienda, String pi, String pf, String nr);
     public List <ProductoTwebscrHist> traerRelacionados(String nombre);
     public List <ProductoTwebscrHist> traerRelacionadosID(int id);
+    public Boolean relacionarproducto(int idproducto_base, int idproducto_rel);
+    public Boolean eliminarrelacion(int idproducto);
 }

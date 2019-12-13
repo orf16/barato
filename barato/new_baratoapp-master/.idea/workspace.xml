@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1cdc40fd-11c5-4f6e-96d1-df433d583148" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/templates/new_baratoapp/index/scrap_modal_1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/src/main/java/controladores/AdminProductoControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/java/controladores/AdminProductoControlador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/src/main/java/interfaces/ProductoInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/java/interfaces/ProductoInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/src/main/java/modelos/ProductoTwebscrHist.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/java/modelos/ProductoTwebscrHist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/src/main/java/servicios/AdminProductos.java" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/java/servicios/AdminProductos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/src/main/resources/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/src/main/resources/hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0.war" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/AdminCategoriaControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/AdminCategoriaControlador.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/AdminListasControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/AdminListasControlador.class" afterDir="false" />
@@ -15,29 +11,17 @@
       <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/AdminProductoTiendaControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/AdminProductoTiendaControlador.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/AdminTiendaControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/AdminTiendaControlador.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/BuscadorControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/controladores/BuscadorControlador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/interfaces/ProductoInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/interfaces/ProductoInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/modelos/ProductoTwebscrHist.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/modelos/ProductoTwebscrHist.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/servicios/AdminProductos.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/servicios/AdminProductos.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/webScraping/ActualizarProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/webScraping/ActualizarProduct.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/webScraping/unificarProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/barato-1.0/WEB-INF/classes/webScraping/unificarProduct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminCategoriaControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminCategoriaControlador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminListasControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminListasControlador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminProductoControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminProductoControlador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminProductoTiendaControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminProductoTiendaControlador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminTiendaControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/controladores/AdminTiendaControlador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/controladores/BuscadorControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/controladores/BuscadorControlador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/hibernate.cfg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/hibernate.cfg.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/classes/interfaces/ProductoInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/interfaces/ProductoInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/modelos/ProductoTwebscrHist.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/modelos/ProductoTwebscrHist.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../barato/target/classes/servicios/AdminProductos.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/servicios/AdminProductos.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/webScraping/ActualizarProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/webScraping/ActualizarProduct.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/webScraping/unificarProduct.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/webScraping/unificarProduct.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../barato/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/static/js/consts_v2.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/consts_v2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/new_baratoapp/index/scrap_modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/new_baratoapp/index/scrap_modal.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/new_baratoapp/index/scrapping_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/new_baratoapp/index/scrapping_index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/new_baratoapp/index/tienda_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/new_baratoapp/index/tienda_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/templates/users/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/users/admin.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

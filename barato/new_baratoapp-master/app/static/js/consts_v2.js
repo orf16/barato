@@ -125,10 +125,15 @@ function myFunction2() {
         var e5 = document.getElementById("categoriaddl5");
         var tienda = e5.options[e5.selectedIndex].value;
 
+        var e6 = document.getElementById("categoriaddl6");
+        var nr = e6.options[e6.selectedIndex].value;
+
         var pi="1000";
         var pf="1000000";
 
-        var url = direccionserver+'getProductos_?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen+'&tienda='+tienda+'&pi='+pi+'&pf='+pf;
+
+
+        var url = direccionserver+'getProductos_?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen+'&tienda='+tienda+'&pi='+pi+'&pf='+pf+'&nr='+nr;
             axios.get(url, config).then(response => {
                 var productos = response.data;
                 document.getElementById("numRes").textContent='Número de resultados: '+productos.length.toString();
@@ -145,7 +150,7 @@ function myFunction2() {
                     }
                     var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
                     //var relacionar='<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Relacionar</button></td>';
-                    var relacionar='<td><button data-toggle="modal" data-target="#commentModal"  name="'+star.idproducto+'" type="button" title="Buscar Producto" class="btn btn-success btn-sm">Relacionar</button></td>';
+                    var relacionar='<td><button data-toggle="modal" onclick="myFunction2d('+star.idproducto+',\''+star.nombre+'\')" data-target="#commentModal"  name="'+star.idproducto+'" type="button" title="Buscar Producto" class="btn btn-success btn-sm">Relacionar</button></td>';
 
                     $('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+relacion_front+ '</td>'+relacionar+'</td>'+'<td>'+imagen+'</td>'+'</tr>');
 
@@ -156,10 +161,6 @@ function myFunction2() {
             });
 }
 
-
-$(".relacion_class").on('click', function(event){
-    alert('functioin');
-});
 
 function myFunction2a() {
         //document.getElementById("numRes").textContent='';
@@ -237,6 +238,117 @@ $("#relacionado_result").attr('name', '');
                     var relacion_delete='<button onclick="myFunction2c('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Eliminar de Relaciones" class="btn btn-warning btn-sm">Eliminar</button>';
                     var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
                     $('#relacionado_result tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
+                });
+            }).catch(error => {
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de productos.");
+            });
+}
+
+function myFunction2d(id, nombre) {
+
+    $('#Rcategoriaddl').find('option').remove().end();
+    $('#Rcategoriaddl1').find('option').remove().end();
+    $('#Rcategoriaddl2').find('option').remove().end();
+    $('#Rcategoriaddl3').find('option').remove().end();
+    $('#Rcategoriaddl4').find('option').remove().end();
+    $('#Rcategoriaddl5').find('option').remove().end();
+
+        $("#Rsearch").val(nombre);
+        $("#rel_name_").attr('name', '');
+        $("#rel_name_").text('name', 'Sin Relación');
+        $("#relacionado_result_").attr('name', '');
+        $("#relacionado_result_ tbody>tr").remove();
+        var nombre = id;
+        var url = direccionserver+'getRelacionadosRelacionar?id='+id;
+            axios.get(url, config).then(response => {
+                var productos = response.data;
+                $.each(productos  , function(i, star) {
+                    var igual=false;
+                    if(star.idproducto==id){
+                        igual=true;
+                    }
+                    if(igual){
+                        var relacion_delete='<button onclick="myFunction2c('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Eliminar de Relaciones" class="btn btn-warning btn-sm">Eliminar</button>';
+                    var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
+                    $('#relacionado_result_ tbody').append('<tr style="background-color:#f0f0ff;">'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
+                    $("#rel_name_").attr('name', star.relacion);
+                    $("#rel_name_").text(star.relacion);
+                    $("#relacionado_result_").attr('name', star.relacion);
+
+                    }
+                    else{
+                        var relacion_delete='<button onclick="myFunction2c('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Eliminar de Relaciones" class="btn btn-warning btn-sm">Eliminar</button>';
+                    var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
+                    $('#relacionado_result_ tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
+                    $("#rel_name_").attr('name', star.relacion);
+                    $("#rel_name_").text(star.relacion);
+                    $("#relacionado_result_").attr('name', star.relacion);
+                    }
+
+                });
+            }).catch(error => {
+                console.log(error);
+                alert("Ha ocurrido un error al momento de cargar la lista de productos.");
+            });
+
+
+            var $options = $("#categoriaddl > option").clone();
+            $('#Rcategoriaddl').append($options);
+            var $options = $("#categoriaddl1 > option").clone();
+            $('#Rcategoriaddl1').append($options);
+            var $options = $("#categoriaddl2 > option").clone();
+            $('#Rcategoriaddl2').append($options);
+            var $options = $("#categoriaddl3 > option").clone();
+            $('#Rcategoriaddl3').append($options);
+            var $options = $("#categoriaddl4 > option").clone();
+            $('#Rcategoriaddl4').append($options);
+            var $options = $("#categoriaddl5 > option").clone();
+            $('#Rcategoriaddl5').append($options);
+
+
+}
+
+function myFunction2e() {
+        document.getElementById("RnumRes").textContent='';
+        $("#Rresults_tb tbody>tr").remove();
+        var nombre = document.getElementById("Rsearch").value;
+
+        var e = document.getElementById("Rcategoriaddl");
+        var categoria = e.options[e.selectedIndex].value;
+
+        var e1 = document.getElementById("Rcategoriaddl1");
+        var producto = e1.options[e1.selectedIndex].value;
+
+        var e2 = document.getElementById("Rcategoriaddl3");
+        var marca = e2.options[e2.selectedIndex].value;
+
+        var e3 = document.getElementById("Rcategoriaddl2");
+        var presentacion = e3.options[e3.selectedIndex].value;
+
+        var e4 = document.getElementById("Rcategoriaddl4");
+        var volumen = e4.options[e4.selectedIndex].value;
+
+        var e5 = document.getElementById("Rcategoriaddl5");
+        var tienda = e5.options[e5.selectedIndex].value;
+
+ var nr=0;
+
+        var pi="1000";
+        var pf="1000000";
+
+
+
+        var url = direccionserver+'getProductos_?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen+'&tienda='+tienda+'&pi='+pi+'&pf='+pf+'&nr='+nr;
+            axios.get(url, config).then(response => {
+                var productos = response.data;
+                document.getElementById("RnumRes").textContent='Número de resultados: '+productos.length.toString();
+                $.each(productos  , function(i, star) {
+                    var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
+                    var relacionar='<td><button data-toggle="modal" onclick="myFunction2d('+star.idproducto+','+star.nombre+')" data-target="#commentModal"  name="'+star.idproducto+'" type="button" title="Buscar Producto" class="btn btn-success btn-sm">Relacionar</button></td>';
+                    var button='<button data-toggle="modal" onclick="relacionar('+star.idproducto+')" data-target="#commentModal"  name="'+star.idproducto+'" type="button" title="Relacionar Producto" class="btn btn-success btn-sm">Relacionar</button>';
+                    $('#Rresults_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+button+'</td>'+'</tr>');
+
                 });
             }).catch(error => {
                 console.log(error);

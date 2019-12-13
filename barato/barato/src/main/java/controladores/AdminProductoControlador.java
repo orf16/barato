@@ -134,4 +134,14 @@ public class AdminProductoControlador {
             return null;
         }        
     }
+    @RequestMapping(value = "/getRelacionadosRelacionar", method = RequestMethod.GET)
+    @ResponseBody
+    public String getRelacionadosRelacionar( @RequestParam(required = true, value = "id") int id
+    
+    ) throws IOException, JSONException{  
+
+            List<ProductoTwebscrHist> productoList = prod.traerRelacionadosID(id);
+            return mapper.writeValueAsString( productoList );
+       
+    }
 }

@@ -460,6 +460,8 @@ public class AdminProductos implements ProductoInterface {
             query.setDouble("pf", pfd);
         }
         List<ProductoTwebscrHist> productoList = query.list();
+        List<ProductoTwebscrHist> listabase = new ArrayList<ProductoTwebscrHist>();
+        int nri=-1;
         conexion.close();
         for (ProductoTwebscrHist item : productoList) {
             String relacion=item.getRelacion();
@@ -472,14 +474,46 @@ public class AdminProductos implements ProductoInterface {
                 if (relaciones.size()>0) {
                     item.setNum_relacion(relaciones.size());
                 }
+                
+                try {
+                   nri = Integer.parseInt(nr);
+                }
+                catch (NumberFormatException e)
+                {
+                   nri = -1;
+                }
+                if (nri==0) {
+                    if (relaciones.size()==0) {
+                        listabase.add(item);
+                    }
+                }
+                else{
+                    if (relaciones.size()>=nri) {
+                        listabase.add(item);
+                    }
+                }
+                
                 cnx.close();
             }
             else{
                 item.setNum_relacion(-1);
+                try {
+                   nri = Integer.parseInt(nr);
+                }
+                catch (NumberFormatException e)
+                {
+                   nri = -1;
+                }
+                if (nri==0) {
+                   listabase.add(item);
+                }
             }
             //listaEmails.add(valor);
             
         }
+         if (nri>=0) {
+             return listabase;
+         }
         return productoList;
     }
     
@@ -487,8 +521,19 @@ public class AdminProductos implements ProductoInterface {
     public List<ProductoTwebscrHist> traerRelacionados(String nombre) {
         
         Session cnx = funciones.getConexion();
-                String query_rel="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, p.tienda_nom from producto_twebscr_hist p where p.relacion=:relacion";
-                Query qry = cnx.createSQLQuery(query_rel).addEntity(ProductoTwebscrHist.class);
+                
+        String base="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, t.nombre as tienda_nom from producto_twebscr_hist p ";
+        base+=" INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea ";
+        base+=" INNER JOIN  almacen s on d.idalmacen = s.idalmacen ";
+        base+=" INNER JOIN tienda t  ON t.idtienda = s.idtienda ";
+        base+=" where p.relacion=:relacion ";
+        
+        
+        //String query_rel="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, p.tienda_nom from producto_twebscr_hist p where p.relacion=:relacion";
+                
+                
+                
+                Query qry = cnx.createSQLQuery(base).addEntity(ProductoTwebscrHist.class);
                 qry.setString("relacion", nombre);
                 List<ProductoTwebscrHist> relaciones = qry.list();
                 if (relaciones.size()>0) {
@@ -499,5 +544,72 @@ public class AdminProductos implements ProductoInterface {
                     cnx.close();
                     return null;
                 }
+    }
+    @Override
+    public List<ProductoTwebscrHist> traerRelacionadosID(int id) {
+        
+        Session cnx = funciones.getConexion();
+                
+        String base="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, t.nombre as tienda_nom from producto_twebscr_hist p ";
+        base+=" INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea ";
+        base+=" INNER JOIN  almacen s on d.idalmacen = s.idalmacen ";
+        base+=" INNER JOIN tienda t  ON t.idtienda = s.idtienda ";
+        base+=" where p.idproducto=:idproducto ";
+        
+        
+        //String query_rel="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, p.tienda_nom from producto_twebscr_hist p where p.relacion=:relacion";
+                
+                Query qry = cnx.createSQLQuery(base).addEntity(ProductoTwebscrHist.class);
+                qry.setInteger("idproducto", id);
+                List<ProductoTwebscrHist> producto = qry.list();
+                cnx.close();
+                if (producto.size()>0) {
+                    String relacion= producto.get(0).getRelacion();
+                    if (relacion!=null) {
+                        String base1="SELECT p.idproducto, p.nombre, p.detalle, p.fecha, p.hora, p.fechahora, p.idtarea, p.direccion_imagen,p.idcategoria, p.codigotienda, p.descripcion, p.precio, p.url, p.relacion, p.activo, t.nombre as tienda_nom from producto_twebscr_hist p ";
+                        base1+=" INNER JOIN tareawebscraper d ON p.idtarea = d.idtarea ";
+                        base1+=" INNER JOIN  almacen s on d.idalmacen = s.idalmacen ";
+                        base1+=" INNER JOIN tienda t  ON t.idtienda = s.idtienda ";
+                        base1+=" where p.relacion=:relacion ";
+                        
+                        
+                        Session cnx1 = funciones.getConexion();
+                        Query qry1 = cnx1.createSQLQuery(base1).addEntity(ProductoTwebscrHist.class);
+                        qry1.setString("relacion", relacion);
+                        List<ProductoTwebscrHist> relaciones = qry1.list();
+                        cnx1.close();
+                        if (relaciones.size()>0) {
+                            return relaciones;
+                        }
+                        else{
+                            return null;
+                        }
+                    }
+                    else{
+                        return null;
+                    }    
+                    //return producto;
+                }
+                else{
+                    return null;
+                }
+    }
+    public Boolean relacionarproducto(int idproducto, String Relacion) {
+        //Consultar si existe la relacion
+        //Si existe captar el número
+        //Si no crear codigo nuevo relacionado con la fecha y hora
+        //actualizar el producto con la nueva relación
+        //Si el producto ya esta relacionado se debe indicar
+        
+        return null;
+    }
+    public Boolean eliminarrelacion(int idproducto, String Relacion) {
+        //Consultar si existe la relacion
+        //Si existe captar el número
+        //Si no crear codigo nuevo relacionado con la fecha y hora
+        //actualizar el producto con la nueva relación
+        //Si el producto ya esta relacionado se debe indicar
+        
+        return null;
     }
 }

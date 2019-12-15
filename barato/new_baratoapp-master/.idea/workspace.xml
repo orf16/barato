@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1cdc40fd-11c5-4f6e-96d1-df433d583148" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/interfaces/ProductoInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/interfaces/ProductoInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../barato/target/classes/servicios/AdminProductos.class" beforeDir="false" afterPath="$PROJECT_DIR$/../barato/target/classes/servicios/AdminProductos.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/static/css/baratoapp_v1.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/css/baratoapp_v1.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/static/js/consts_v2.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/static/js/consts_v2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/templates/new_baratoapp/index/scrap_modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/new_baratoapp/index/scrap_modal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/new_baratoapp/index/scrapping_index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/new_baratoapp/index/scrapping_index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +69,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.appearance" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">

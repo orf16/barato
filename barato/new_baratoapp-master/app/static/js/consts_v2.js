@@ -86,13 +86,10 @@
             }
             var nombre = localStorage.getItem("session");
     }
-
     function myFunction6() {
 
             localStorage.clear();
     }
-
-
     function makeid(length) {
        var result           = '';
        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -102,7 +99,8 @@
        }
        return result;
     }
-    function myFunction2() {
+    function Consulta() {
+            sessionStorage.clear();
             document.getElementById("numRes").textContent='';
             $("#results_tb tbody>tr").remove();
             var nombre = document.getElementById("search").value;
@@ -132,27 +130,19 @@
             var pf="1000000";
 
 
-
             var url = direccionserver+'getProductos_?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen+'&tienda='+tienda+'&pi='+pi+'&pf='+pf+'&nr='+nr;
                 axios.get(url, config).then(response => {
+                    sessionStorage.setItem("key_consulta", nombre);
                     var productos = response.data;
                     document.getElementById("numRes").textContent='Número de resultados: '+productos.length.toString();
-
-
-
-
-
-                    $.each(productos  , function(i, star) {
-                        //$('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>'+ '</td>'+'<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">eliminar</button></td>'+'</tr>');
-                        var relacion_front='<td><button id="modal1"  onclick="myFunction2b(\''+star.relacion+'\')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target="#commentModal1" class="relacion_class btn btn-success btn-sm">Buscar ('+star.num_relacion+')</button></td>';
-                        if(star.relacion==null){
+                    $.each(productos  , function(i, itemb) {
+                        var relacion_front='<td><button id="modal_b_'+itemb.idproducto+'" name1="'+itemb.num_relacion+'" onclick="modal_cons_rel(\''+itemb.relacion+'\')" name="'+itemb.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target="#commentModal1" class="relacion_class btn btn-success btn-sm">Buscar ('+itemb.num_relacion+')</button></td>';
+                        if(itemb.relacion==null){
                             relacion_front='<td>SIN</td>';
                         }
-                        var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
-                        //var relacionar='<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Relacionar</button></td>';
-                        var relacionar='<td><button data-toggle="modal" onclick="myFunction2d('+star.idproducto+',\''+star.nombre+'\')" data-target="#commentModal"  name="'+star.idproducto+'" type="button" title="Buscar Producto" class="btn btn-success btn-sm">Relacionar</button></td>';
-
-                        $('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+relacion_front+ '</td>'+relacionar+'</td>'+'<td>'+imagen+'</td>'+'</tr>');
+                        var imagen='<img border="0" alt="Sin Imagen" src="'+itemb.direccionImagen+'" width="100" height="100">';
+                        var relacionar='<td><button data-toggle="modal" id="button_rel_'+itemb.idproducto+'" onclick="relacionb('+itemb.idproducto+',\''+itemb.nombre+'\',\''+itemb.tiendaNom+'\',\''+itemb.direccionImagen+'\',\''+itemb.precio+'\')" data-target="#commentModal"  name="'+itemb.idproducto+'" type="button" title="Buscar Producto" class="btn btn-success btn-sm">Relacionar</button></td>';
+                        $('#results_tb tbody').append('<tr>'+'<td>' + itemb.idproducto+ '</td>'+'<td>' + itemb.nombre + '</td>'+'<td>' + itemb.detalle + '</td>'+'<td>' + itemb.codigotienda + '</td>'+'<td>' + itemb.precio + '</td>'+'<td>' + itemb.tiendaNom + '</td>'+relacion_front+ '</td>'+relacionar+'</td>'+'<td>'+imagen+'</td>'+'</tr>');
 
                     });
                 }).catch(error => {
@@ -160,10 +150,8 @@
                     alert("Ha ocurrido un error al momento de cargar la lista de productos.");
                 });
     }
-
-
     function myFunction2a() {
-            //document.getElementById("numRes").textContent='';
+
             $("#Rresults_tb tbody>tr").remove();
             var nombre = document.getElementById("Rsearch").value;
 
@@ -193,21 +181,17 @@
                     var productos = response.data;
                     //document.getElementById("numRes").textContent='Número de resultados: '+productos.length.toString();
 
-
-
-
-
-                    $.each(productos  , function(i, star) {
-                        //$('#results_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>'+ '</td>'+'<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">eliminar</button></td>'+'</tr>');
-                        var relacion_front='<td><button onclick="myFunction3('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>';
-                        if(star.relacion==null){
+                    $.each(productos  , function(i, itemb) {
+                        //$('#results_tb tbody').append('<tr>'+'<td>' + itemb.idproducto+ '</td>'+'<td>' + itemb.nombre + '</td>'+'<td>' + itemb.detalle + '</td>'+'<td>' + itemb.codigotienda + '</td>'+'<td>' + itemb.precio + '</td>'+'<td>' + itemb.tiendaNom + '</td>'+'<td><button onclick="myFunction3('+itemb.idproducto+')" name="'+itemb.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>'+ '</td>'+'<td><button onclick="myFunction7('+itemb.idproducto+')" name="'+itemb.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">eliminar</button></td>'+'</tr>');
+                        var relacion_front='<td><button onclick="myFunction3('+itemb.idproducto+')" name="'+itemb.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Buscar</button></td>';
+                        if(itemb.relacion==null){
                             relacion_front='<td></td>';
                         }
                         relacion_front='<td></td>';
-                        //var relacionar='<td><button onclick="myFunction7('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Relacionar</button></td>';
-                        var relacionar='<td><button data-toggle="modal" data-target="#commentModal"  name="'+star.idproducto+'" type="button" title="Buscar Producto" class="btn btn-danger btn-sm">Relacionar</button></td>';
+                        //var relacionar='<td><button onclick="myFunction7('+itemb.idproducto+')" name="'+itemb.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target=".modal-shop-list" class="btn btn-success btn-sm">Relacionar</button></td>';
+                        var relacionar='<td><button data-toggle="modal" data-target="#commentModal"  name="'+itemb.idproducto+'" type="button" title="Buscar Producto" class="btn btn-danger btn-sm">Relacionar</button></td>';
 
-                        $('#Rresults_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+relacion_front+ '</td>'+relacionar+'</tr>');
+                        $('#Rresults_tb tbody').append('<tr>'+'<td>' + itemb.idproducto+ '</td>'+'<td>' + itemb.nombre + '</td>'+'<td>' + itemb.detalle + '</td>'+'<td>' + itemb.codigotienda + '</td>'+'<td>' + itemb.precio + '</td>'+'<td>' + itemb.tiendaNom + '</td>'+relacion_front+ '</td>'+relacionar+'</tr>');
 
                     });
                 }).catch(error => {
@@ -215,7 +199,7 @@
                     alert("Ha ocurrido un error al momento de cargar la lista de productos.");
                 });
     }
-    function myFunction2b(rel) {
+    function modal_cons_rel(rel) {
 
 
         $("#rel_name").attr('name', '');
@@ -224,7 +208,7 @@
 
 
             $("#rel_name").attr('name', rel);
-            $("#rel_name").text(rel);
+            $("#rel_name").text(rel.toUpperCase());
             //$("#rel_name").text(rel);
             $("#relacionado_result").attr('name', rel);
 
@@ -234,18 +218,17 @@
             var url = direccionserver+'getRelacionados?nombre='+nombre;
                 axios.get(url, config).then(response => {
                     var productos = response.data;
-                    $.each(productos  , function(i, star) {
-                        var relacion_delete='<button onclick="eliminarrel('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Eliminar de Relaciones" class="btn btn-warning btn-sm">Eliminar</button>';
-                        var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
-                        $('#relacionado_result tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
+                    $.each(productos  , function(i, itemb) {
+                        var relacion_delete='<button onclick="eliminarrel('+itemb.idproducto+')" name="'+itemb.idproducto+'" type="button" title="Eliminar de Relaciones" class="btn btn-warning btn-sm">Eliminar</button>';
+                        var imagen='<img border="0" alt="Sin Imagen" src="'+itemb.direccionImagen+'" width="100" height="100">';
+                        $('#relacionado_result tbody').append('<tr id="relacion_row_'+ itemb.idproducto +'" id="fff">'+'<td>' + itemb.idproducto+ '</td>'+'<td>' + itemb.nombre + '</td>'+'<td>' + itemb.detalle + '</td>'+'<td>' + itemb.codigotienda + '</td>'+'<td>' + itemb.precio + '</td>'+'<td>' + itemb.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
                     });
                 }).catch(error => {
                     console.log(error);
                     alert("Ha ocurrido un error al momento de cargar la lista de productos.");
                 });
     }
-
-    function myFunction2d(id, nombre) {
+    function relacionb(id, nombre, tienda, imagen, precio) {
 
         $('#Rcategoriaddl').find('option').remove().end();
         $('#Rcategoriaddl1').find('option').remove().end();
@@ -262,34 +245,38 @@
             $("#rel_id_base").attr('name1', '');
             $("#rel_id_base").attr('name1', id);
 
+            $('#prd_tienda').text(tienda);
+            $('#prd_precio').text(precio);
+            $("#prd_imagen").attr('src', imagen);
 
 
-            $('#prd_name').text(nombre);
+
+            $('#prd_name').text(nombre.toUpperCase());
             $('#prd_id').text(id);
             var nombre = id;
             var url = direccionserver+'getRelacionadosRelacionar?id='+id;
                 axios.get(url, config).then(response => {
                     var productos = response.data;
-                    $.each(productos  , function(i, star) {
+                    $.each(productos  , function(i, itemb) {
                         var igual=false;
-                        if(star.idproducto==id){
+                        if(itemb.idproducto==id){
                             igual=true;
                         }
                         if(igual){
-                            var relacion_delete='<button onclick="eliminarrel('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Eliminar de Relaciones" class="btn btn-warning btn-sm">Eliminar</button>';
-                        var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
-                        $('#relacionado_result_ tbody').append('<tr style="background-color:#f0f0ff;">'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
-                        $("#rel_name_").attr('name', star.relacion);
-                        $("#rel_name_").text(star.relacion);
-                        $("#relacionado_result_").attr('name', star.relacion);
+                            var relacion_delete='<button onclick="eliminarrel('+itemb.idproducto+')" name="'+itemb.idproducto+'" type="button" title="Eliminar de Relaciones" class="btn btn-warning btn-sm">Eliminar</button>';
+                        var imagen='<img border="0" alt="Sin Imagen" src="'+itemb.direccionImagen+'" width="100" height="100">';
+                        $('#relacionado_result_ tbody').append('<tr id="relacion_row_r_'+ itemb.idproducto +'" style="background-color:#f0f0ff;">'+'<td>' + itemb.idproducto+ '</td>'+'<td>' + itemb.nombre + '</td>'+'<td>' + itemb.detalle + '</td>'+'<td>' + itemb.codigotienda + '</td>'+'<td>' + itemb.precio + '</td>'+'<td>' + itemb.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
+                        $("#rel_name_").attr('name', itemb.relacion);
+                        $("#rel_name_").text(itemb.relacion.toUpperCase());
+                        $("#relacionado_result_").attr('name', itemb.relacion);
                         }
                         else{
-                            var relacion_delete='<button onclick="eliminarrel('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Eliminar de Relaciones" class="btn btn-warning btn-sm">Eliminar</button>';
-                        var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
-                        $('#relacionado_result_ tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
-                        $("#rel_name_").attr('name', star.relacion);
-                        $("#rel_name_").text(star.relacion);
-                        $("#relacionado_result_").attr('name', star.relacion);
+                            var relacion_delete='<button onclick="eliminarrel('+itemb.idproducto+')" name="'+itemb.idproducto+'" type="button" title="Eliminar de Relaciones" class="btn btn-warning btn-sm">Eliminar</button>';
+                        var imagen='<img border="0" alt="Sin Imagen" src="'+itemb.direccionImagen+'" width="100" height="100">';
+                        $('#relacionado_result_ tbody').append('<tr id="relacion_row_r_'+ itemb.idproducto +'">'+'<td>' + itemb.idproducto+ '</td>'+'<td>' + itemb.nombre + '</td>'+'<td>' + itemb.detalle + '</td>'+'<td>' + itemb.codigotienda + '</td>'+'<td>' + itemb.precio + '</td>'+'<td>' + itemb.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
+                        $("#rel_name_").attr('name', itemb.relacion);
+                        $("#rel_name_").text(itemb.relacion.toUpperCase());
+                        $("#relacionado_result_").attr('name', itemb.relacion);
 
                         }
 
@@ -315,15 +302,18 @@
 
 
     }
-
-
-    function eliminarrel(p1) {
-            var url = direccionserver+'getEliminarRelacionar?idbase='+p1;
+    function eliminarrel(id) {
+            var url = direccionserver+'getEliminarRelacionar?idbase='+id;
                 axios.get(url, config).then(response => {
                     var respuesta = response.data;
                     if(respuesta){
                         alert('La relación se ha eliminado correctamente');
-                        myFunction2d(p1,'');
+                        $('#relacion_row_'+id).remove();
+                        $('#relacion_row_r_'+id).remove();
+                        var ult_consulta = sessionStorage.getItem("key_consulta");
+                        $("#search").text(ult_consulta);
+                        $("#search").val(ult_consulta);
+                        $("#consulta_button").click();
                     }
                     else{
                     alert('No se ha eliminado la relación');
@@ -339,7 +329,12 @@
                     var respuesta = response.data;
                     if(respuesta){
                         alert('Los productos se han relacionado correctamente');
-                        myFunction2d(p1,'');
+                        var ult_consulta = sessionStorage.getItem("key_consulta");
+                        $("#search").text(ult_consulta);
+                        $("#search").val(ult_consulta);
+                        $("#consulta_button").click();
+                        $("#button_rel_"+p1).click();
+
                     }
                     else{
                     alert('Los productos no se han relacionado');
@@ -349,7 +344,7 @@
                     alert("Ha ocurrido un error al momento de cargar la lista de productos.");
                 });
     }
-    function myFunction2e() {
+    function consulta_comp() {
             document.getElementById("RnumRes").textContent='';
             $("#Rresults_tb tbody>tr").remove();
             var nombre = document.getElementById("Rsearch").value;
@@ -385,11 +380,11 @@
                 axios.get(url, config).then(response => {
                     var productos = response.data;
                     document.getElementById("RnumRes").textContent='Número de resultados: '+productos.length.toString();
-                    $.each(productos  , function(i, star) {
-                        var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
-                        var relacionar='<td><button data-toggle="modal" onclick="myFunction2d('+star.idproducto+','+star.nombre+')" data-target="#commentModal"  name="'+star.idproducto+'" type="button" title="Buscar Producto" class="btn btn-success btn-sm">Relacionar</button></td>';
-                        var button='<button data-toggle="modal" onclick="relacionar('+idbase+','+star.idproducto+')" data-target="#commentModal"  name="'+star.idproducto+'" type="button" title="Relacionar Producto" class="btn btn-success btn-sm">Relacionar</button>';
-                        $('#Rresults_tb tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+button+'</td>'+'</tr>');
+                    $.each(productos  , function(i, itemb) {
+                        var imagen='<img border="0" alt="Sin Imagen" src="'+itemb.direccionImagen+'" width="100" height="100">';
+                        var relacionar='<td><button data-toggle="modal" onclick="relacionb('+itemb.idproducto+',\''+itemb.nombre+'\',\''+itemb.tiendaNom+'\',\''+itemb.direccionImagen+'\',\''+itemb.precio+'\')" data-target="#commentModal"  name="'+itemb.idproducto+'" type="button" title="Buscar Producto" class="btn btn-success btn-sm">Relacionar</button></td>';
+                        var button='<button data-toggle="modal" onclick="relacionar('+idbase+','+itemb.idproducto+')" data-target="#commentModal"  name="'+itemb.idproducto+'" type="button" title="Relacionar Producto" class="btn btn-success btn-sm">Relacionar</button>';
+                        $('#Rresults_tb tbody').append('<tr>'+'<td>' + itemb.idproducto+ '</td>'+'<td>' + itemb.nombre + '</td>'+'<td>' + itemb.detalle + '</td>'+'<td>' + itemb.codigotienda + '</td>'+'<td>' + itemb.precio + '</td>'+'<td>' + itemb.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+button+'</td>'+'</tr>');
 
                     });
                 }).catch(error => {
@@ -404,22 +399,17 @@
             var url = direccionserver+'getRelacionados?nombre='+nombre;
                 axios.get(url, config).then(response => {
                     var productos = response.data;
-                    $.each(productos  , function(i, star) {
+                    $.each(productos  , function(i, itemb) {
 
-                        var relacion_delete='<button onclick="eliminarrel('+star.idproducto+')" name="'+star.idproducto+'" type="button" title="Eliminar de Relaciones"  class="btn btn-warning btn-sm">Eliminar</button>';
-                        var imagen='<img border="0" alt="Sin Imagen" src="'+star.direccionImagen+'" width="100" height="100">';
-                        $('#relacionado_result tbody').append('<tr>'+'<td>' + star.idproducto+ '</td>'+'<td>' + star.nombre + '</td>'+'<td>' + star.detalle + '</td>'+'<td>' + star.codigotienda + '</td>'+'<td>' + star.precio + '</td>'+'<td>' + star.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
+                        var relacion_delete='<button onclick="eliminarrel('+itemb.idproducto+')" name="'+itemb.idproducto+'" type="button" title="Eliminar de Relaciones"  class="btn btn-warning btn-sm">Eliminar</button>';
+                        var imagen='<img border="0" alt="Sin Imagen" src="'+itemb.direccionImagen+'" width="100" height="100">';
+                        $('#relacionado_result tbody').append('<tr>'+'<td>' + itemb.idproducto+ '</td>'+'<td>' + itemb.nombre + '</td>'+'<td>' + itemb.detalle + '</td>'+'<td>' + itemb.codigotienda + '</td>'+'<td>' + itemb.precio + '</td>'+'<td>' + itemb.tiendaNom + '</td>'+'<td>'+imagen+'</td>'+'<td>'+relacion_delete+'</td></tr>');
                     });
                 }).catch(error => {
                     console.log(error);
                     alert("Ha ocurrido un error al momento de cargar la lista de productos.");
                 });
     }
-
-            $('#commentModal1').on('show.bs.modal', function (e) {
-
-            })
-
     function cargarCategoria() {
             var url = direccionserver+'getWebScrapingTodos1';
                 axios.get(url, config).then(response => {
@@ -430,14 +420,12 @@
                     alert("Ha ocurrido un error al momento de cargar la lista de categorias.");
                 });
     }
-
     function setCookie(cname, cvalue, exdays) {
         var d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
         var expires = "expires="+d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
-
     function getCookie(cname) {
         var name = cname + "=";
         var ca = document.cookie.split(';');

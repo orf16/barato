@@ -20,7 +20,7 @@
                 </div>
             </div>
 
-
+            <button id="Pconsulta_button" onclick="Categoriasws()" class="btn btn-outline-secondary btn-warning" type="button">Buscar</button>
 <!--            <div class="col-sm-12">
 
                 <button onclick="myFunction4()" type="button" title="Buscar Producto" data-toggle="modal"
@@ -41,6 +41,58 @@
                 <span>Categoria</span>
             </div>
             <div class="col-sm-12">
+                <select id="Pcategoriaddl" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <span>Producto</span>
+            </div>
+            <div class="col-sm-12">
+                <select id="Pcategoriaddl1" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <span>Presentacion</span>
+            </div>
+            <div class="col-sm-12">
+                <select id="Pcategoriaddl2" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <span>Marca</span>
+            </div>
+            <div class="col-sm-12">
+                <select id="Pcategoriaddl3" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="col-sm-12">
+                <span>Volumen</span>
+            </div>
+            <div class="col-sm-12">
+                <select id="Pcategoriaddl4" name="select" class="form-control form-control-lg">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="d-none col-sm-4">
+            <div class="col-sm-12">
+                <span>Categoria</span>
+            </div>
+            <div class="col-sm-12">
                 <select id="categoriaddl" name="select" class="form-control form-control-lg">
                     <option value=""></option>
                     <template v-for="list in shopCategoria" v-if="!loading">
@@ -51,8 +103,7 @@
                 </select>
             </div>
         </div>
-
-        <div class="col-sm-4">
+        <div class="d-none col-sm-4">
             <div class="col-sm-12">
                 <span>Producto</span>
             </div>
@@ -67,8 +118,7 @@
                 </select>
             </div>
         </div>
-
-        <div class="col-sm-4">
+        <div class="d-none col-sm-4">
             <div class="col-sm-12">
                 <span>Presentacion</span>
             </div>
@@ -83,8 +133,7 @@
                 </select>
             </div>
         </div>
-
-        <div class="col-sm-4">
+        <div class="d-none col-sm-4">
             <div class="col-sm-12">
                 <span>Marca</span>
             </div>
@@ -99,8 +148,7 @@
                 </select>
             </div>
         </div>
-
-        <div class="col-sm-4">
+        <div class="d-none col-sm-4">
             <div class="col-sm-12">
                 <span>Volumen</span>
             </div>
@@ -115,7 +163,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="d-none col-sm-4">
             <div class="col-sm-12">
                 <span>Relacion</span>
             </div>
@@ -127,8 +175,7 @@
                 </select>
             </div>
         </div>
-
-        <div class="col-sm-4">
+        <div class="d-none col-sm-4">
             <div class="col-sm-12">
                 <span>Tienda</span>
             </div>
@@ -141,6 +188,8 @@
                 </select>
             </div>
         </div>
+
+
 
         <div class="col-sm-12 mt-2">
             <div class="col-sm-12">

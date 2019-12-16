@@ -1,6 +1,6 @@
     //var direccionserver = 'https://servicio.baratoapp.co/barato/';
-    var direccionserver = 'http://ec2-54-164-83-211.compute-1.amazonaws.com:8080/barato-1.0/';
-    //var direccionserver = 'http://localhost:8083/barato-1.0/';
+    //var direccionserver = 'http://ec2-54-164-83-211.compute-1.amazonaws.com:8080/barato-1.0/';
+    var direccionserver = 'http://localhost:8083/barato-1.0/';
     var pass = 'gTddSgsRD!Csta5gKXZ$Dfh7jNvg?pMeS75%45A9GCje&^X^?3&$?5Z*Fj#YC47fGaNNX4Mp=syV9UqC-CcAM^^$_7rDsFT89^e+';
     var user = 'baratoUser';
     var UserEmail = document.getElementById('userEmailToken').value;
@@ -77,6 +77,45 @@
         }
 
 
+    }
+       function Categoriasws() {
+       var n1=[];
+       var n2=[];
+       var n3=[];
+       var n4=[];
+       var n5=[];
+       var n6=[];
+       var n7=[];
+       var n8=[];
+            var nombre = document.getElementById("search").value;
+            var categoria = '';var producto = '';var marca = '';var presentacion = '';var volumen = '';
+            var url = direccionserver+'getCategoriaWord?nombre='+nombre+'&categoria='+categoria+'&producto='+producto+'&marca='+marca+'&presentacion='+presentacion+'&volumen='+volumen;
+                axios.get(url, config).then(response => {
+                    var productos = response.data;
+                    $.each(productos  , function(i, itemb) {
+                        if(itemb.idTipo==6){
+                            $('#Pcategoriaddl').append(new Option(itemb.caracteristica, itemb.caracteristica));
+                        }
+                        if(itemb.idTipo==3){
+                            $('#Pcategoriaddl1').append(new Option(itemb.caracteristica, itemb.caracteristica));
+                        }
+                        if(itemb.idTipo==4){
+                            $('#Pcategoriaddl2').append(new Option(itemb.caracteristica, itemb.caracteristica));
+                        }
+                        if(itemb.idTipo==2){
+                            $('#Pcategoriaddl3').append(new Option(itemb.caracteristica, itemb.caracteristica));
+                        }
+                        if(itemb.idTipo==5){
+                            $('#Pcategoriaddl4').append(new Option(itemb.caracteristica, itemb.caracteristica));
+                        }
+
+                    });
+
+                }).catch(error => {
+                    console.log(error);
+                    alert("Ha ocurrido un error al momento de cargar la lista de productos.");
+                });
+                console.log('ddd');
     }
     function myFunction4() {
 

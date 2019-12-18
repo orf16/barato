@@ -450,14 +450,15 @@ public class AdminListasImplementacion implements AdminListasInterface {
     @Override
     public List<ListaProductoNew> listaComparacionBaseA(String usuario) {
 
-        List<ListaProductoNew> listaComparacionBase = traerListaProdNew(usuario);
+        List<ListaProductoNew> listaComparacionBase1 = traerListaProdNew(usuario);
+        List<ListaProductoNew> listaComparacionBase = new ArrayList();
         Collection<Integer> productosID = new ArrayList<Integer>();
         Collection<String> RelacionID = new ArrayList<String>();
-        for (ListaProductoNew p : listaComparacionBase) {
+        for (ListaProductoNew p : listaComparacionBase1) {
             Boolean almacenar = true;
             for (String rel : RelacionID) {
                 if (p.getRelaciones() != null) {
-                    if (rel == p.getRelaciones()) {
+                    if (rel.equalsIgnoreCase(p.getRelaciones())) {
                         almacenar = false;
                     }
                 } else {
@@ -465,6 +466,7 @@ public class AdminListasImplementacion implements AdminListasInterface {
                 }
             }
             if (almacenar) {
+                listaComparacionBase.add(p);
                 productosID.add(p.getIdproducto());
                 RelacionID.add(p.getRelaciones());
             }
@@ -502,6 +504,7 @@ public class AdminListasImplementacion implements AdminListasInterface {
             tiendas.add((Integer) objArr[0]);
             listabase.add(base);
         }
+        List<String> deRelacion = new ArrayList<>(new HashSet<>(RelacionID));
         List<Integer> deListTienda = new ArrayList<>(new HashSet<>(tiendas));
 
         int tiendaBarata = -1;
@@ -528,10 +531,10 @@ public class AdminListasImplementacion implements AdminListasInterface {
                 SumaCara = SumaPrecio;
             }
 
-            if (SumaPrecio < SumaBarata) {
+            if (SumaPrecio < SumaBarata && SumaPrecio>0) {
                 tiendaBarata = p;
                 SumaBarata = SumaPrecio;
-
+                listaReturn.clear(); 
                 for (ProductoTwebscrHist p1 : listabase) {
                     Boolean EsTienda = false;
                     if (p1.getIdcategoria().equals(tiendaBarata)) {

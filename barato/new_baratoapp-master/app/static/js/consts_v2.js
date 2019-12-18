@@ -67,7 +67,7 @@
     }
     function myFunction5() {
         if(localStorage.getItem("session")!=null){
-            var url = direccionserver+'getListaBaratoB?body='+localStorage.getItem("session");
+            var url = direccionserver+'getListaBaratoA?body='+localStorage.getItem("session");
                 axios.get(url, config).then(response => {
                     var productos = response.data;
                 }).catch(error => {
@@ -78,6 +78,7 @@
 
 
     }
+
        function Categoriasws() {
        var n1=[];
        var n2=[];
@@ -176,12 +177,15 @@
                     document.getElementById("numRes").textContent='Número de resultados: '+productos.length.toString();
                     $.each(productos  , function(i, itemb) {
                         var relacion_front='<td><button id="modal_b_'+itemb.idproducto+'" name1="'+itemb.num_relacion+'" onclick="modal_cons_rel(\''+itemb.relacion+'\')" name="'+itemb.idproducto+'" type="button" title="Buscar Producto" data-toggle="modal" data-target="#commentModal1" class="relacion_class btn btn-success btn-sm">Buscar ('+itemb.num_relacion+')</button></td>';
+                        var relacion_front_1='<td><button  onclick="myFunction3('+itemb.idproducto+')"  type="button" title="Buscar Producto" class="relacion_class btn btn-success btn-sm">agregar</button></td>';
+                        var relacion_front_2='<td><button  onclick="myFunction7('+itemb.idproducto+')"  type="button" title="Buscar Producto" class="relacion_class btn btn-success btn-sm">retire</button></td>';
+
                         if(itemb.relacion==null){
                             relacion_front='<td>SIN</td>';
                         }
                         var imagen='<img border="0" alt="Sin Imagen" src="'+itemb.direccionImagen+'" width="100" height="100">';
                         var relacionar='<td><button data-toggle="modal" id="button_rel_'+itemb.idproducto+'" onclick="relacionb('+itemb.idproducto+',\''+itemb.nombre+'\',\''+itemb.tiendaNom+'\',\''+itemb.direccionImagen+'\',\''+itemb.precio+'\')" data-target="#commentModal"  name="'+itemb.idproducto+'" type="button" title="Buscar Producto" class="btn btn-success btn-sm">Relacionar</button></td>';
-                        $('#results_tb tbody').append('<tr>'+'<td>' + itemb.idproducto+ '</td>'+'<td>' + itemb.nombre + '</td>'+'<td>' + itemb.detalle + '</td>'+'<td>' + itemb.codigotienda + '</td>'+'<td>' + itemb.precio + '</td>'+'<td>' + itemb.tiendaNom + '</td>'+relacion_front+ '</td>'+relacionar+'</td>'+'<td>'+imagen+'</td>'+'</tr>');
+                        $('#results_tb tbody').append('<tr>'+'<td>' + itemb.idproducto+ '</td>'+'<td>' + itemb.nombre + '</td>'+'<td>' + relacion_front_1 + '</td>'+'<td>' + relacion_front_2 + '</td>'+'<td>' + itemb.precio + '</td>'+'<td>' + itemb.tiendaNom + '</td>'+relacion_front+ '</td>'+relacionar+'</td>'+'<td>'+imagen+'</td>'+'</tr>');
 
                     });
                 }).catch(error => {
